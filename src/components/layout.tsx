@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ pageTitle, children }: React.PropsWithChildren<{pageTitle?: string}>) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,9 +23,12 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const title = pageTitle ?? data.site.siteMetadata?.title ?? `xpcoffee`
+
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={title} />
+      <title>{title}</title>
       <div
         style={{
           margin: `0 auto`,
