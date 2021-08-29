@@ -9,7 +9,8 @@ import * as React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description = "", lang = "en", meta = [], title }: { description?: string; lang?: string; meta?: Object[]; title: string; }) {
+function Seo({ description = "", lang = "en", meta = [], title }: { description?: string; lang?: string; meta?: JSX.IntrinsicElements["meta"][]; title: string; }) {
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -34,7 +35,7 @@ function Seo({ description = "", lang = "en", meta = [], title }: { description?
       }}
       title={title}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
-      meta={[
+      meta={meta.concat([
         {
           name: `description`,
           content: metaDescription,
@@ -67,7 +68,7 @@ function Seo({ description = "", lang = "en", meta = [], title }: { description?
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ])}
     />
   )
 }
