@@ -5,3 +5,11 @@
 a {
   @apply text-indigo-800 hover:text-indigo-800 visited:text-purple-700;
 }
+
+p {
+  @apply mb-2;
+}
+
+h2 {
+  @apply text-3xl my-2;
+}

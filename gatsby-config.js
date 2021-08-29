@@ -48,6 +48,14 @@ module.exports = {
         ],
       },
     },
+    /**
+     * Surface images to graphql. Used to enable SVGs to be used as favicon.
+     * https://jackwarren.info/posts/guides/gatsby/svg-favicon/
+     */
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: { name: `images`, path: `${__dirname}/src/images` },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -57,7 +65,10 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/xpcoffee-icon.svg`, // This path is relative to the root of the site.
+        icon_options: {
+          purpose: `maskable`,
+        },
       },
     },
     `gatsby-plugin-postcss`,

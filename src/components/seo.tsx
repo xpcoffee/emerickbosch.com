@@ -9,11 +9,20 @@ import * as React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description = "", lang = "en", meta = [], title }: { description?: string; lang?: string; meta?: JSX.IntrinsicElements["meta"][]; title: string; }) {
-
-  const { site } = useStaticQuery(
+function Seo({
+  description = "",
+  lang = "en",
+  meta = [],
+  title,
+}: {
+  description?: string
+  lang?: string
+  meta?: JSX.IntrinsicElements["meta"][]
+  title: string
+}) {
+  const { site, allFile } = useStaticQuery<GatsbyTypes.MetadataQuery>(
     graphql`
-      query {
+      query Metadata {
         site {
           siteMetadata {
             title
@@ -21,12 +30,25 @@ function Seo({ description = "", lang = "en", meta = [], title }: { description?
             author
           }
         }
+        allFile(
+          limit: 1
+          filter: {
+            name: { eq: "xpcoffee-icon" }
+            ext: { eq: ".svg" }
+            sourceInstanceName: { eq: "images" }
+            relativeDirectory: { eq: "" }
+          }
+        ) {
+          nodes {
+            publicURL
+          }
+        }
       }
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site?.siteMetadata?.description
+  const defaultTitle = site?.siteMetadata?.title
 
   return (
     <Helmet
@@ -69,7 +91,14 @@ function Seo({ description = "", lang = "en", meta = [], title }: { description?
           content: metaDescription,
         },
       ])}
-    />
+    >
+      <link
+        rel="icon"
+        href={allFile.nodes[0].publicURL}
+        type="image/svg+xml"
+        sizes="any"
+      />
+    </Helmet>
   )
 }
 
