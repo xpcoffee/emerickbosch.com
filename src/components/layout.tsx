@@ -3,10 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 
-const Layout = ({
-  pageTitle,
-  children,
-}: React.PropsWithChildren<{ pageTitle?: string }>) => {
+const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const data = useStaticQuery<GatsbyTypes.SiteTitleQueryQuery>(graphql`
     query SiteTitleQuery {
       site {
@@ -17,7 +14,7 @@ const Layout = ({
     }
   `)
 
-  const title = pageTitle ?? data.site?.siteMetadata?.title ?? `xpcoffee`
+  const title = data.site?.siteMetadata?.title ?? `xpcoffee`
 
   return (
     <div className="flex flex-col h-screen">

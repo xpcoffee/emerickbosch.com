@@ -13,6 +13,7 @@ const IndexPage = () => {
           frontmatter {
             date(formatString: "MMMM D, YYYY")
             title
+            description
           }
           id
           slug
@@ -23,17 +24,18 @@ const IndexPage = () => {
 
   const articleListItems = articlesData.allMdx.nodes.map(node => (
     <ArticleListItem
-      id={node.id}
-      articlePath={node.slug}
+      key={node.id}
+      articlePath={node.slug ?? "/404"}
       title={node.frontmatter?.title}
+      description={node.frontmatter?.description}
     />
   ))
 
   return (
     <Layout>
       <Seo title="Home" />
-      <h2>Articles</h2>
-      <ul>{articleListItems}</ul>
+      <p>A collection of notes and thoughts.</p>
+      <ul className="ml-5">{articleListItems}</ul>
     </Layout>
   )
 }
