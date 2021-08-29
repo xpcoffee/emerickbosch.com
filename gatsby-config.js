@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `xpcoffee.github.io`,
+    title: `xpcoffee`,
     description: `Emerick Bosch's personal site`,
     author: `@xpcoffee`,
     siteUrl: `https://xpcofee.github.io/`,
@@ -60,5 +60,6 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-postcss`,
   ],
 }
