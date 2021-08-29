@@ -13,3 +13,7 @@ p {
 h2 {
   @apply text-3xl my-2;
 }
+
+pre {
+  @apply rounded-xl;
+}
