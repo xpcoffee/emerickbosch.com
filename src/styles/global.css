@@ -23,7 +23,7 @@ h2 {
 }
 
 h3 {
-  @apply text-xl mt-3 mb-2;
+  @apply text-xl mt-8 mb-2 text-gray-700;
 }
 
 pre {
