@@ -31,10 +31,17 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
       >
         {children}
       </main>
-      <footer className="flex justify-between items-center mx-5 my-2.5 text-sm text-gray-600 quicksand pb-2">
-        <EmojiLogo />
-        <ThisIsMySite />
-        <Contact />
+      <footer>
+        <div className="flex justify-center">
+          <div
+            style={{ maxWidth: "900px" }}
+            className="flex flex-grow justify-between items-center my-2.5 text-sm text-gray-600 quicksand pb-2 px-5"
+          >
+            <EmojiLogo />
+            <ThisIsMySite />
+            <Contact />
+          </div>
+        </div>
       </footer>
     </div>
   )

@@ -32,6 +32,7 @@ pre {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  min-width: 600px;
   @apply text-gray-800;
 }
 
