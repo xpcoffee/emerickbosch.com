@@ -1,7 +1,12 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-
 import Header from "./header"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faGithub,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons"
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const data = useStaticQuery<GatsbyTypes.SiteTitleQueryQuery>(graphql`
@@ -48,12 +53,15 @@ const Contact = () => {
     <div>
       Emerick Bosch
       <div>
+        <FontAwesomeIcon className="mr-2" icon={faGithub} />
         <a href="https://github.com/xpcoffee">xpcoffee</a>
       </div>
       <div>
+        <FontAwesomeIcon className="mr-2" icon={faTwitter} />
         <a href="https://twitter.com/explodedcoffee">explodedcoffee</a>
       </div>
       <div>
+        <FontAwesomeIcon className="mr-2" icon={faLinkedin} />
         <a href="https://www.linkedin.com/in/emerickbosch">emerickbosch</a>
       </div>
     </div>

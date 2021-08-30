@@ -17,3 +17,7 @@ h2 {
 pre {
   @apply rounded-xl;
 }
+
+body {
+  font-family: "Quicksand";
+}

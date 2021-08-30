@@ -29,16 +29,16 @@ const Header = ({ siteTitle = "" }: { siteTitle: string }) => {
         }
       >
         <div className="flex items-center">
-          <h1 className="mr-2 text-2xl">
-            <Link className="text-gray-600 visited:text-gray-600" to="/">
-              {siteTitle}
-            </Link>
-          </h1>
           <img
             alt="xpcoffee icon"
             style={{ height: "45px" }}
             src={allFile.nodes[0].publicURL}
           />
+          <h1 className="ml-2 text-2xl">
+            <Link className="text-gray-600 visited:text-gray-600" to="/">
+              {siteTitle}
+            </Link>
+          </h1>
         </div>
         <div>
           <Link
