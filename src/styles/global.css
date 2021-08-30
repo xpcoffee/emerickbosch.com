@@ -40,5 +40,14 @@ ol {
 }
 
 ul {
-  @apply list-disc;
+  @apply list-disc ml-6 mt-2 mb-3;
+}
+
+table {
+  @apply mb-3;
+}
+
+td,
+th {
+  @apply border border-gray-300 p-2 text-gray-700;
 }

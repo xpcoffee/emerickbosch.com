@@ -9,5 +9,6 @@ module.exports = {
       textColor: ["visited"],
     },
   },
+  corePlugins: {},
   plugins: [],
 }
