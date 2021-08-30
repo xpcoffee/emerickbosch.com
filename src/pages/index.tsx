@@ -36,7 +36,7 @@ const IndexPage = () => {
     <Layout>
       <Seo title="Home" />
       <p>A collection of notes and thoughts.</p>
-      <ul className="ml-5">{articleListItems}</ul>
+      <ul className="ml-5 list-none">{articleListItems}</ul>
     </Layout>
   )
 }

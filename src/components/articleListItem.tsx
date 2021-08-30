@@ -15,7 +15,6 @@ export const ArticleListItem = ({
   description,
   faIconName,
 }: Props) => {
-  console.log({ faIconName })
   const icon = getIcon(faIconName)
 
   const descriptionSubtext = description ? (
@@ -26,7 +25,7 @@ export const ArticleListItem = ({
   ) : undefined
 
   return (
-    <li>
+    <li className="my-2">
       <div className="flex items-end">
         <Link to={`articles/${articlePath}`}>
           {icon}
