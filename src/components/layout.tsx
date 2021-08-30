@@ -26,12 +26,12 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
       <Header siteTitle={title} />
       <title>{title}</title>
       <main
-        className="flex-grow self-center w-full px-5 py-5 text-gray-800"
-        style={{ maxWidth: "1000px" }}
+        className="flex-grow self-center w-full px-20 py-5 text-gray-800"
+        style={{ maxWidth: "900px" }}
       >
         {children}
       </main>
-      <footer className="flex justify-between items-center mx-5 my-2.5 text-sm text-gray-600">
+      <footer className="flex justify-between items-center mx-5 my-2.5 text-sm text-gray-600 quicksand pb-2">
         <EmojiLogo />
         <ThisIsMySite />
         <Contact />

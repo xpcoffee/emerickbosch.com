@@ -1,7 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby"
 import * as React from "react"
 import { ArticleListItem } from "../components/articleListItem"
-
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -14,6 +13,7 @@ const IndexPage = () => {
             date(formatString: "MMMM D, YYYY")
             title
             description
+            faIcon
           }
           id
           slug
@@ -28,6 +28,7 @@ const IndexPage = () => {
       articlePath={node.slug ?? "/404"}
       title={node.frontmatter?.title}
       description={node.frontmatter?.description}
+      faIconName={node?.frontmatter?.faIcon}
     />
   ))
 
