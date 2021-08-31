@@ -6,7 +6,7 @@ type Props = PropsWithChildren<{
 
 export const Card = ({ children, heading }: Props) => {
   const header = heading ? (
-    <h3 className="text-blue-800">{heading}</h3>
+    <h2 className="text-blue-800">{heading}</h2>
   ) : undefined
 
   return (

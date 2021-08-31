@@ -1,0 +1,151 @@
+---
+title: Machine playbook
+description: How I get back up and running on a freshly formatted machine.
+date: 2020-08-31
+faIcon: faDesktop
+---
+
+I use this to get back to a semi-workable state on the sad (but frequent) occasions when I format my machine. I currently use [Ubuntu](https://ubuntu.com/).
+
+## Browser
+
+Install [Firefox developer edition](https://www.mozilla.org/en-US/firefox/developer/)
+
+<span className="quicksand text-sm">Firefox with more oomf</span>
+
+- [lastpass](https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd)
+- [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+- [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en)
+
+## Work
+
+Install [Guake](http://guake-project.org/)
+
+<span className="quicksand text-sm">It has a global hotkey</span>
+
+```bash
+sudo apt-get install guake
+```
+
+Install node
+
+```bash
+sudo snap install node --classic --channel=14/stable
+```
+
+Install [VS Code](https://code.visualstudio.com/)
+
+```bash
+sudo snap install code --classic
+```
+
+Install [fish](https://fishshell.com)
+
+<span className="quicksand text-sm">
+  Shell with more out-the-box features than bash
+</span>
+
+```bash
+sudo apt install fish
+```
+
+Install curl
+
+```bash
+sudo apt install curl
+```
+
+Set up [omf](https://github.com/oh-my-fish/oh-my-fish)
+
+<span className="quicksand text-sm">
+  A bunch of pre-configured functionality/plugin management for fish
+</span>
+
+```bash
+curl -L https://get.oh-my.fish | fish
+```
+
+Set up the [pure terminal prompt](https://github.com/pure-fish/pure)
+
+```bash
+curl git.io/pure-fish --output /tmp/pure_installer.fish --location --silent
+```
+
+Install <span class="tooltip" data-tooltip="">[fzf](https://github.com/junegunn/fzf)</span>
+
+<span className="quicksand text-sm">
+  Command-line fuzzy-finder menus; comes with bindings for fuzzy searching
+  through command history and subfiles
+</span>
+
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+```
+
+Set up workplace directory
+
+```bash
+cd $HOME && mkdir code
+```
+
+Set up [dotfiles](https://github.com/xpcoffee/dotfiles)
+
+<span className="quicksand text-sm">
+  These are my dotfiles, fork and tweak them as you need.
+</span>
+
+```bash
+cd $HOME/Workplace && git clone https://github.com/xpcoffee/dotfiles && cd dotfiles && ./link_dotfiles.sh
+```
+
+Install [Vundle](https://github.com/VundleVim/Vundle.vim)
+
+<span className="quicksand text-sm">Vim plugin manager</span>
+
+```bash
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+Install vim plugins using Vundle
+
+```bash
+vim
+# :PluginInstall
+```
+
+Generate a [new SSH key](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+<span className="quicksand text-sm">
+  I'm not sure if this is better or worse than 'one to rule them all', but it's
+  simple enough
+</span>
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+Install [jq](https://stedolan.github.io/jq/)
+
+<span className="quicksand text-sm">Command line JSON manipulation tool</span>
+
+## Multimedia
+
+Install [Inkscape](https://snapcraft.io/inkscape)
+
+<span className="quicksand text-sm">Vector illustrator for linux</span>
+
+```bash
+sudo snap install inkscape --classic
+```
+
+Install [VLC media player](https://www.videolan.org/vlc/index.html)
+
+```bash
+sudo snap install vlc
+```
+
+Install [Spotify](https://www.spotify.com/)
+
+```bash
+sudo snap install spotify
+```

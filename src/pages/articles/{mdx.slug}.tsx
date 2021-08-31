@@ -27,10 +27,10 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
 
   return (
     <Layout>
-      <h2>
+      <h1>
         {icon}
         {title}
-      </h2>
+      </h1>
       <div className="mb-5">{datePosted}</div>
       {body}
     </Layout>

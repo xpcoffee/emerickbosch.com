@@ -37,7 +37,9 @@ const Header = ({ siteTitle = "" }: { siteTitle: string }) => {
                 style={{ height: "45px" }}
                 src={allFile.nodes[0].publicURL}
               />
-              <h1 className="ml-2 text-2xl">{siteTitle}</h1>
+              <div className="ml-2 text-2xl quicksand text-gray-700">
+                {siteTitle}
+              </div>
             </div>
           </Link>
           <div>

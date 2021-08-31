@@ -15,15 +15,15 @@ p {
 }
 
 h1 {
-  @apply quicksand;
-}
-
-h2 {
   @apply text-3xl my-2 quicksand;
 }
 
+h2 {
+  @apply text-2xl mt-8 mb-2 text-gray-700;
+}
+
 h3 {
-  @apply text-xl mt-8 mb-2 text-gray-700;
+  @apply text-xl text-gray-700 mt-4 mb-2;
 }
 
 pre {
