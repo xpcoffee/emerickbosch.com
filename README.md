@@ -62,3 +62,19 @@ This site uses [Tailwind](https://tailwindcss.com/docs). Use the classes as you 
 ```bash
 npm run deploy
 ```
+
+This builds the site and deploys it to the `main` branch. The `main` branch is used by Github Pages to build/serve the site.
+
+> **Note:** note the difference between this and the `master` branch on which development happens. Develop and save code on `master`; deploy to `main`.
+
+See also: https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/how-gatsby-works-with-github-pages/
+
+### Troubleshooting
+
+**A branch named 'main' already exists.**
+
+This can happen if the deployment process died halfway. It's caused by stale state. Remove the github page state in `node_modules`.
+
+```bash
+rm -rf node_modules/.cache/gh-pages
+```
