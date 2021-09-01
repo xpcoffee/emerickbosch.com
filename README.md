@@ -53,6 +53,10 @@ import MySvg from "./images/my-svg.svg";
 <MySvg />
 ```
 
+## Dev notes
+
+See (and update) [src/articles/gatsby-notes.mdx](./src/articles/gatsby-notes.mdx).
+
 ## Styling content
 
 This site uses [Tailwind](https://tailwindcss.com/docs). Use the classes as you need them; I recommend using the global-search on their search. If you need to modify an element globally (should be rare) you can do so in [global.css](./src/styles/global.css).
