@@ -76,7 +76,7 @@ function Seo({
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `description`,
         },
         {
           name: `twitter:creator`,
@@ -89,10 +89,6 @@ function Seo({
         {
           name: `twitter:description`,
           content: metaDescription,
-        },
-        {
-          name: "google-site-verification",
-          content: "lJ0lgHb2iP4_a9YIfrClq0OhqsUM_qNjyBe-eJZwmWc",
         },
       ])}
     >
