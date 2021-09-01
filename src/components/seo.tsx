@@ -90,6 +90,10 @@ function Seo({
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: "google-site-verification",
+          content: "lJ0lgHb2iP4_a9YIfrClq0OhqsUM_qNjyBe-eJZwmWc",
+        },
       ])}
     >
       <link
