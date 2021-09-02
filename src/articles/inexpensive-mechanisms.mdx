@@ -1,0 +1,157 @@
+---
+title: Inexpensive mechanisms to support team processes
+description: A list of mechanisms that are cheap to implement, but that empower valuable processes.
+faIcon: faPaperclip
+date: 2021-09-02
+---
+
+This is a (hopefully growing) of mechanisms that are cheap to practically implement, but that empower processes
+that add value to the team and our customers.
+
+## Innovation
+
+These mechanisms have, as a primary (though not necessarily only) goal, to promote innovation.
+
+### Tech experiment
+
+**What is this?**
+
+A short-lived task aimed at gaining new information.
+
+**When do you use it?**
+
+When you have technical ambiguity where you are unsure about the right path forward.
+OR when you have a team member that is curious to learn about/play with technology.
+
+**Why is it useful?**
+
+It provides space for a task that can fail, while ensuring that we extract value out of it.
+
+**What does it look like?**
+
+This is a template for an experiment proposal/overview. This is used to make the initial decision around
+whether or not to plan the experiment.
+
+```md
+# Experiment: Foobar
+
+## Context
+
+How do things work now?
+
+## Ambiguity/problem
+
+What knowledge are we aiming to gain/what problem are we looking to solve with this experiment?
+
+## Approach
+
+Short description of the approach. This is not a design; that will come later.
+
+## Out of scope
+
+What will not be considered as part of this experiment.
+
+## Success criteria/Metrics
+
+How do we know whether this was successful or not?
+
+## Owners
+
+@someone
+@anyone
+
+## Start date
+
+YYYY-MM-DD
+
+## End date
+
+YYYY-MM-DD
+
+This is a hard cutoff. On this date we make a decision around failure/success and whether to invest further.
+
+## Conclusions/learnings
+
+To be written after the experiment to summaries the outcomes. Link to more detailed artifacts here (designs, data, code, etc).
+```
+
+## Knowledge sharing
+
+These mechanisms have, as a primary (though not necessarily only) goal, to enable knowledge sharing that scales across time and people.
+
+### Logs
+
+#### Operational event log
+
+**What is this?**
+
+Team-specific log of start/end of significant operational events. Most recent entries at the top.
+
+**When do you use it?**
+
+After every event concludes or after investigations.
+
+**Why is this useful?**
+
+Can be referenced by other teams during their reviews. Can be ingested into dashboards to auto-generate annotations. Can
+be processed for insights (recurring issues; average time to mitigation).
+
+**What does it look like?**
+
+```md
+# Operational events
+
+2021-08-30T10:14Z | home page latency increase | end | _ticket link_ | full recovery
+2021-08-30T10:13Z | home page latency increase | state-change | _ticket link_ | partial recovery
+2021-08-30T10:11Z | home page latency increase | start | _ticket link_ | alarm fires
+2021-08-29T12:00Z | failover data migration | end | _ticket link_ | workflow successful
+2021-08-29T09:31Z | failover data migration | start | _ticket link_ | workflow started
+```
+
+#### Operational review journal
+
+**What is this?**
+
+Team-specific journal of a periodic operational review.
+
+**When do you use it?**
+
+Every operational review session.
+
+**Why is it useful?**
+
+Record of the review for tracking, knowledge-sharing, reference and long-term trend analysis.
+
+```md
+# YYYY-MM-DD Ops review
+
+## What experiences do we own/maintain?
+
+_This section shouldn't change often and is more to allow sharing._
+
+## Operational wins
+
+## What was last week like for customers?
+
+Customer impacting events (both good and bad):
+
+Customer feedback:
+
+Metrics callouts:
+
+## What was last week like for on-call?
+
+Major events:
+
+Notable classes of issues:
+
+Lessons learned:
+
+Most wanted improvement:
+
+## What is currently the biggest operational risk?
+
+## Action items
+
+1. Action item - @owner
+```
