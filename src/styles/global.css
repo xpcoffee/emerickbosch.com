@@ -26,6 +26,10 @@ h3 {
   @apply text-xl text-gray-700 mt-4 mb-2;
 }
 
+h4 {
+  @apply text-xl quicksand text-gray-700 mt-3 mb-3;
+}
+
 pre {
   @apply rounded-xl;
 }

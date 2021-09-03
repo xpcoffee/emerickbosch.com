@@ -5,18 +5,73 @@ faIcon: faPaperclip
 date: 2021-09-02
 ---
 
-This is a (hopefully growing) of mechanisms that are cheap to practically implement, but that empower processes
+import { ExpandableSection } from "../components/expandableSection"
+
+This is a (hopefully) growing of mechanisms that are cheap to practically implement, but that empower processes
 that add value to the team and our customers.
 
-## Innovation
+<ExpandableSection 
+initiallyHidden={true}
+header="Tenets"
+description="A prioritized set of team defaults for how to resolve tension between incompatible requirements.">
 
-These mechanisms have, as a primary (though not necessarily only) goal, to promote innovation.
+**What does this promote?**
 
-### Tech experiment
+Fast decision making in ambiguous situations / agreement within the team about what's important / communication to stakeholders about team priorities.
 
-**What is this?**
+**When do you use it?**
 
-A short-lived task aimed at gaining new information.
+For every large initiative e.g. a team or a project.
+
+**Why is it useful?**
+
+The exercise of deciding on tenets helps align the team on what we think the difficult tradeoffs of our space are and around the core value we mean to deliver.
+
+The tenets themselves can be consulted whenever we reach a potentially difficult set of tradeoffs and helps frame the discussion in terms of what the team
+previously agreed upon; the goal is to help make decisions quickly and in a way that's consistent with the team's goals/prior decisions.
+
+The tenets also help remove ambiguity for team members when prioritizing tasks and provide a clear team stance on what's considered important to stakeholders.
+
+**Considerations**
+
+Tenets are _highly_ context dependent and change over time, as requirements and the team evolves. They need to be actively referenced and frequently updated.
+
+Tenets must also address hard questions; their use at helping guide difficult tradeoffs is highly diminished if they don't project a strong opinion.
+
+**Examples**
+
+```md
+Team: API platform team
+
+Tenets:
+
+1.  Force multiplication over individual attention. We maximize our value by delivering on features that benefit the most amount of teams on the platform.
+1.  General availability over individual availability. We protect the overall experience of the APIs on the platform; we will deteriorate the experience of
+    individual APIs if their performance starts to affect other APIs.
+1.  Developer experience over feature set. We first build and iterate on the experience such that it is safe and easy to integrate with before we consider additional features.
+```
+
+```md
+Project: Address imminent scaling cliff
+
+Tenets:
+
+1.  Security over availability. We do not regress on our security posture, even if we end up hitting our scaling cliff.
+1.  Results over perfection. The primary goal is to prevent our service from hitting the scaling cliff, even if that means taking on technical debt.
+1.  Early warning over maximum output. We instrument our service to detect early signs of reaching the scaling cliff. We accept the risk of dropping
+    potential weeks of output up-front in favour of having the ability to detect critical failure and subsequently react to (escalate to more teams/change tactic).
+```
+
+</ExpandableSection>
+
+<ExpandableSection 
+initiallyHidden={true}
+header="Tech experiment"
+description="A short-lived task aimed at gaining new information.">
+
+**What does this promote?**
+
+Innovation / creativity / getting out of analysis paralysis.
 
 **When do you use it?**
 
@@ -75,17 +130,16 @@ This is a hard cutoff. On this date we make a decision around failure/success an
 To be written after the experiment to summaries the outcomes. Link to more detailed artifacts here (designs, data, code, etc).
 ```
 
-## Knowledge sharing
+</ExpandableSection>
 
-These mechanisms have, as a primary (though not necessarily only) goal, to enable knowledge sharing that scales across time and people.
+<ExpandableSection 
+initiallyHidden={true}
+header="Operational event log"
+description="Team-specific log of start/end of significant operational events. Most recent entries at the top.">
 
-### Logs
+**What does this promote?**
 
-#### Operational event log
-
-**What is this?**
-
-Team-specific log of start/end of significant operational events. Most recent entries at the top.
+Knowledge sharing on operational events / historical records of operational events / data gathering of operational events / data analysis of operational events / event response analysis / correlation of events.
 
 **When do you use it?**
 
@@ -108,11 +162,16 @@ be processed for insights (recurring issues; average time to mitigation).
 2021-08-29T09:31Z | failover data migration | start | _ticket link_ | workflow started
 ```
 
-#### Operational review journal
+</ExpandableSection>
 
-**What is this?**
+<ExpandableSection 
+initiallyHidden={true}
+header="Operational review journal"
+description="Team-specific journal of a periodic operational review.">
 
-Team-specific journal of a periodic operational review.
+**What does this promote?**
+
+Knowledge sharing on operational events / historical records of operational events / data gathering of operational events / data analysis of operational events / record of operational issues / record of operational decisions.
 
 **When do you use it?**
 
@@ -155,3 +214,5 @@ Most wanted improvement:
 
 1. Action item - @owner
 ```
+
+</ExpandableSection>
