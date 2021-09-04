@@ -101,5 +101,14 @@ module.exports = {
      */
     `gatsby-plugin-postcss`,
     `gatsby-plugin-fontawesome-css`,
+    /**
+     * Deployment
+     */
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "emerickbosch",
+      },
+    },
   ],
 }
