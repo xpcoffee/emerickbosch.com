@@ -4,10 +4,9 @@ phases:
   install:
     runtime-versions:
       nodejs: 14
-    commands:
-      - ‘npm install -g gatsby’
   pre_build:
     commands:
+      - ‘npm install -g gatsby’
       - ‘npm install’
   build:
     commands:
