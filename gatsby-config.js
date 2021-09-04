@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `xpcoffee`,
+    title: `xpcoffee | Emerick Bosch`,
     description: `I'm Emerick Bosch. I work as a software developer. These are some of my thoughts.`,
     author: `@xpcoffee`,
-    siteUrl: `https://xpcofee.github.io/`,
+    siteUrl: `https://emerickbosch.com/`,
   },
   plugins: [
     /**
@@ -12,8 +12,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `xpcoffee-github-io`,
-        short_name: `xpcoffee`,
+        name: `Emerick Bosch | @xpcoffee`,
+        short_name: `emerickbosch`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
