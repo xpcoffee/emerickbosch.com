@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `xpcoffee | Emerick Bosch`,
+    title: `Emerick Bosch`,
     description: `I'm Emerick Bosch. I work as a software developer. These are some of my thoughts.`,
     author: `@xpcoffee`,
     siteUrl: `https://emerickbosch.com/`,
