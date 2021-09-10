@@ -1,4 +1,4 @@
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
 import { ArticleListItem } from "../components/articleListItem"
 import Layout from "../components/layout"
@@ -36,7 +36,7 @@ const IndexPage = () => {
     <Layout>
       <Seo title="Home" />
       <p>A collection of notes and thoughts.</p>
-      <ul className="ml-5 mt-3 list-none">{articleListItems}</ul>
+      <ul className="ml-0 mt-3 list-none">{articleListItems}</ul>
     </Layout>
   )
 }

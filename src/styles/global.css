@@ -34,10 +34,20 @@ pre {
   @apply rounded-xl;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  min-width: 600px;
+  height: 100%;
   @apply text-gray-800;
+}
+
+#___gatsby,
+#gatsby-focus-wrapper,
+#app-layout {
+  height: 100%;
 }
 
 ol {
@@ -59,4 +69,17 @@ th {
 
 details summary > * {
   display: inline;
+}
+
+@media (min-width: 768px) {
+  .md\:grid-desktop {
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* Remove scrollbar jitter*/
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
 }

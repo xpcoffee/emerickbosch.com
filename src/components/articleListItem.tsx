@@ -18,21 +18,18 @@ export const ArticleListItem = ({
   const icon = getIcon(faIconName)
 
   const descriptionSubtext = description ? (
-    <span className="text-gray-600 text-sm">
-      <span className="mx-1">•</span>
-      {description}
-    </span>
+    <span className="text-gray-600 text-sm">{description}</span>
   ) : undefined
 
   return (
-    <li className="my-2">
-      <span>
+    <li className="my-4 md:my-2 pl-5 border-blue-800 border-l-2 md:border-0">
+      <div className="flex flex-col">
         <Link to={`articles/${articlePath}`}>
           {icon}
           {title ?? "untitled"}
         </Link>
         {descriptionSubtext}
-      </span>
+      </div>
     </li>
   )
 }

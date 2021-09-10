@@ -1,6 +1,5 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Header from "./header"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faGithub,
@@ -9,56 +8,97 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
-  const data = useStaticQuery<GatsbyTypes.SiteTitleQueryQuery>(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+  const { site, allFile } =
+    useStaticQuery<GatsbyTypes.LayoutQueryQuery>(graphql`
+      query LayoutQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+        allFile(
+          limit: 1
+          filter: {
+            name: { eq: "xpcoffee-icon" }
+            ext: { eq: ".svg" }
+            sourceInstanceName: { eq: "images" }
+            relativeDirectory: { eq: "" }
+          }
+        ) {
+          nodes {
+            publicURL
+          }
         }
       }
-    }
-  `)
+    `)
 
-  const title = data.site?.siteMetadata?.title ?? `xpcoffee`
+  const title = site?.siteMetadata?.title ?? `xpcoffee`
 
   return (
-    <div className="flex flex-col h-screen">
-      <Header siteTitle={title} />
-      <title>{title}</title>
-      <main
-        className="flex-grow self-center w-full px-20 py-5 text-gray-800"
+    <div id="app-layout" className="flex justify-center">
+      <div
+        className="grid grid-cols-1 md:grid-desktop gap-5 m-2 flex-1"
         style={{ maxWidth: "900px" }}
       >
-        {children}
-      </main>
-      <footer>
-        <div className="flex justify-center">
-          <div
-            style={{ maxWidth: "900px" }}
-            className="flex flex-grow justify-between items-center my-2.5 text-sm text-gray-600 quicksand pb-2 px-5"
-          >
-            <EmojiLogo />
-            <ThisIsMySite />
-            <Contact />
+        <title>{title}</title>
+        <Title titleText={title} iconUrl={allFile.nodes[0].publicURL} />
+        <ThisIsMySite />
+        <hr className="order-3 hidden md:block md:col-span-3"></hr>
+        <main className="order-4 md:col-span-3 py-5 text-gray-800 self-start">
+          {children}
+        </main>
+        <AboutLink />
+        <Contact />
+        <EmojiLogo />
+      </div>
+    </div>
+  )
+}
+
+const Title = ({
+  titleText,
+  iconUrl,
+}: {
+  titleText: string
+  iconUrl?: string
+}) => {
+  return (
+    <div className="order-1 grid-row-start-1 grid-row-end-1 text-gray-600 visited:text-gray-600 md:self-center md:col-span-2 justify-self-center md:justify-self-start">
+      <Link to="/">
+        <div className="flex items-center">
+          <img alt="xpcoffee icon" style={{ height: "45px" }} src={iconUrl} />
+          <div className="ml-2 text-2xl quicksand text-gray-700">
+            {titleText}
           </div>
         </div>
-      </footer>
+      </Link>
     </div>
   )
 }
 
 const ThisIsMySite = () => {
-  return <div>This is my site. Please treat it gently. ❤</div>
+  return (
+    <div className="order-2 md:order-6 flex justify-center md:self-center">
+      <div className="text-sm text-gray-600 quicksand ">
+        This is my site. Please treat it gently. ❤
+      </div>
+    </div>
+  )
 }
 
-const EmojiLogo = () => {
-  return <div>☕ ⌨️ ⚙️</div>
+const AboutLink = () => {
+  return (
+    <div className="order-5 md:order-2 grid-row-start-3 grid-row-end-3 quicksand text-xl md:self-center md:justify-self-end justify-self-center md:order-1">
+      <Link to="/about" className="text-gray-600 visited:text-gray-600 ">
+        About me
+      </Link>
+    </div>
+  )
 }
 
 const Contact = () => {
   return (
-    <div>
-      Emerick Bosch
+    <div className="order-6 md:order-7 flex flex-col gap-3 items-center md:items-start md:gap-1 md:text-sm text-gray-600 quicksand md:justify-self-end">
       <div>
         <FontAwesomeIcon className="mr-2" icon={faGithub} />
         <a href="https://github.com/xpcoffee">xpcoffee</a>
@@ -71,6 +111,14 @@ const Contact = () => {
         <FontAwesomeIcon className="mr-2" icon={faLinkedin} />
         <a href="https://www.linkedin.com/in/emerickbosch">emerickbosch</a>
       </div>
+    </div>
+  )
+}
+
+const EmojiLogo = () => {
+  return (
+    <div className="order-7 md:order-5 flex justify-center md:justify-self-start md:self-center">
+      <div className="text-sm text-gray-600 quicksand ">☕ ⌨️ ⚙️</div>
     </div>
   )
 }
