@@ -1,22 +1,26 @@
-# [xpcoffee.github.io](https://xpcoffee.github.io)
+# [emerickbosch.com](https://emerickbosch.com)
 
 Emerick Bosch's personal site.
 
-## Prerequisites
+## Getting started
 
-Install the [Gatsby CLI](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli).
+1\. Install the [Gatsby CLI](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli).
 
-## Start up the dev-server
-
+2\. Start the development server
 ```bash
 gatsby develop
 ```
+3\. Start coding!
 
-## Adding new articles
+## Development
+
+See also [src/articles/gatsby-notes.mdx](./src/articles/gatsby-notes.mdx).
+
+### Adding new articles
 
 Articles are [MDX](https://mdxjs.com/) files added to [src/articles](./src/articles). Adding a new file will automatically add a new page.
 
-### Frontmatter
+#### Frontmatter
 
 Articles have frontmatter that provides metadata about the article to the site. See the metadata that currently gets used here:
 
@@ -29,15 +33,19 @@ faIcon: faRobot
 ---
 ```
 
-**title** - The title of the article.
+<dl>
+  <dt>title</dt>
+  <dd>The title of the article.</dd>
+  <dt>description</dt>
+  <dd>A short description of what the article is about.</dd>
+   <dt>date</dt>
+  <dd>The date the article was <i>last edited</i>. This is not a blog, this is a collection of notes which will get updated with time.</dd>
+  <dt>faIcon</dt>
+  <dd><i>(I realize this is... meh...)</i></dd>
+  <dd>Used to add an FontAwesome icon to the article. It is the name of the <i>module export</i> of that icon in <code>@fortawesome/free-solid-svg-icons</code>. Have a read through <a href="./src/utils/fontAwesome.tsx">the fontAwesome utility</a> to see how this gets used.</dd>
+</dl>
 
-**description** - A short description of what the article is about.
-
-**date** - The date the article was _last edited_. This is not a blog, this is a collection of notes which will get updated with time.
-
-**faIcon** - _(I realize this is... meh...)_ Used to add an FontAwesome icon to the article. It is the name of the _module export_ of that icon in `@fortawesome/free-solid-svg-icons`. Have a read through [the fontAwesome utility](./src/utils/fontAwesome.tsx) to see how this gets used.
-
-### Images
+#### Images
 
 Add images to [src/articles/images/](./src/articles/images/), then reference them relatively in the MDX file:
 
@@ -53,32 +61,16 @@ import MySvg from "./images/my-svg.svg";
 <MySvg />
 ```
 
-## Dev notes
-
-See (and update) [src/articles/gatsby-notes.mdx](./src/articles/gatsby-notes.mdx).
-
-## Styling content
+### Styling content
 
 This site uses [Tailwind](https://tailwindcss.com/docs). Use the classes as you need them; I recommend using the global-search on their search. If you need to modify an element globally (should be rare) you can do so in [global.css](./src/styles/global.css).
 
-## Deploying
+## Deploying/maintaining
+
+The website is built/deployed using AWS CodePipeline.
 
 ```bash
-npm run deploy
+git push origin master
 ```
 
-This builds the site and deploys it to the `main` branch. The `main` branch is used by Github Pages to build/serve the site.
-
-> **Note:** note the difference between this and the `master` branch on which development happens. Develop and save code on `master`; deploy to `main`.
-
-See also: https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/how-gatsby-works-with-github-pages/
-
-### Troubleshooting
-
-**A branch named 'main' already exists.**
-
-This can happen if the deployment process died halfway. It's caused by stale state. Remove the github page state in `node_modules`.
-
-```bash
-rm -rf node_modules/.cache/gh-pages
-```
+For more information on/around deployments, see [the wiki](https://github.com/xpcoffee/emerickbosch.com/wiki/Runbook).
