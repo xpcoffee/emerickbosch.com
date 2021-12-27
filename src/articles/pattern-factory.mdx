@@ -5,7 +5,7 @@ faIcon: faShapes
 date: 2021-12-24
 ---
 
-import {Link} from "gatsby";
+import { Link } from "gatsby"
 
 **TLDR** A "factory" is a <Link to="/articles/patterns">pattern</Link> which encapsulates logic for creating new instances of classes.
 
@@ -33,25 +33,25 @@ A **factory class** that creates a new hero object according to player choices.
 
 ```typescript
 class PlayerHeroFactory {
-    private difficulty: GameDifficulty;
+  private difficulty: GameDifficulty
 
-    constructor({difficulty}: {difficulty: GameDifficulty}) {
-       this.difficulty = difficulty;
+  constructor({ difficulty }: { difficulty: GameDifficulty }) {
+    this.difficulty = difficulty
+  }
+
+  get({ name, heroType }: PlayerChoices): PlayerHero {
+    const hardMode = this.difficulty === "hard"
+    const startingHealth = hardMode ? 50 : 100
+
+    switch (chosenHero) {
+      case "swordsman":
+        const weapon = hardMode ? "stick" : "sword"
+        return new Swordsman({ name, startingHealth, weapon })
+      case "magician":
+        const spell = hardMode ? "ignite" : "fireball"
+        return new Magician({ name, startingHealth, spell })
     }
-
-    get({name, heroType}: PlayerChoices): PlayerHero {
-        const hardMode = this.difficulty === "hard";
-        const startingHealth = hardMode ? 50 : 100 ;
-
-        switch(chosenHero) {
-            case "swordsman":
-                const weapon = hardMode ? "stick" : "sword";
-                return new Swordsman({ name, startingHealth, weapon });
-            case "magician":
-                const spell = hardMode ? "ignite" : "fireball";
-                return new Magician({ name, startingHealth, spell });
-        }
-    }
+  }
 }
 
 type GameDifficulty = "normal" | "hard"
@@ -60,43 +60,53 @@ type GameDifficulty = "normal" | "hard"
 A **factory method** in a board-game class that creates a new initial board depending on the starting number of players.
 
 ```typescript
+// Note: several class definitions have been left out for brevity
+
 class BoardGame {
-    private board: Board;
+  private board: Board
 
-    constructor({numberOfPlayers}: {numberOfPlayers: number}) {
-        this.board = getInitialBoard({numberOfPlayers});
+  constructor({ numberOfPlayers }: { numberOfPlayers: number }) {
+    this.board = getInitialBoard({ numberOfPlayers })
+  }
+
+  private getInitialBoard({
+    numberOfPlayers,
+  }: {
+    numberOfPlayers: number
+  }): Board {
+    switch (numberOfPlayers) {
+      case 4:
+        return new FourPlayerBoard()
+      case 3:
+        return new ThreePlayerBoard()
+      case 2:
+        return new TwoPlayerBoard()
+      default:
+        throw new Error(
+          `Cannot create a new board for ${numberOfPlayers} players`
+        )
     }
-
-    private getInitialBoard({numberOfPlayers}: {numberOfPlayers: number}): Board {
-        switch(numberOfPlayers) {
-            case 4:
-                return new FourPlayerBoard();
-            case 3:
-                return new ThreePlayerBoard();
-            case 2:
-                return new TwoPlayerBoard();
-            default:
-                throw new Error(`Cannot create a new board for ${numberOfPlayers} players`);
-        }
-
-    }
-
+  }
 }
 ```
 
-A **factory function** which creates a new interceptor depending on application configuration.
-
+A **factory function** which creates a new <Link to="/articles/pattern-interceptor">interceptor</Link> depending on application configuration.
 
 ```typescript
-function getLoggingInterceptor({devMode, remoteLogging}: AppConfig): Interceptor {
-    if(devMode) {
-        return new ConsoleLoggingInterceptor();
-    }
+// Note: several class definitions have been left out for brevity
 
-    if(remoteLogging) {
-        return new RemoteLoggingInterceptor();
-    }
+function getLoggingInterceptor({
+  devMode,
+  remoteLogging,
+}: AppConfig): Interceptor {
+  if (devMode) {
+    return new ConsoleLoggingInterceptor()
+  }
 
-    return LocalLoggingInterceptor();
+  if (remoteLogging) {
+    return new RemoteLoggingInterceptor()
+  }
+
+  return LocalLoggingInterceptor()
 }
 ```
