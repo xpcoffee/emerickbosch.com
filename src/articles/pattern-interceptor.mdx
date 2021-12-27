@@ -87,6 +87,7 @@ interface Interceptor {
     run: (request: Request) => AppResponse
 }
 
+// Debug-logs the request
 class LoggingInterceptor {
     run(request: Request) {
         Logger.debug(request)
@@ -94,6 +95,8 @@ class LoggingInterceptor {
     }
 }
 
+// Keeps track of all requests in a time period
+// and triggers early return if the request count is too high.
 class GlobalThrottlingInterceptor {
     const requestCount = 0;
     const throttlingRequestLimit;
