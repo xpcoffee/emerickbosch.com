@@ -6,13 +6,16 @@ type Props = PropsWithChildren<{
 
 export const Card = ({ children, heading }: Props) => {
   const header = heading ? (
-    <h2 className="text-blue-800">{heading}</h2>
+    <h2 className="text-blue-800 mt-2 text-xl">{heading}</h2>
   ) : undefined
 
   return (
-    <div className="p-2 bg-blue-50 rounded-b-xl border-blue-600 border-t-4 mt-2 mb-4">
-      {header}
-      {children}
+    <div className="border-blue-600 border-l-4 my-5 flex">
+      <div className="w-10"></div>
+      <div>
+        {header}
+        {children}
+      </div>
     </div>
   )
 }
