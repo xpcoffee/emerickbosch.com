@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../../components/layout"
+import { Layout } from "../../components"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { stringValueOrUndefined } from "../../utils/string"
 import { getIcon } from "../../utils/fontAwesome"

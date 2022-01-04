@@ -9,7 +9,7 @@ interface Props {
   faIconName?: string
 }
 
-export const ArticleListItem = ({
+const ArticleListItem = ({
   articlePath,
   title,
   description,
@@ -33,3 +33,5 @@ export const ArticleListItem = ({
     </li>
   )
 }
+
+export { ArticleListItem }

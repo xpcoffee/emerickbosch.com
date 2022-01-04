@@ -102,4 +102,4 @@ function Seo({
   )
 }
 
-export default Seo
+export { Seo }

@@ -123,4 +123,4 @@ const EmojiLogo = () => {
   )
 }
 
-export default Layout
+export { Layout }

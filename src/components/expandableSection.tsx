@@ -1,12 +1,4 @@
-import {
-  faArrowDown,
-  faArrowRight,
-  faCaretDown,
-  faCaretRight,
-} from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
-import { useState } from "react"
 import { PropsWithChildren } from "react"
 
 type Props = PropsWithChildren<{
@@ -28,7 +20,7 @@ type Props = PropsWithChildren<{
   initiallyHidden: boolean
 }>
 
-export const ExpandableSection = ({
+const ExpandableSection = ({
   children,
   header,
   headerElementWrapper = children => <h3>{children}</h3>,
@@ -46,3 +38,5 @@ export const ExpandableSection = ({
     </details>
   )
 }
+
+export { ExpandableSection }

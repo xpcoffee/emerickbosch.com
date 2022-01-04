@@ -4,7 +4,7 @@ type Props = PropsWithChildren<{
   heading?: string
 }>
 
-export const Card = ({ children, heading }: Props) => {
+const Card = ({ children, heading }: Props) => {
   const header = heading ? (
     <h2 className="text-blue-800 mt-2 text-xl">{heading}</h2>
   ) : undefined
@@ -19,3 +19,5 @@ export const Card = ({ children, heading }: Props) => {
     </div>
   )
 }
+
+export { Card }
