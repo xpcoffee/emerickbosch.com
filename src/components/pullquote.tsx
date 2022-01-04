@@ -14,7 +14,7 @@ export const PullQuote = ({
       </div>
       <div className="mb-4 mx-9">{children}</div>
       <div
-        className="text-6xl text-orange-400 absolute top-5 right-8 leading-none"
+        className="text-6xl text-orange-400 absolute bottom-0 right-7 leading-none"
         aria-hidden="true"
       >
         &rdquo;
