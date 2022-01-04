@@ -1,0 +1,124 @@
+---
+title: System observability
+description: Things to measure/capture in your systems.
+date: 2022-01-03
+faIcon: faRuler
+---
+
+import { PullQuote } from "../components"
+
+This page is intended to be a living document of the different ways you should think about instrumenting your system to be able to operate it effectively and gather data to inform future features.
+
+If you can think of corrections/additions to make to the page, please reach out to me (see the footer of the site)!
+
+# Checklist
+
+Can you answer the following for your system at any time?
+
+- [ ] [Is my system healthy?](#health-metrics)
+- [ ] [What is my system currently doing?](#diagnostic-metrics)
+- [ ] [Is my system at risk of becoming unhealthy in the near future?](#railing-metrics)
+- [ ] [How was this request fullfilled by my systems?](#distributed-traces)
+- [ ] [What are the important events that were performed by my system recently?](#event-logs)
+- [ ] [What are the events that customers/security/legal need to know about?](#audit-logs)
+- [ ] [How did this customer use my system?](#customer-traces)
+- [ ] [What are the different customer personas using my system?](#customer-analytics)
+
+# Detecting and mitigating impact
+
+## Health metrics
+
+<PullQuote>Is my system currently healthy?</PullQuote>
+
+These metrics tell you if your system is unhealthy.
+These metrics need to be able to convey a direct, binary state "my system is healthy" or "my system is degraded" answer.
+These metrics are what should trigger alarms.
+They should be explicitly designed they should have a high signal/noise ratio.
+You should also be able to use these metrics to confirm recovery once the issue has been mitigated.
+
+These metrics do not tell you what caused the issue and they don't tell you how to fix it. They just detect the presence of an issue.
+
+Examples:
+
+- Count of unique customers impacted by errors
+- Canary failures
+- API error percentage
+- SLAs for system performance
+- FATAL errors thrown in the system
+- Critical failures when bootstrapping new services
+
+## Diagnostic metrics
+
+<PullQuote>What is my system currently doing?</PullQuote>
+
+These metrics help you understand your system's behaviour.
+They are used to help _locate_ where errors are being thrown in your system, help _diagnose_ the issue, and help _confirm_ that actions made against the service are affecting behaviour as expected.
+
+Examples:
+
+- work processed by a part of the subsystem
+- latency for certain network calls
+- messages in a message-bus
+- customer traffic against the service
+- API requests dropped by the loadbalancer
+- system resource usage
+
+## Railing metrics
+
+<PullQuote>
+  Is my system at risk of becoming unhealthy in the near future?
+</PullQuote>
+
+These metrics try to pre-empt future incidents.
+They are often diagnostic metrics on which you can set up a threshhold because you've determined that they are strongly correlated with particular root causes.
+Because of this, they often have a lower signal/noise ratio. You want to hook up alerts to these, but usually of lower severity than health metrics.
+These alerts should trigger investigations rather than fire-fighting.
+
+Examples:
+
+- threshholds on resource usage like 60% CPU usage or 80% disk usage)
+- threshholds on expected system load/throughput like expect a minimum of 500 active users per 30mins at any time during the day. Note that this is not the same as SLAs where you have an agreement to provide certain performance; these are to try to catch when a system behaviour is atypical.
+- threshholds on difference in processing rate between a producer and consumer
+
+# Investigations
+
+## Distributed traces
+
+<PullQuote>How was this request fullfilled by my systems?</PullQuote>
+
+These are records of the individual actions taken by _your systems_ when fulfilling a customer request.
+These help to track a request through multiple systems to determine where an issue occurred or to gain insight into your global system behaviour.
+
+## Event logs
+
+<PullQuote>
+  What are the important events that were performed by my system recently?
+</PullQuote>
+
+These logs help you diagnose ongoing/recent issues or build insight into your system's behaviour.
+Retention of these logs needs to be long enough to help you diagnose events in the recent past (for me that's 3-6 months).
+
+## Audit logs
+
+<PullQuote>
+  What are the events that customers/security/legal need to know about
+</PullQuote>
+
+These logs help you audit the work done by your system and can often be requested by customers or legal entities outside the company.
+Retention of these logs should be permanent.
+
+# Understanding your customer experience
+
+## Customer traces
+
+<PullQuote>How did this customer use my system?</PullQuote>
+
+These are records of individual actions taken by a customer during a workflow.
+They help you build insight in how your product is being used and where customers are potentially losing interest/getting stuck/taking too long.
+
+## Customer analytics
+
+<PullQuote>What are the different customer personas using my system?</PullQuote>
+
+These are analytical investigations or workflows which aggregate and process many customer traces to gain insight across multiple customers.
+They help identify groups of usecases and customer personas to which you can tailor your experiences.
