@@ -5,7 +5,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      textColor: ["visited"],
+      textColor: ["visited", "hover"],
     },
   },
   corePlugins: {},

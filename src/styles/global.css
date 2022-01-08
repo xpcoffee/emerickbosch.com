@@ -36,12 +36,14 @@ pre {
 
 html {
   height: 100%;
+  position: relative;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
   @apply text-gray-800;
+  position: relative;
 }
 
 #___gatsby,
@@ -74,7 +76,7 @@ details summary > * {
 @media (min-width: 768px) {
   .md\:grid-desktop {
     grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 300px auto 300px 1fr;
   }
 
   /* Remove scrollbar jitter*/
@@ -82,4 +84,12 @@ details summary > * {
     margin-left: calc(100vw - 100%);
     margin-right: 0;
   }
+}
+
+.read-width {
+  max-width: 900px;
+}
+
+.panel-width {
+  min-width: 300px;
 }
