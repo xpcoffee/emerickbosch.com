@@ -10,7 +10,7 @@ Because of this, these architectures are often "enhanced" to include processes t
 
 This document takes a cursory look at the concepts that lead to these enhancements and briefly touches on two practical implementations and their broad tradeoffs: `redux-thunk` and `redux-saga`.
 
-## Structure and determinism
+# Structure and determinism
 
 Redux apps broadly have the following structure:
 
@@ -36,7 +36,7 @@ To keep this determinism, however, requires several conditions which make it dif
 
 That doesn't leave much space for us to perform side-effects within Redux's structure.
 
-## Creating a space for side-effects
+# Creating a space for side-effects
 
 If we can't work with side-effects within Redux's structure then what if we drive side-effects outside/independent of Redux? This idea is central to the mechanisms we'll be diving into here.
 
@@ -48,13 +48,13 @@ At a conceptual level, we need three things to make this happen:
 
 ![redux side effect structure](./images/redux-side-effect-conceptual-structure.png)
 
-## Implementations of side-effectful structures
+# Implementations of side-effectful structures
 
 In this section, we'll look at `redux-thunk` and `redux-saga` which are (at the time of writing in 2021-02) two libraries that enhance Redux to enable side effects based on the model we discussed above. Both of them make use of [Redux middleware](https://redux.js.org/understanding/history-and-design/middleware) to hook into Redux and define when processes should happen within Redux and when they can happen independently.
 
 For both implementations, I'll also provide some of my thoughts around their benefits and drawbacks. These reflect my thoughts at this snapshot in time and are based on my own experience with working with these libraries. I suggest you run your experiments with these libraries to vet whether these thoughts also apply to your context/systems.
 
-### [redux-thunk](https://github.com/reduxjs/redux-thunk)
+## [redux-thunk](https://github.com/reduxjs/redux-thunk)
 
 `redux-thunk` allows components can dispatch _functions_ similarly to how they dispatch actions.
 
@@ -76,7 +76,7 @@ However, coupling components and the functions they need to dispatch has several
 - This blurs the separation of concerns between components and functionality. In pure Redux, components take in state and emit interactions. In this model, they also essentially control side-effectful flows. This added concern can lead to "heavy" components if it needs to perform multiple side-effects.
 - The component emitting side-effectful functions can also increase the complexity of testing that component. Side-effects often need to be mocked/stubbed, so the component needs to be written in a way that makes this mocking possible within tests.
 
-### [redux-saga](https://redux-saga.js.org)
+## [redux-saga](https://redux-saga.js.org)
 
 On a simplified level `redux-saga` sets up _listeners_ for normal (aka. Redux-like) actions that you define. When an appropriate action is caught, the listeners trigger functions (technically they're _function generators_) called "sagas" that define the potentially side-effectful code you want to run for that action.
 
