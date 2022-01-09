@@ -26,7 +26,11 @@ const ArticleHeadings = ({ headings }: Props) => {
  * IMPORTANT NOTE: this is reliant on the behaviour of the gatsby-remark-autolink-headers plugin
  */
 function getHeadingLink({ heading }: { heading: string }) {
-  const snakeCaseHeading = heading.toLowerCase().replace(/ /g, "-")
+  const snakeCaseHeading = heading
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w\s-]|_/g, "")
+
   return `#${snakeCaseHeading}`
 }
 
