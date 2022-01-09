@@ -71,7 +71,7 @@ const Layout = ({
         </div>
         <AboutLink className="order-5 justify-self-center md:row-start-1 md:row-end-1 md:col-start-4 md:col-end-4 md:self-center md:justify-self-end" />
         <SocialInfo className="order-6 md:row-start-4 md:row-end-4 md:col-start-4 md:col-end-4 md:justify-self-end" />
-        <EmojiLogo className="order-7 md:row-start-4 md:row-end-4 md:col-start-2 md:col-end-2 md:justify-self-start md:self-center" />
+        <EmojiLogo className="order-7 mb-20 md:row-start-4 md:row-end-4 md:col-start-2 md:col-end-2 md:justify-self-start md:self-center" />
       </div>
     </div>
   )

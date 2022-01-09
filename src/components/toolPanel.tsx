@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import { Modal } from "."
+import { BottomToolPanel } from "./bottomToolPanel"
 
 const ToolPanel = ({
   children,
   className,
 }: React.PropsWithChildren<{ className?: string }>) => {
-  const [showModal, setShowModal] = useState(false)
+  const [showBottomPanel, setShowModal] = useState(false)
 
   if (!children) {
     return <></>
@@ -13,17 +13,17 @@ const ToolPanel = ({
 
   return (
     <>
-      {showModal ? (
-        <Modal
+      {showBottomPanel ? (
+        <BottomToolPanel
           onBlur={() => setShowModal(false)}
           onDismiss={() => setShowModal(false)}
         >
           {children}
-        </Modal>
+        </BottomToolPanel>
       ) : (
         <>
           <div
-            className={`${className} p-5 bg-gray-100 text-center py-3 fixed top-5 right-5 z-10  md:hidden rounded-md drop-shadow-sm`}
+            className={`${className} border-t-1 border-gray-600 p-5 bg-gray-100 text-center py-3 fixed bottom-0 right-0 left-0 z-10 md:hidden`}
             onClick={() => setShowModal(true)}
           >
             Contents
