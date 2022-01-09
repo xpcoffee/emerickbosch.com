@@ -1,7 +1,7 @@
 ---
 title: System observability
 description: Things to measure/capture in your systems.
-date: 2022-01-03
+date: 2022-01-09
 faIcon: faRuler
 ---
 
@@ -9,30 +9,36 @@ import { PullQuote } from "../components"
 
 This page is intended to be a living document of the different ways you should think about instrumenting your system to be able to operate it effectively and gather data to inform future features.
 
-If you can think of corrections/additions to make to the page, please reach out to me (see the footer of the site)!
+If you can think of corrections/additions to make to the page, please reach out to me.
 
 # Checklist
 
 Ideally you should be able to answer any of the following for your system within short notice.
 
-- [ ] [Is my system healthy?](#health-metrics)
-- [ ] [What is my system currently doing?](#diagnostic-metrics)
-- [ ] [Is my system at risk of becoming unhealthy in the near future?](#railing-metrics)
+- [ ] [Is my system healthy?](#health-signals)
+- [ ] [Has the behaviour of my system deviated recently?](#diagnostic-metrics)
+- [ ] [Do I need to plan maintenance or scaling work on my system?](#scaling-signals)
 - [ ] [How was this request fullfilled by my systems?](#distributed-traces)
 - [ ] [What are the important events that were performed by my system recently?](#event-logs)
 - [ ] [What are the events that customers/security/legal need to know about?](#audit-logs)
 - [ ] [How did this customer use my system?](#customer-traces)
 - [ ] [What are the different customer personas using my system?](#customer-analytics)
 
+# Glossary
+
+- **metric** a _stream_ of events sent from your systems. These are usually **numeric** e.g. latencies of calls against your service or **boolean** e.g. whether a worflow was successful. Metrics can be processed (e.g. counting number of successful wokflows in a minute) and/or combined (e.g. successes/total-workflows to get a success-ratio metric).
+- **signal** an event that is triggered automatically. It is intended to communicate a _change of state_ e.g. from healthy to unhealthy. Often this requires both a metric and a condition (e.g. a threshhold) that will trigger based on the metric.
+- **log** individual events written to files. Logs can then be processed periodically to create metrics or they can be queried/processed sporadically during investigations.
+
 # Detecting and mitigating impact
 
-## Health metrics
+## Health signals
 
 <PullQuote>Is my system currently healthy?</PullQuote>
 
-These metrics tell you if your system is unhealthy.
-These metrics need to be able to convey a direct, binary state "my system is healthy" or "my system is degraded" answer.
-These metrics are what should trigger alarms.
+These signals tell you if your system is unhealthy.
+These signals need to be able to convey a direct, binary state "my system is healthy" or "my system is degraded" answer.
+These signals are what should trigger alarms.
 They should be explicitly designed they should have a high signal/noise ratio.
 You should also be able to use these metrics to confirm recovery once the issue has been mitigated.
 
@@ -40,43 +46,42 @@ These metrics do not tell you what caused the issue and they don't tell you how 
 
 Examples:
 
-- Count of unique customers impacted by errors
-- Canary failures
-- API error percentage
-- SLAs for system performance
-- FATAL errors thrown in the system
-- Critical failures when bootstrapping new services
+- Sustained canary failures
+- Too many internal/uncaught errors
+- Breaching performance SLAs
+- Unexpected service restarts
+- Limits reached for a resource
 
 ## Diagnostic metrics
 
-<PullQuote>What is my system currently doing?</PullQuote>
+<PullQuote>Has the behaviour of my system deviated recently?</PullQuote>
 
-These metrics help you understand your system's behaviour.
+These metrics surface a (usually recent) history your system's behaviour.
 They are used to help _locate_ where errors are being thrown in your system, help _diagnose_ the issue, and help _confirm_ that actions made against the service are affecting behaviour as expected.
 
 Examples:
 
-- work processed by a part of the subsystem
-- latency for certain network calls
+- successful workflows of a subsystem
+- latency of a network network call
 - messages in a message-bus
 - customer traffic against the service
 - API requests dropped by the loadbalancer
-- system resource usage
+- system resource usage has hit a hard limit
 
-## Railing metrics
+## Scaling signals
 
 <PullQuote>
-  Is my system at risk of becoming unhealthy in the near future?
+  Do I need to plan maintenance or scaling work on my system?
 </PullQuote>
 
-These metrics try to pre-empt future incidents.
+These signals try to pre-empt future incidents.
 They are often diagnostic metrics on which you can set up a threshhold because you've determined that they are strongly correlated with particular root causes.
 Because of this, they often have a lower signal/noise ratio. You want to hook up alerts to these, but usually of lower severity than health metrics.
 These alerts should trigger investigations rather than fire-fighting.
 
 Examples:
 
-- threshholds on resource usage like 60% CPU usage or 80% disk usage)
+- threshholds on resource usage like sustained 60% CPU usage or 80% disk usage
 - threshholds on expected system load/throughput like expect a minimum of 500 active users per 30mins at any time during the day. Note that this is not the same as SLAs where you have an agreement to provide certain performance; these are to try to catch when a system behaviour is atypical.
 - threshholds on difference in processing rate between a producer and consumer
 
@@ -116,12 +121,24 @@ Retention of these logs should be permanent.
 These are records of individual actions taken by a customer during a workflow.
 They help you build insight in how your product is being used and where customers are potentially losing interest/getting stuck/taking too long.
 
+Example questions that traces can help answer:
+
+- how many times did a customer open the help section while creating a resource?
+- did a customer start using a resource immediately after creating it?
+
 ## Customer analytics
 
 <PullQuote>What are the different customer personas using my system?</PullQuote>
 
 These are analytical investigations or workflows which aggregate and process many customer traces to gain insight across multiple customers.
 They help identify groups of usecases and customer personas to which you can tailor your experiences.
+
+Examples results for analytical workflows:
+
+- average resources of customers that make use of a feature
+- probablity that a customer who uses "feature A" will also make use of "feature B"
+- probablity that customers who have more than a certain number of resources will sign up for an enterprise account
+- percentage of customers that fail to reach the 3rd step of a wizard
 
 # Resources
 
