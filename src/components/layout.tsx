@@ -7,6 +7,17 @@ import { EmojiLogo } from "./emojiLogo"
 import { ThisIsMySite } from "./tagLine"
 import { Title } from "./title"
 
+/**
+ * On smaller screens, the layout is verticle (single column grid)
+ *
+ * After the md breakpoint, the grid layout is as follows:
+ *
+ *         Col1       Col2   Col3  Col4        Col5
+ * Row 1 |         | title |     | about me |            |
+ * Row 2 |         |     horizontal line    |  future    |
+ * Row 2 | toolbar |         content        |  extension |
+ * Row 4 |         | emoji | tag |  social  |            |
+ */
 const Layout = ({
   children,
   toolPanelContents,
