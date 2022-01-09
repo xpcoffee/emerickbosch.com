@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql } from "gatsby"
 import { ArticleHeadings, Layout } from "../../components"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { stringValueOrUndefined } from "../../utils/string"
@@ -9,10 +9,7 @@ import { isNotUndefined } from "../../utils/array"
 /**
  * Renders MDX files into pages.
  */
-const Article = ({
-  data,
-  location,
-}: PageProps & { data: GatsbyTypes.ArticleQuery }) => {
+const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
   const title =
     stringValueOrUndefined(data?.mdx?.frontmatter?.title) ?? `untitled`
 
@@ -36,7 +33,7 @@ const Article = ({
   ) : undefined
 
   const articleHeadings = headings?.length ? (
-    <ArticleHeadings headings={headings} location={location} />
+    <ArticleHeadings headings={headings} />
   ) : undefined
 
   return (
