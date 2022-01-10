@@ -1,19 +1,20 @@
 import React from "react"
+import { LinkItem } from "."
 
 type Props = { headings: string[] }
 
 const ArticleHeadings = ({ headings }: Props) => {
   return (
-    <ul style={{ listStyle: "none" }}>
+    <ul className="list-none mx-0 px-8 w-full">
       {headings.map(heading => (
-        <li className="font-medium my-1 pt-1 leading-5" key={heading}>
-          <a
-            className="text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500"
+        <li className="font-medium" key={heading}>
+          <LinkItem
+            className="bg-gray-50 md:bg-inherit text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500"
             href={getHeadingLink({ heading })}
             data-dismiss="modal"
           >
             {heading}
-          </a>
+          </LinkItem>
         </li>
       ))}
     </ul>
