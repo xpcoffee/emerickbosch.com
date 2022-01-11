@@ -23,7 +23,13 @@ const ToolPanel = ({
       ) : (
         <>
           <div
-            className={`${className} border-t-1 border-gray-600 p-5 bg-gray-100 text-center py-3 fixed bottom-0 right-0 left-0 z-10 md:hidden`}
+            className={
+              className +
+              " bottom-0 right-0 left-0 z-10 px-5 py-3 fixed" +
+              " cursor-pointer bg-gray-50 hover:text-orange-500 visited:hover:text-orange-500" +
+              " text-center text-lg" +
+              " md:hidden"
+            }
             onClick={() => setShowModal(true)}
           >
             Contents

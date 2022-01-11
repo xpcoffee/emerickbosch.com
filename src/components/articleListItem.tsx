@@ -22,14 +22,23 @@ const ArticleListItem = ({
   ) : undefined
 
   return (
-    <li className="my-4 md:my-2 pl-5 border-blue-800 border-l-2 md:border-0">
-      <div className="flex flex-col">
-        <Link to={`articles/${articlePath}`}>
-          {icon}
-          {title ?? "untitled"}
-        </Link>
-        {descriptionSubtext}
-      </div>
+    <li className="border-x-4 border-blue-800 md:border-none">
+      <Link
+        className={
+          "my-2 pl-5 py-3 block bg-gray-50  " +
+          "text-indigo-800 visited:text-indigo-800 hover:text-orange-500 visited:hover:text-orange-500" +
+          "md:my-2 md:bg-inherit md:border-0"
+        }
+        to={`articles/${articlePath}`}
+      >
+        <div className="flex flex-col">
+          <div>
+            {icon}
+            {title ?? "untitled"}
+          </div>
+          {descriptionSubtext}
+        </div>
+      </Link>
     </li>
   )
 }
