@@ -14,7 +14,7 @@ const ArticleHeadings = ({ headings }: Props) => {
             className={
               "block p-2 my-3 bg-gray-50 drop-shadow " +
               "text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500" +
-              "md:my-0 md:p-1 md:bg-inherit md:drop-shadow-none"
+              "md:my-0 md:bg-inherit md:drop-shadow-none md:py-0"
             }
             href={getHeadingLink({ heading })}
             data-dismiss="modal"
