@@ -27,7 +27,7 @@ const ArticleListItem = ({
         className={
           "my-2 pl-5 py-3 block bg-gray-50  " +
           "text-indigo-800 visited:text-indigo-800 hover:text-orange-500 visited:hover:text-orange-500" +
-          "md:my-2 md:bg-inherit md:border-0"
+          "md:my-2 md:bg-inherit md:border-0 md:pt-1 md:pb-0"
         }
         to={`articles/${articlePath}`}
       >
