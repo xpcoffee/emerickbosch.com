@@ -14,10 +14,11 @@
     "@mdx-js/react": "^1.6.22",
     "@types/react-helmet": "^6.1.5",
     "autoprefixer": "^10.4.0",
+    "babel-plugin-remove-graphql-queries": "^4.5.1",
     "eslint": "^8.5.0",
     "eslint-plugin-graphql": "^4.0.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "gatsby": "^4.4.0",
+    "gatsby": "^4.0.0-next",
     "gatsby-plugin-fontawesome-css": "^1.2.0",
     "gatsby-plugin-gatsby-cloud": "^4.4.0",
     "gatsby-plugin-google-gtag": "^4.4.0",
@@ -56,6 +57,7 @@
   ],
   "license": "0BSD",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -72,5 +74,13 @@
   },
   "bugs": {
     "url": "https://github.com/xpcoffee/emerickbosch.com/issues"
+  },
+  "//": [
+    "[resolution]: immer from gatsby -> react-dev-tools",
+    "[resolution]: netmask from gatsby-plugin-s3"
+  ],
+  "resolutions": {
+    "immer": "9.0.6",
+    "netmask": "2.0.1"
   }
 }
