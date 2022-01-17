@@ -4,7 +4,11 @@ type Props = { headings: string[] }
 
 const ArticleHeadings = ({ headings }: Props) => {
   return (
-    <ul className="list-none mx-0 px-8 w-full">
+    <ul
+      tabIndex={0}
+      aria-label="Article contents"
+      className="list-none mx-0 px-8 w-full"
+    >
       {headings.map(heading => (
         <li
           className="font-medium border-x-4 border-blue-800 md:border-none"

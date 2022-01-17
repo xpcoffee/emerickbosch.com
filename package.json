@@ -17,6 +17,7 @@
     "babel-plugin-remove-graphql-queries": "^4.5.1",
     "eslint": "^8.5.0",
     "eslint-plugin-graphql": "^4.0.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
     "gatsby": "^4.0.0-next",
     "gatsby-plugin-fontawesome-css": "^1.2.0",

@@ -24,6 +24,7 @@ const ArticleListItem = ({
   return (
     <li className="border-x-4 border-blue-800 md:border-none">
       <Link
+        tabIndex={0}
         className={
           "my-2 pl-5 py-3 block bg-gray-50  " +
           "text-indigo-800 visited:text-indigo-800 hover:text-orange-500 visited:hover:text-orange-500" +

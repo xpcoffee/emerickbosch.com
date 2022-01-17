@@ -33,17 +33,23 @@ const IndexPage = () => {
   return (
     <Layout>
       <Seo title="Home" />
-      <p>
-        A collection of{" "}
+      <p id="article-list-label">
+        {"A collection of "}
         <a href="https://en.wikipedia.org/wiki/Living_document" target="blank">
           living
-        </a>{" "}
-        notes and thoughts.
+        </a>
+        {" notes and thoughts."}
       </p>
       <p className="text-sm">
         <i>Ordered by last-edit.</i>
       </p>
-      <ul className="ml-0 mt-3 list-none">{articleListItems}</ul>
+      <ul
+        aria-labelledby="article-list-label"
+        tabIndex={0}
+        className="ml-0 mt-3 list-none"
+      >
+        {articleListItems}
+      </ul>
     </Layout>
   )
 }

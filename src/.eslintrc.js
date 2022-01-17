@@ -1,6 +1,7 @@
 const path = require("path")
 
 module.exports = {
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
   plugins: ["graphql", "prettier"],
   rules: {
     "graphql/template-strings": [
