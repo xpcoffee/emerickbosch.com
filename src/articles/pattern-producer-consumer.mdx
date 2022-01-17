@@ -6,9 +6,13 @@ date: 2022-01-17
 ---
 
 import { Link } from "gatsby"
-import ProducerConsumerSequence from "./images/producer-consumer-sequence.svg"
+import ProducerConsumerSequenceDiagram from "./images/producer-consumer-sequence.svg"
 
-**TLDR** "Producer" and "consumer" form a <Link to="/articles/patterns">pattern</Link> which enables systems to decouple requests for work and when that work gets processed.
+<p>
+  <b>TLDR</b> "Producer" and "consumer" form a{" "}
+  <Link to="/articles/patterns">pattern</Link> which enables systems to decouple
+  generation of work from processing of work.
+</p>
 
 # Problem/context
 
@@ -31,7 +35,7 @@ Split the system into two roles:
 1. One or more **consumers** fetch work requests from the storage and perform the work.
 
 <div className="mb-5">
-  <ProducerConsumerSequence />
+  <ProducerConsumerSequenceDiagram />
 </div>
 
 This allows systems to scale producers and consumers independently of one another.
