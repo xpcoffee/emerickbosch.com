@@ -1,6 +1,7 @@
 import { StaticImage } from "gatsby-plugin-image"
 import React, { useMemo } from "react"
 import { Layout } from "../components"
+import { Link } from "gatsby"
 
 const AboutPage = () => {
   const showSnek = useMemo(() => Math.random() > 0.5, [])
@@ -34,10 +35,20 @@ const AboutPage = () => {
           <p>
             I build software systems. I strive to build them such that they have
             a positive impact on those who use them, and to build them
-            sustainably alongside excellent people.
+            sustainably alongside excellent people. I am currently based in het
+            Netherlands 🇳🇱.
           </p>
           <br />
-          <p className="text-xs">I am currently based in het Netherlands 🇳🇱</p>
+          <Link
+            to="/"
+            className={
+              "mt-2" +
+              " quicksand text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500" +
+              " border-dotted border-gray-600 border-b-2 pb-1"
+            }
+          >
+            Back to notes index
+          </Link>
         </div>
       </div>
     </Layout>
