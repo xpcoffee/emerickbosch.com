@@ -66,7 +66,7 @@ const Layout = ({
             {toolPanelContents}
           </ToolPanel>
         )}
-        <div className="order-4 py-5 self-start md:row-start-3 md:row-end-3 md:col-start-2 md:col-end-5 md:flex">
+        <div className="order-4 py-5 self-start md:row-start-3 md:row-end-3 md:col-start-2 md:col-end-5 md:flex md:justify-center">
           <main className="read-width text-gray-800">{children}</main>
         </div>
         <AboutLink className="order-5 justify-self-center md:row-start-1 md:row-end-1 md:col-start-4 md:col-end-4 md:self-center md:justify-self-end" />
