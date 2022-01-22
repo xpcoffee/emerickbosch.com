@@ -1,48 +1,36 @@
 import React from "react"
+import { HeadingData, renderHeadings } from "../utils/headings"
+import { ArticleHeading } from "./articleHeading"
 
-type Props = { headings: string[] }
+type Props = { headings: HeadingData[]; depth?: number }
 
 const ArticleHeadings = ({ headings }: Props) => {
+  return renderHeadings({
+    headings,
+    Heading: ArticleHeading,
+    HeadingGroup,
+    RootHeadingGroup,
+  })
+}
+
+const RootHeadingGroup: React.FC = ({ children }) => {
   return (
     <ul
       tabIndex={0}
       aria-label="Article contents"
       className="list-none mx-0 px-8 w-full"
     >
-      {headings.map(heading => (
-        <li
-          className="font-medium border-x-4 border-blue-800 md:border-none"
-          key={heading}
-        >
-          <a
-            className={
-              "block p-2 my-3 bg-gray-50 drop-shadow " +
-              "text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500" +
-              "md:my-0 md:bg-inherit md:drop-shadow-none md:py-0"
-            }
-            href={getHeadingLink({ heading })}
-            data-dismiss="modal"
-          >
-            <div data-dismiss="modal">{heading}</div>
-          </a>
-        </li>
-      ))}
+      {children}
     </ul>
   )
 }
 
-/**
- * Returns an href that will navigate to a given header
- *
- * IMPORTANT NOTE: this is reliant on the behaviour of the gatsby-remark-autolink-headers plugin
- */
-function getHeadingLink({ heading }: { heading: string }) {
-  const snakeCaseHeading = heading
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w\s-]|_/g, "")
-
-  return `#${snakeCaseHeading}`
+const HeadingGroup: React.FC = ({ children }) => {
+  return (
+    <ul tabIndex={-1} className="list-none mx-0 pl-3 pr-8 w-full quicksand">
+      {children}
+    </ul>
+  )
 }
 
 export { ArticleHeadings }
