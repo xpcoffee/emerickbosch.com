@@ -225,28 +225,47 @@ at the top.
 
 <PullQuote>A reference of the most important events in our systems.</PullQuote>
 
+### Problem
+
+It is time-consuming and often difficult to find and correlate events that happened
+in systems that we're dependent on or in systems that are dependent on us, especially
+if these events weren't widely-spread or shared.
+
+This difficulty means that you usually need to manually reach out to people involved in
+incidents in order to find out what happened.
+
+### Concept
+
+Teams keep a minimal log of the most important events that happen to their systems.
+This log can be accessed by other teams that want to correlate events they see in their own
+systems or by team mates in the future to determine if there are patterns in events.
+
+The logs are also used as major time-markers in post-mortem investigations for larger incidents
+to understand impact and recovery across multiple systems.
+
+In more advanced cases these logs should be able to be injested by tooling to display
+events across the company on dashboards or to run analytics on the data.
+
+### Ops event log format
+
+This format tracks major state changes (when an event starts, major evolutions and when an event ends).
+There can be one log per team or multiple teams can contribute to a shared log.
+
+```md
+timestamp | short event description | status (start/state-change/end) | _ticket id_ | short status change description
+```
+
+Example:
+
 ```md
 # Operational events
 
-2021-08-30T10:14Z | home page latency increase | end | _ticket link_ | full recovery
-2021-08-30T10:13Z | home page latency increase | state-change | _ticket link_ | partial recovery
-2021-08-30T10:11Z | home page latency increase | start | _ticket link_ | alarm fires
-2021-08-29T12:00Z | failover data migration | end | _ticket link_ | workflow successful
-2021-08-29T09:31Z | failover data migration | start | _ticket link_ | workflow started
+2021-08-30T10:14Z | home page latency increase | end | HOME-8557 | full recovery
+2021-08-30T10:13Z | home page latency increase | state-change | HOME-8557 | partial recovery
+2021-08-30T10:11Z | home page latency increase | start | HOME-8557 | alarm fires
+2021-08-29T12:00Z | failover data migration | end | DATA-8552 | workflow successful
+2021-08-29T09:31Z | failover data migration | start | DATA-8552 | workflow started
 ```
-
-**What does this promote?**
-
-Knowledge sharing on operational events / historical records of operational events / data gathering of operational events / data analysis of operational events / event response analysis / correlation of events.
-
-**When do you use it?**
-
-After every event concludes or after investigations.
-
-**Why is this useful?**
-
-Can be referenced by other teams during their reviews. Can be ingested into dashboards to auto-generate annotations. Can
-be processed for insights (recurring issues; average time to mitigation).
 
 ## Operational review journal
 
