@@ -31,20 +31,24 @@ import { PullQuote } from "../components"
 
 ### Problem
 
-We want to make correct decisions quickly and consistently, especially during times of high stress.
-This is really difficult to do if the team hasn't previously aligned on how to make these difficult decisions.
+We want to make correct decisions quickly and consistently, especially during times of high
+stress.
+This is really difficult to do if the team hasn't previously aligned on how to make
+these difficult decisions.
 
 ### Concept
 
-Pre-align the team around a set of default decisions/positions that you make to resolve tough decisions and write them down.
-The resulting document is a list of tenets that can be used as a reference during times of stress/contention to resolve arguments and make decisions quickly.
-The document can also be shared with stakeholders and leadership to be more transparent about how you make decisions and to
-give them an opportunity to give input/feedback.
+Pre-align the team around a set of default decisions/positions and use those as a starting point
+when discussing tough decisions. Document these decisions/positions in a living document.
+The resulting document is a list of tenets that can be used as a reference during times of
+stress/contention to resolve arguments and make decisions quickly.
+The document can also be shared with stakeholders and leadership to be more transparent
+about how we make decisions and to give them an opportunity to give input/feedback.
 
 **Very important!** Tenets are not rules.
 Their primary goal is to help unblock _difficult_ decisions, which are generally ones where
 the correct path is unclear in the moment.
-There are many situations where you may make the opposite decision from what is in your tenets. Based on a context where the correct decision is clear.
+There are many situations where we may make the opposite decision from what is in our tenets. Based on a context where the correct decision is clear.
 
 **Examples**
 
@@ -98,9 +102,9 @@ order to learn and deeper understand our customers.
 **Tenets should be prioritized.**
 
 It is very possible that tenets can be in tension with one another. Prioritizing them
-prevents you from getting deadlocked by this mechansim which should be unblocking you.
+prevents us from getting deadlocked between tenets.
 
-This has the added benefit of communicating your values clearer to your stakeholders.
+This has the added benefit of communicating our values clearer to stakeholders.
 
 **Tenets should change over time**
 
@@ -120,20 +124,46 @@ A short-lived task aimed at gaining the information needed to make a decision.
 
 <PullQuote>It is better to try, fail and learn than to stagnate.</PullQuote>
 
-**What does this promote?**
+### Problem
 
-Innovation / creativity / getting out of analysis paralysis.
+Sometimes the team can't agree whether something is worth doing due to a lack of datapoints.
 
-**When do you use it?**
+### Concept
 
-When you have technical ambiguity where you are unsure about the right path forward.
-OR when you have a team member that is curious to learn about/play with technology.
+We plan in time to implement a _minimal_ version _one_ of the options so that we can gather data and make progress.
+We build metrics into the implementation that allow us to know whether the decision was correct,
+and we plan an explicit deadline at which we evaluate the metrics and decide whether to plan the
+full implementation or to roll back.
 
-**Why is it useful?**
+### Considerations
 
-It provides space for a task that can fail, while ensuring that we extract value out of it.
+**Definitions of success, based on metrics**
 
-**What does it look like?**
+The point of the experiment is to ultimately make a decision. To make that as easy as possible,
+success metrics/conditions need to be well defined up-front and baked into the implementation.
+
+**2 way doors**
+
+The implementation must to be _easily_ reversible.
+This helps mitigate the risk we take when making a decision on limited data.
+
+**Priority still matters**
+
+In some cases it can be useful to decide to reduce the scope of a feature to an experiment
+to allow it to be pulled in when there is low capacity, but this can also be abused. Be
+conscious of experiments "jumping the queue" in the backlog due to their light weight.
+
+**Not the same as an investigation/spike**
+
+Investigations/spikes are focused on disambiguating **how** to build something and to build
+knowledge. They do not necessarily require any implementation and they can still be necessary
+after a decision has been made e.g. we know what feature to build but we need to figure out
+some implementation details.
+
+In contrast an experiment is about trying something "for real" and measuring the results to
+enable us to make a decision.
+
+### Experiment proposal
 
 This is a template for an experiment proposal/overview. This is used to make the initial decision around
 whether or not to plan the experiment.
