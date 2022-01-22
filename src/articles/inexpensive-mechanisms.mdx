@@ -31,20 +31,24 @@ import { PullQuote } from "../components"
 
 ### Problem
 
-We want to make correct decisions quickly and consistently, especially during times of high stress.
-This is really difficult to do if the team hasn't previously aligned on how to make these difficult decisions.
+We want to make correct decisions quickly and consistently, especially during times of high
+stress.
+This is really difficult to do if the team hasn't previously aligned on how to make
+these difficult decisions.
 
 ### Concept
 
-Pre-align the team around a set of default decisions/positions that you make to resolve tough decisions and write them down.
-The resulting document is a list of tenets that can be used as a reference during times of stress/contention to resolve arguments and make decisions quickly.
-The document can also be shared with stakeholders and leadership to be more transparent about how you make decisions and to
-give them an opportunity to give input/feedback.
+Pre-align the team around a set of default decisions/positions and use those as a starting point
+when discussing tough decisions. Document these decisions/positions in a living document.
+The resulting document is a list of tenets that can be used as a reference during times of
+stress/contention to resolve arguments and make decisions quickly.
+The document can also be shared with stakeholders and leadership to be more transparent
+about how we make decisions and to give them an opportunity to give input/feedback.
 
 **Very important!** Tenets are not rules.
 Their primary goal is to help unblock _difficult_ decisions, which are generally ones where
 the correct path is unclear in the moment.
-There are many situations where you may make the opposite decision from what is in your tenets. Based on a context where the correct decision is clear.
+There are many situations where we may make the opposite decision from what is in our tenets. Based on a context where the correct decision is clear.
 
 **Examples**
 
@@ -98,9 +102,9 @@ order to learn and deeper understand our customers.
 **Tenets should be prioritized.**
 
 It is very possible that tenets can be in tension with one another. Prioritizing them
-prevents you from getting deadlocked by this mechansim which should be unblocking you.
+prevents us from getting deadlocked between tenets.
 
-This has the added benefit of communicating your values clearer to your stakeholders.
+This has the added benefit of communicating our values clearer to stakeholders.
 
 **Tenets should change over time**
 
@@ -120,20 +124,46 @@ A short-lived task aimed at gaining the information needed to make a decision.
 
 <PullQuote>It is better to try, fail and learn than to stagnate.</PullQuote>
 
-**What does this promote?**
+### Problem
 
-Innovation / creativity / getting out of analysis paralysis.
+Sometimes the team can't agree whether something is worth doing due to a lack of datapoints.
 
-**When do you use it?**
+### Concept
 
-When you have technical ambiguity where you are unsure about the right path forward.
-OR when you have a team member that is curious to learn about/play with technology.
+We plan in time to implement a _minimal_ version _one_ of the options so that we can gather data and make progress.
+We build metrics into the implementation that allow us to know whether the decision was correct,
+and we plan an explicit deadline at which we evaluate the metrics and decide whether to plan the
+full implementation or to roll back.
 
-**Why is it useful?**
+### Considerations
 
-It provides space for a task that can fail, while ensuring that we extract value out of it.
+**Definitions of success, based on metrics**
 
-**What does it look like?**
+The point of the experiment is to ultimately make a decision. To make that as easy as possible,
+success metrics/conditions need to be well defined up-front and baked into the implementation.
+
+**2 way doors**
+
+The implementation must to be _easily_ reversible.
+This helps mitigate the risk we take when making a decision on limited data.
+
+**Priority still matters**
+
+In some cases it can be useful to decide to reduce the scope of a feature to an experiment
+to allow it to be pulled in when there is low capacity, but this can also be abused. Be
+conscious of experiments "jumping the queue" in the backlog due to their light weight.
+
+**Not the same as an investigation/spike**
+
+Investigations/spikes are focused on disambiguating **how** to build something and to build
+knowledge. They do not necessarily require any implementation and they can still be necessary
+after a decision has been made e.g. we know what feature to build but we need to figure out
+some implementation details.
+
+In contrast an experiment is about trying something "for real" and measuring the results to
+enable us to make a decision.
+
+### Experiment proposal
 
 This is a template for an experiment proposal/overview. This is used to make the initial decision around
 whether or not to plan the experiment.
@@ -195,28 +225,47 @@ at the top.
 
 <PullQuote>A reference of the most important events in our systems.</PullQuote>
 
+### Problem
+
+It is time-consuming and often difficult to find and correlate events that happened
+in systems that we're dependent on or in systems that are dependent on us, especially
+if these events weren't widely-spread or shared.
+
+This difficulty means that you usually need to manually reach out to people involved in
+incidents in order to find out what happened.
+
+### Concept
+
+Teams keep a minimal log of the most important events that happen to their systems.
+This log can be accessed by other teams that want to correlate events they see in their own
+systems or by team mates in the future to determine if there are patterns in events.
+
+The logs are also used as major time-markers in post-mortem investigations for larger incidents
+to understand impact and recovery across multiple systems.
+
+In more advanced cases these logs should be able to be injested by tooling to display
+events across the company on dashboards or to run analytics on the data.
+
+### Ops event log format
+
+This format tracks major state changes (when an event starts, major evolutions and when an event ends).
+There can be one log per team or multiple teams can contribute to a shared log.
+
+```md
+timestamp | short event description | status (start/state-change/end) | _ticket id_ | short status change description
+```
+
+Example:
+
 ```md
 # Operational events
 
-2021-08-30T10:14Z | home page latency increase | end | _ticket link_ | full recovery
-2021-08-30T10:13Z | home page latency increase | state-change | _ticket link_ | partial recovery
-2021-08-30T10:11Z | home page latency increase | start | _ticket link_ | alarm fires
-2021-08-29T12:00Z | failover data migration | end | _ticket link_ | workflow successful
-2021-08-29T09:31Z | failover data migration | start | _ticket link_ | workflow started
+2021-08-30T10:14Z | home page latency increase | end | HOME-8557 | full recovery
+2021-08-30T10:13Z | home page latency increase | state-change | HOME-8557 | partial recovery
+2021-08-30T10:11Z | home page latency increase | start | HOME-8557 | alarm fires
+2021-08-29T12:00Z | failover data migration | end | DATA-8552 | workflow successful
+2021-08-29T09:31Z | failover data migration | start | DATA-8552 | workflow started
 ```
-
-**What does this promote?**
-
-Knowledge sharing on operational events / historical records of operational events / data gathering of operational events / data analysis of operational events / event response analysis / correlation of events.
-
-**When do you use it?**
-
-After every event concludes or after investigations.
-
-**Why is this useful?**
-
-Can be referenced by other teams during their reviews. Can be ingested into dashboards to auto-generate annotations. Can
-be processed for insights (recurring issues; average time to mitigation).
 
 ## Operational review journal
 
@@ -224,17 +273,25 @@ Team-specific journal of a periodic operational review.
 
 <PullQuote>How did our systems perform for our customers last week?</PullQuote>
 
-**What does this promote?**
+### Problem
 
-Knowledge sharing on operational events / historical records of operational events / data gathering of operational events / data analysis of operational events / record of operational issues / record of operational decisions.
+The team needs a place to track the operational health of its systems over time,
+both for future reference and as a place where team members and stakeholders can understand
+the operational posture of their system.
 
-**When do you use it?**
+### Concept
 
-Every operational review session.
+Periodically write and publish a journal of the operational health of our systems.
+The journal should contain all the most important metrics that need actively monitoring
+as well as information on the current customer experience and the operational challenges the
+team faces. Finally it should list ongoing operational action items the team takes.
 
-**Why is it useful?**
+Use the journal to drive our operational reviews so that you ensure you answer the most
+important questions during the session. Make entries this accessible to stakeholders.
 
-Record of the review for tracking, knowledge-sharing, reference and long-term trend analysis.
+### Template journal format
+
+I've found the following format to be useful:
 
 ```md
 # YYYY-MM-DD Ops review
