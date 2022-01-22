@@ -37,7 +37,12 @@ const ToolPanel = ({
           <div
             className={`${className} panel-width hidden md:block md:min-w-40`}
           >
-            <div className="sticky top-0 pt-8">{children}</div>
+            <div
+              className="sticky top-0 pt-8 overflow-y-auto"
+              style={{ maxHeight: "80vh" }}
+            >
+              {children}
+            </div>
           </div>
         </>
       )}
