@@ -135,9 +135,10 @@ That means dispatching an action and validating that the saga results in the cor
 To allow this, we need some additional setup that takes away the need of manually invoking the saga and that allows us to dispatch actions.
 Happily, all the needed functionality comes with `redux-saga` in the form of `channel`s and `runSaga`.
 
-`runSaga` does what its name implies: it handles running a saga you give it.
-A `channel` recieves and delivers Redux actions and can be passed to `runSaga`.
-We can also provide a `dispatch` to `runSaga` which it will call when sagas dispatch actions to the store.
+- `runSaga` does what its name implies: it handles running a saga you give it.
+- A `channel` recieves and delivers Redux actions and can be passed to `runSaga`.
+- We can also provide a `dispatch` to `runSaga` which it will call when sagas dispatch actions to the store.
+
 We can tie these three functionalities together in a test utility.
 
 ```typescript
@@ -151,7 +152,7 @@ export const testRunSaga = <S extends Saga>(
   // channel to which events can be dispatched
   const channel = stdChannel()
 
-  // a record of actions that the saga itself dispatches
+  // a record of redux actions dispatched from the saga
   const dispatched: Action[] = []
   const dispatch = (action: Action) => dispatched.push(action)
 
@@ -172,8 +173,8 @@ import {
   updateUserData,
 } from "./saga"
 import { testRunSaga } from "./testUtils"
-import {} from "./testUtils"
 
+// test data
 const user: api.User = {
   name: "foo",
   id: "1234",
@@ -182,6 +183,7 @@ const userAttributes: api.UserAttributes = {
   immunities: "bar",
 }
 
+// mock out API integration
 jest.spyOn(api, "fetchUser").mockImplementation(async () => user)
 jest
   .spyOn(api, "fetchUserAttributes")
