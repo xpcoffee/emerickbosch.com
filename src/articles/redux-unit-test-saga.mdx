@@ -16,7 +16,7 @@ We will dive straight into the testing. If you are unfamiliar with redux-saga an
 Here are some starting points:
 
 - [function generators MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
-- [redux-saga tutorial](https://redux-saga.js.org/docs/introduction/BeginnerTutorial).
+- [redux-saga tutorial](https://redux-saga.js.org/docs/introduction/BeginnerTutorial)
 
 **Example saga**
 
@@ -121,13 +121,20 @@ The main benefit of this approach is that you can running the saga logic "raw" i
 
 However, I have had difficulty using this practically in my day-to-day work primarily because we need to know the internals of the saga in order to write the test.
 Specifically, we need to know the order in which the saga will `yield` and to prepare and pass the correct parameters to each call to `next`.
-This makes the test brittle; if we change the order of yields or add new behaviour, we need to update our tests.
+This makes the test brittle; if we change the order of yields or add new behaviour in the saga without changing its contract, we still need to update our tests.
 
 Another issue I have with this method is that we are invoking the saga differently to how we would in our actually code where we would be dispatching redux actions.
 
 <div className="mb-5"></div>
 
 # Unit testing sagas
+
+<Card heading="Credit where it's due">
+  This expands on an approach I initially found in{" "}
+  <a href="https://medium.com/@13gaurab/unit-testing-sagas-with-jest-29a8bcfca028">
+    an article by Gaurav KC.
+  </a>
+</Card>
 
 Ideally we should test our sagas according to their contract.
 That means dispatching an action and validating that the saga results in the correct side-effects and changes to the store.
@@ -138,6 +145,8 @@ Happily, all the needed functionality comes with `redux-saga` in the form of `ch
 - `runSaga` does what its name implies: it handles running a saga you give it.
 - A `channel` recieves and delivers Redux actions and can be passed to `runSaga`.
 - We can also provide a `dispatch` to `runSaga` which it will call when sagas dispatch actions to the store.
+
+<div className="mb-5"></div>
 
 We can tie these three functionalities together in a test utility.
 
@@ -161,6 +170,8 @@ export const testRunSaga = <S extends Saga>(
   return { channel, dispatched }
 }
 ```
+
+<div className="mb-5"></div>
 
 Using this utility, we can write a test that allows us to test a saga as a unit.
 
@@ -209,13 +220,24 @@ describe("fetchUserDataOnAction", () => {
 })
 ```
 
-This way our tests do not need to know about the inner workings of the saga aside from integration with API.
-I think this strongly reduces the brittleness of tests.
-Also, we're using the contract that we'd use in the component I also think this improves the readability of the test.
+<div className="mb-5"></div>
+
+I much prefer this method. We invoke the saga using a similar contract to what we'd do in our implementation,
+we don't need to care about the internals of the saga<super>\*</super>,
+and we can make assertions based on its resultant side effects/return values.
+
+In other words, we can now test our saga as a unit. This reduces brittleness, improves readability, and I find it easier to write.
+
+Best of luck with your testing!
+
+<span className="text-sm">
+  <super>*</super> The saga is still performing side-effects, so we do still
+  need to know about and mock out integrations e.g. our API calls.
+</span>
 
 <Card>
   <span className="quicksand">
-    Thanks for reading! Do you have feedback or ideas on how to improve on this
-    approach? Reach out to me!
+    Thanks for reading! Feel free to reach out to me if you have feedback or
+    ideas on how to improve on this approach.
   </span>
 </Card>
