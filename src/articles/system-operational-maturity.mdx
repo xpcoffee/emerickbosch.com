@@ -73,7 +73,7 @@ Investing in this axis reduces the time and effort needed to detect issues.
 ## Level 1
 
 We document context around how our system behaves when it is healthy.
-We compare actual behaviour against this documentation to infer health.
+We compare actual behaviour against this context to infer health.
 
 ## Level 2
 
@@ -145,13 +145,33 @@ We have automated mechanisms to catch regressions in both availability and seman
 
 ## Level 1
 
+We document the core data-flows of our system and how those result in behaviour.
+We compare actual behaviour against this context to infer potential root causes.
+
 ## Level 2
+
+We log out key events performed by our systems.
+We analyse these logs to confirm the current behaviour of the system and try to find anomalies in these logs.
+We infer potential root causes based on our observations of the logs.
 
 ## Level 3
 
+We push metrics around key events performed by our systems.
+We graph these metrics over time on dashboards.
+We document the expected behaviour of these metrics.
+We analyse the graphs to detect anomalies in behaviour.
+We combine graph context with samples of log entries to make data-informed hypotheses of our root cause.
+
 ## Level 4
 
+We apply statistical processing to our logs and metrics to help us reduce noise and to highlight anomalies.
+We have pre-prepared methods of finding the "top N" for important metrics e.g. top 10 customers driving load; top 10 operations which result in failure.
+
 ## Level 5
+
+We are able to trace individual calls through our distributed systems.
+We can sample these traces to get near-realtime samples of system behaviour.
+We are able to run adhoc queries on these traces in near-realtime.
 
 # Mitigating issues by reverting to previous stable state
 
@@ -159,13 +179,17 @@ We have automated mechanisms to catch regressions in both availability and seman
 
 ## Level 1
 
+We keep track of state that we can use to revert/restore e.g. periodic backups of databases.
+We have a documented process for rolling back changes or restoring previously backed-up state.
+
 ## Level 2
+
+We use scripts that programmatically run revert/restore actions.
+These scripts are checked into our codebase and peer reviewed.
 
 ## Level 3
 
-## Level 4
-
-## Level 5
+Our health signals can trigger either scripts or services to automatically roll back impactful changes.
 
 # Mitigating issues by mutating production
 
@@ -173,8 +197,19 @@ We have automated mechanisms to catch regressions in both availability and seman
 
 ## Level 1
 
+We have runbooks for running mutating actions against production.
+
 ## Level 2
+
+We use scripts to perform common/particularly risky mutating actions.
+These scripts are checked into code and peer reviewed.
 
 ## Level 3
 
+We have tooling that allows actions to be taken against prod without needing to check out code.
+This tooling provides user validation.
+This tooling has audit functionality to track mutating user actions against prod.
+
 ## Level 4
+
+Our operational tooling is aware of current system health and can surface warnings for potentially unsafe actions.
