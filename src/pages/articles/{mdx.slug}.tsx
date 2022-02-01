@@ -60,6 +60,12 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
         </h1>
         <div className="mb-5">{lastEditDate}</div>
         {body}
+        <div className="text-center mt-8">
+          <p className="quicksand">
+            Thanks for reading! Please reach out if you have
+            corrections/suggestions that could make this content better.
+          </p>
+        </div>
       </div>
     </Layout>
   )
