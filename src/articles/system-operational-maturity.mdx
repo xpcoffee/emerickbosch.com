@@ -1,0 +1,222 @@
+---
+title: System operational maturity
+description: A conceptual model for how systems can evolve to become easier and more reliable to operate.
+faIcon: faSeedling
+date: 2022-01-30
+---
+
+import { Link } from "gatsby"
+import { Card } from "../components"
+
+This is a conceptual breakdown for thinking through the maturity of our systems with respect to **operations**.
+
+# Problem
+
+When owning systems, we often need to plan work to make them cheaper and more reliable to maintain.
+We often know that this work needs to be done, but I've previously found it difficult to determine how to go about planning this work so that we can prioritise and add it to our roadmap.
+
+It would be useful to have a systematic approach to determine the current operational state of our systems, and to think about how we can evolve them.
+
+# Glossary
+
+- **operations** - the work needed to keep a system healthy while doing what _it is currently doing_ at _its current scale_.
+- **scaling** - the work needed to enable the system to perform what _it is currently doing_ at _a larger scale_. For this we think big; 2x,5x,10x, or 100x the current load.
+- **features** - the work needed to _add new capabilites_ to the system.
+
+In this article we are specifically looking at maturity of **operations**.
+
+I added definitions for scalability and features to clarify what operations is _not_.
+With respect to the maturity of scalability and feature work, each requires different approaches which are beyond the scope of this article.
+
+<Card heading="Recommended reading">
+
+This article also builds on terms and concepts introduced in <Link to="/articles/operational-observability">Operational Observability</Link>.
+I recommend that you skim through that article before continuing.
+
+</Card>
+
+# Axes of operational maturity
+
+Operating systems is the act of keeping its current state healthy.
+We can think of this as the act of detecting issues with our systems and then mitigating them.
+
+Conceptually this means we need 3 core abilities in our system:
+
+1. **Detecting problems**
+1. **Diagnosing the root causes**
+1. **Mitigating impact**
+
+From these I find it useful to further break up detection and mitigation,
+giving us 5 "axes" that we can invest in to make operations more effective, cheaper, more reliable and scalable:
+
+1. **Detecting problems in production**
+1. **Detecting problems before they reach production**
+1. **Diagnosing the root causes of our problems**
+1. **Mitigating impact by reverting to a previously-known stable state**
+1. **Mitigating impact by mutating the system**
+
+For each of these axes, we can define levels of maturity which can be reached by developing operational capabilities and processes.
+
+## What level of maturity is good enough?
+
+Which level of maturity we need for our systems heavily depends on our context.
+Improving maturity is an investment.
+We spend engineering resources and we spend on infrastructure; our return on this investment should justify the cost.
+I think it's important to go through a cost/benefit exercise before commiting to a specific maturity level.
+
+# Detecting problems in production
+
+Investing in this axis reduces the time and effort needed to detect issues.
+
+![](./images/operational-maturity-detecting-production.png)
+
+## Level 1
+
+We document context around how our system behaves when it is healthy.
+We compare actual behaviour against this context to infer health.
+
+## Level 2
+
+We log out major errors in our systems. We have some diagnostic metrics pushed by our systems.
+We use both logs and diagnostic metrics when investigating to infer whether our system is healthy.
+
+## Level 3
+
+We have defined and implement explicit health signals for our system.
+We no longer need to perform an investigations to determine health in the vast majority of cases.
+We periodically monitor these health signals know the availability of our system.
+
+## Level 4
+
+We use our health signals to automatically alert the team when system availability drops.
+We can use health signals to trigger other automated workflows e.g. rollbacks.
+
+# Detecting problems before production
+
+Investing in this axis improves our confidence that changes will not cause regression in our existing behaviour.
+
+There can be two types of impact from new changes in production:
+
+- **availability** - when a change causes errors/crashes in the system or degrades the performance to where it affects usability
+- **semantic** - when a change causes incorrect behaviour
+
+Availability regressions can be caught before they reach production using staging/pre-prod environments on which we monitor system health.
+
+Semantic regressions are more complicated to catch; the majority of these levels of maturity address this style of problem.
+
+![](./images/operational-maturity-detecting-preproduction.png)
+
+## Level 1
+
+We explicitly define correct semantic behaviour for the changes we make before we implement them.
+We use those definitions during implementation to validate that the code behaves correctly.
+
+## Level 2
+
+We have review processes for design and implementation which allow more than one person to evaluate changes.
+
+## Level 3
+
+We have regression tests in our implementations which assert the correct semantic behaviour.
+We actively add these as part of new changes on critical system behaviours.
+
+## Level 4
+
+We have a pre-production version of our system that we make changes to before affecting production.
+We perform investigations on this system to determine if the changes have caused regressions.
+
+## Level 5 - Semantic
+
+We have end-to-end tests which run on our pre-production environment and which assert that the system behaves correctly.
+
+## Level 5 - Availability
+
+We have defined health signals on our pre-production environment that match those on production.
+We monitor those health signals to determine whether changes would cause availability impact.
+We have integration tests that validate that we still interact with other systems correctly.
+
+## Level 6
+
+We have automated mechanisms to catch regressions in both availability and semantics.
+
+# Diagnosing issues in production
+
+![](./images/operational-maturity-diagnosing.png)
+
+## Level 1
+
+We document the core data-flows of our system and how those result in behaviour.
+We compare actual behaviour against this context to infer potential root causes.
+
+## Level 2
+
+We log out key events performed by our systems.
+We analyse these logs to confirm the current behaviour of the system and try to find anomalies in these logs.
+We infer potential root causes based on our observations of the logs.
+
+## Level 3
+
+We push metrics around key events performed by our systems.
+We graph these metrics over time on dashboards.
+We document the expected behaviour of these metrics.
+We analyse the graphs to detect anomalies in behaviour.
+We combine graph context with samples of log entries to make data-informed hypotheses of our root cause.
+
+## Level 4
+
+We apply statistical processing to our logs and metrics to help us reduce noise and to highlight anomalies.
+We have pre-prepared methods of finding the "top N" for important metrics e.g. top 10 customers driving load; top 10 operations which result in failure.
+
+## Level 5
+
+We are able to trace individual calls through our distributed systems.
+We can sample these traces to get near-realtime samples of system behaviour.
+We are able to run adhoc queries on these traces in near-realtime.
+
+# Mitigating issues by reverting to previous stable state
+
+![](./images/operational-maturity-mitigating-revert.png)
+
+## Level 1
+
+We keep track of state that we can use to revert/restore e.g. periodic backups of databases.
+We have a documented process for rolling back changes or restoring previously backed-up state.
+
+## Level 2
+
+We use scripts that programmatically run revert/restore actions.
+These scripts are checked into our codebase and peer reviewed.
+
+## Level 3
+
+Our health signals can trigger either scripts or services to automatically roll back impactful changes.
+
+# Mitigating issues by mutating production
+
+![](./images/operational-maturity-mitigating-mutate.png)
+
+## Level 1
+
+We have runbooks for running mutating actions against production.
+
+## Level 2
+
+We use scripts to perform common/particularly risky mutating actions.
+These scripts are checked into code and peer reviewed.
+
+## Level 3
+
+We have tooling that allows actions to be taken against prod without needing to check out code.
+This tooling provides user validation.
+This tooling has audit functionality to track mutating user actions against prod.
+
+## Level 4
+
+Our operational tooling is aware of current system health and can surface warnings for potentially unsafe actions.
+
+# Conclusion
+
+We can use the different axes of operational maturity to classify the maturity level of our systems (or features).
+For each axis, we can evaluate our current maturity and determine what steps would be needed to progress it to the next level.
+We can then assess the cost of doing that work versus the benefit we expect to gain.
+From this cost-benefit analysis we can prioritise the work in our roadmaps.

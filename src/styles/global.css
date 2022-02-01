@@ -15,7 +15,11 @@ p {
 }
 
 h1 {
-  @apply text-3xl my-2 quicksand;
+  @apply text-3xl mt-8 mb-2 quicksand;
+}
+
+.title {
+  @apply mt-1;
 }
 
 h2 {
