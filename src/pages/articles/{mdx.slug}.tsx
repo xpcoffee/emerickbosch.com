@@ -54,7 +54,7 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
   return (
     <Layout toolPanelContents={articleHeadings}>
       <div>
-        <h1>
+        <h1 className="title">
           {icon}
           {title}
         </h1>
