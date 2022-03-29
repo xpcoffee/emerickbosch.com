@@ -59,25 +59,26 @@ This gives us 5 "axes" that we can invest in to make operations more effective, 
 
 # Building and applying a capability roadmap
 
-Armed with a concrete understanding of our investment goals we now need to build a plan for how we can practically achieve them.
+Armed with an understanding of our investment goals we now need to build a plan for how we can practically achieve them.
+Here we'll call this plan a **capability roadmap**.
 
-In these next sections I want to lay out a general approach for building and using a capability roadmap.
-The thinking is that systems will have differing operational needs depending on their context so,
-instead of trying to build a roadmap that will fit all systems,
-we will develop a general approach for developing a roadmap that can be tweaked for individual systems.
+In these next sections, rather than try to build a one-size-fits-all roadmap, we'll lay out a general approach for building and using a capability roadmap.
+We will then be able to use this approach for developing a roadmaps that make sense in the specific contexts of our systems.
 
 ## 1 Levels of capability
 
-In practice investments are easier to plan, prioritize, and execute if we do them iteratively.
-For each of our axes up investment in our axes into
+In practice, investments are easier to plan, prioritize, and execute if we do them iteratively.
+If we want our roadmap to be practical, we need to plan out these potential iterations.
 
-For each of axis of operational investment, we want to describe levels for our ability to operate on that axis.
-We start with asking ourselves the bare minimum capability would look like for this axis, and what the highest level of sophistication would be for this axis.
-We then try to identify a series of levels that can take us from the bare-minimum level to the highest level.
+For each axis of operational investment, we will define levels/iterations which progressively improve our ability to operate on that axis.
+Start with noting what the bare-minimum capability might look like for a new, non-critical version of our system.
+Then note down what you think a web-scale, mission-critical version of our system would need.
+Then think of what could be some major milestones that will take you from bare-minimum capability to web-scale.
 
-It is important for each level to describe a _complete_ capability without prescribing how to achieve that capability.
+When describing each level, focus on defining _what_ you want to do (not how to do it) and describe that capability _completely_ (these should not describe half-way points).
 
 ```yaml
+# Example capability description
 # ✔ good: describes a complete capability without describing how it's achieved
 We can infer root causes from individual system events
 
@@ -99,11 +100,10 @@ Levels:
   5. Capability: We have a near-realtime, distributed trace of issues and key events in our system
 ```
 
-We now have some high-level iterations and milestones. These give us a good sense of what there is to gain by investing in a specific axis.
-
 ## 3 Component breakdown
 
-For each level of capability, we can now determine identify the high-level components we would need to implement to achieve this capability.
+Now that we have milestones, we can focus on breaking these down into the 
+high-level components that would need to be built to achieve this capability.
 
 ```yaml
 # Example
@@ -119,31 +119,50 @@ Levels:
     # ...
 ```
 
-At this point we now have tool that shows us a holistic view of what units of work that _could_ be built if we want to invested in operational capabilities.
-We'll call this tool our **capability roadmap**. We now need to use this tool to take a look at our actual system.
+With levels of capability and the components needed to reach them, we now have 
+an overview for how we can invest in the operational capabilities of our systems.
+
+Note that at this point, our levels and capabilities aren't very specific to any one system.
+The next step is to analyze an individual system to see where it lies along our different axes.
 
 ## 4 Analyze a specific system
 
-For each axis and capability, analyze what components currently exist in our system.
-This, along with some of our own context, should give us a good indication of what our current level of capability is.
-From here we can use our tool to identify the components we need to build to take us to the next level.
-It is now also possible to estimate the work implement/integrate each of these components.
+For each axis and capability, analyze what components already exist in our system
+to determine what our _current_ level of capability is. 
+We can then use our roadmap to identify the components we need to build to take us to the _next_ level.
 
-At this point we now have an idea of the costs needed to take us to the next level for each of our axes.
+<Card heading="Example">
+
+For "Diagnosing issues in production", let's imagine we have a system that currently meets 
+all the criteria for Level 1, and that we already log key events to log files on our servers.
+
+To take our system to Level 2, we'd need to do work to:
+
+1. push our logs from our servers to a central point of storage
+2. build some tooling that allows us to search through our storage logs 
+3. document how to diagnose the most common issues using logs in a runbook
+
+</Card>
+
+Now is also a good point at which to make some estimates of the work needed to implement/integrate these missing components.
+
+Once done with estimations we should be in a position where we have 
+a clear idea of components we could build, what they would cost us to build, 
+and an understanding of what reaching the next level will give us.
 
 ## 5 Cost vs benefit and prioritization
 
-Now that we have an idea of our current capabilities, an idea of what the next cabability will give us, and an idea of the cost to get us to the next capability,
-we should be able to make a decision driven by cost vs. benefit about whether or not we want to invest into any of our axes.
-This cost/benefit should also give us a good sense of which axis we want to invest in first (which will depend on our context).
+We have all the pieces of information we need to have a productive discussion about cost vs. benefit of investing along our different axes.
+This cost/benefit should also give us a good sense of which axis we want to invest in first, 
+as well as how to prioritize this work against other tasks the team needs to accomplish.
 
 # Deep example: Web-service capability roadmap
 
 ## Detecting problems in production
 
 Investing in this axis reduces the time and effort needed to detect issues.
-
-![](./images/operational-maturity-detecting-production.png)
+ 
+![](./images/operational-capability-detecting-problems-in-production.jpg)
 
 ```yaml
 Axis: Detecting problems in production
@@ -187,7 +206,7 @@ Availability regressions can be caught before they reach production using stagin
 
 Semantic regressions are more complicated to catch; the majority of these levels of investment address this style of problem.
 
-![](./images/operational-maturity-detecting-preproduction.png)
+![](./images/operational-capability-detecting-problems-before-production.jpg)
 
 ```yaml
 Axis: Detecting problems before production
@@ -216,19 +235,19 @@ Levels:
         Components:
             - pre-prod environment in deployment pipeline before production deployments
     5.  Capability: >
-            We have automated testing of correct semantic behaviour in pre-production.
-        Components:
-            - end-to-end tests running on pre-production before deployment to production
-    6.  Capability: >
             We have automated testing of availability in pre-production
         Components:
             - health signals in pre-production that match those in production
             - integration tests running on pre-production before deployment to production
+    6.  Capability: >
+            We have automated testing of correct semantic behaviour in pre-production.
+        Components:
+            - end-to-end tests running on pre-production before deployment to production
 ```
 
 ## Diagnosing issues in production
 
-![](./images/operational-maturity-diagnosing.png)
+![](./images/operational-capability-diagnose-problems-in-production.jpg)
 
 ```yaml
 Axis: Diagnosing issues in production
@@ -264,7 +283,7 @@ Levels:
 
 ## Mitigating issues by reverting to previous stable state
 
-![](./images/operational-maturity-mitigating-revert.png)
+![](./images/operational-capability-mitigation-via-reverting.jpg)
 
 ```yaml
 Axis: Mitigating issues by reverting to previous stable state
@@ -272,10 +291,8 @@ Levels:
     1.  Capability: >
             We have previous versions of state that we use to manually roll back
         Components:
-            - Previous versions of production code
-            - Runbook for how to roll back to a previous version of production code
-            - Regular backups of databases/system state
-            - Runbook for how to roll back to a backed up state
+            - Regular versioning/backups of code and system state
+            - Runbook for how to roll back to a backed-up version of production code/state
     2.  Capability: >
             We programmatically run revert/restore actions
         Components:
@@ -291,7 +308,7 @@ Levels:
 
 ## Mitigating issues by mutating production
 
-![](./images/operational-maturity-mitigating-mutate.png)
+![](./images/operational-capability-mitigation-via-mutation.jpg)
 
 ```yaml
 Axis: Mitigating issues by mutating production
