@@ -2,7 +2,7 @@ import React from "react"
 import * as FontAwesome from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-type FAIcon = keyof typeof FontAwesome
+export type FAIcon = keyof typeof FontAwesome
 
 export function getIcon(faIcon?: string) {
   if (!faIcon) {
