@@ -7,13 +7,17 @@ Emerick Bosch's personal site.
 1\. Install the [Gatsby CLI](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli).
 
 2\. Install dependencies
+
 ```bash
 npm install
 ```
+
 3\. Start the development server
+
 ```bash
-gatsby develop
+yarn start
 ```
+
 4\. Start coding!
 
 ## Development
