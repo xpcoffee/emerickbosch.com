@@ -33,7 +33,7 @@ Thinking about investing into capabilities for improving scalability and feature
 
 <Card heading="Recommended reading">
 
-This article also builds on terms and concepts introduced in <Link to="/articles/operational-observability">Operational Observability</Link>.
+This article also builds on terms and concepts introduced in .
 I recommend that you skim through that article before continuing.
 
 </Card>
@@ -136,6 +136,14 @@ We will need to spend engineering resources both up-front and over time to maint
   Work to tweak signals as system behaviour mutates with customer load and with
   architectural changes. Maintenance work on the dashboard tool/communication
   channels.
+</IconParagraph>
+
+<IconParagraph icon="faLink" header="Further reading">
+  <br />
+  <Link to="/articles/operational-observability">
+    Operational Observability
+  </Link>
+  <br />
 </IconParagraph>
 
 ## Automated alerts on health signals
@@ -268,6 +276,19 @@ We will need to spend engineering resources both up-front and over time to maint
   metrics for new features and to dashboard and document them.
 </IconParagraph>
 
+<IconParagraph icon="faLink" header="Further reading">
+  <br />
+  <Link to="/articles/operational-observability">
+    Operational Observability
+  </Link>
+  <br />
+  <a href="https://grafana.com/grafana/dashboards/">Grafana dashboards</a>
+  <br />
+  <a href="https://www.datadoghq.com/product/#dashboards">Datadog dashboards</a>
+  <br />
+  <a href="https://prometheus.io/">Prometheus</a>
+</IconParagraph>
+
 ## Operational event tracking
 
 <IconParagraph icon="faUserCog" header="Capability">
@@ -336,7 +357,18 @@ We will need to spend engineering resources both up-front and over time to maint
   also show up in the request trace.
 </IconParagraph>
 
-## User flow tracking
+<IconParagraph icon="faLink" header="Further reading">
+  <br />
+  <a href="https://newrelic.com/resources/ebooks/quick-introduction-distributed-tracing">
+    new relic: Quick intro to distributed tracing
+  </a>
+  <br />
+  <a href="https://www.jaegertracing.io/">
+    Jaeger: open source, end-to-end distributed tracing
+  </a>
+</IconParagraph>
+
+## User journey tracking
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team is able to track multiple actions made by a user. This provides
@@ -367,6 +399,17 @@ We will need to spend engineering resources both up-front and over time to maint
   Cost of storing extra request metadata. Cost of processing logs/metrics to
   filter them by a specific session. Work to ensure system events for new
   features are also registered with sessions.
+</IconParagraph>
+
+<IconParagraph icon="faLink" header="Further reading">
+  <br />
+  <a href="https://support.google.com/analytics/answer/9317498?hl=en">
+    Google Analytics 4: Path exploration
+  </a>
+  <br />
+  <a href="https://www.cisco.com/c/en/us/td/docs/wireless/asr_5000/21-6_N6-0/MME-Admin/21-6-MME-Admin/21-6-MME-Admin_chapter_0101111.pdf">
+    Cisco: Session tracing
+  </a>
 </IconParagraph>
 
 # Mitigating issues in the system
@@ -482,8 +525,12 @@ We will need to spend engineering resources both up-front and over time to maint
 </IconParagraph>
 
 <IconParagraph icon="faUserTimes" header="Caveats">
-  This capability has similar considerations to <a href="#source-versioning">source versioning</a>; roll-back in a stateful system could cause more harm than good. We need to think these scenarios through carefully.
-  Introducing automation will add operational noise due to rollbacks triggered due to false alarms. The effectiveness of these rollbacks is tied to the accuracy of our rollback triggers.
+  This capability has similar considerations to{" "}
+  <a href="#source-versioning">source versioning</a>; roll-back in a stateful
+  system could cause more harm than good. We need to think these scenarios
+  through carefully. Introducing automation will add operational noise due to
+  rollbacks triggered due to false alarms. The effectiveness of these rollbacks
+  is tied to the accuracy of our rollback triggers.
 </IconParagraph>
 
 <IconParagraph icon="faHandHoldingUsd" header="Upfront costs">
