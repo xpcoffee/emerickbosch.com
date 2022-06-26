@@ -4,7 +4,7 @@ type Props = React.PropsWithChildren<{ heading: string; href: string }>
 
 export const ArticleHeading = ({ heading, href, children }: Props) => {
   return (
-    <li className="font-medium md:border-none" key={heading}>
+    <li className="font-medium md:border-none" key={href}>
       <a
         className={
           "block p-2 my-3 bg-gray-50 drop-shadow " +
