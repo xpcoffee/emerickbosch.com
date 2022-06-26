@@ -27,25 +27,15 @@ const BottomToolPanel = ({
     }
   }, [ref])
 
-  // Dismiss the modal if an element with a modal dismiss data tag event is detected
+  // Dismiss the modal if we detect a hash change event
   useEffect(() => {
-    function handleModalDismissDataIdClick(event: MouseEvent) {
-      const target = event.target as unknown
-      if (!(target instanceof HTMLElement)) {
-        return false
-      }
-
-      if (target.getAttribute("data-dismiss") === "modal") {
-        /**
-         * FIXME: without delaying the dismiss, navigation events on links in the modal don't trigger
-         */
-        setTimeout(() => onDismiss?.(), 50)
-      }
+    function handleModalDismissDataIdClick() {
+      onDismiss?.()
     }
 
-    document.addEventListener("mousedown", handleModalDismissDataIdClick)
+    window.addEventListener("hashchange", handleModalDismissDataIdClick)
     return () => {
-      document.removeEventListener("mousedown", handleModalDismissDataIdClick)
+      window.removeEventListener("hashchange", handleModalDismissDataIdClick)
     }
   }, [ref])
 

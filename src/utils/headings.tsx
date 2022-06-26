@@ -33,7 +33,7 @@ export function renderHeadings({
   headings: HeadingData[]
 } & HeadingViewComponents) {
   const treeRoot = buildHeadingTree(headings)
-  console.log({ treeRoot })
+
   return renderHeadingTree({
     node: treeRoot,
     Heading,
