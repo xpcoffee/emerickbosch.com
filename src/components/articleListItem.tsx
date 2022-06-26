@@ -22,7 +22,7 @@ const ArticleListItem = ({
   ) : undefined
 
   return (
-    <li className="border-x-4 border-blue-800 md:border-none">
+    <li>
       <Link
         tabIndex={0}
         className={
