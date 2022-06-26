@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC, PropsWithChildren } from "react"
 
 export type HeadingData = {
   value: string
@@ -11,12 +11,14 @@ type HeadingTreeNode = {
   children: HeadingTreeNode[]
 }
 
-export type RootHeadingGroupComponent = React.FC
-export type HeadingGroupComponent = React.FC
-export type HeadingComponent = React.FC<{
-  heading: string
-  href: string
-}>
+export type RootHeadingGroupComponent = FC<PropsWithChildren>
+export type HeadingGroupComponent = FC<PropsWithChildren>
+export type HeadingComponent = FC<
+  PropsWithChildren<{
+    heading: string
+    href: string
+  }>
+>
 
 type HeadingViewComponents = {
   Heading: HeadingComponent
@@ -116,4 +118,6 @@ function getHeadingLink(heading: string) {
   return `#${snakeCaseHeading}`
 }
 
-const DefaultHeadingGroup: React.FC = ({ children }) => <ul>{children}</ul>
+const DefaultHeadingGroup: FC<PropsWithChildren> = ({ children }) => (
+  <ul>{children}</ul>
+)

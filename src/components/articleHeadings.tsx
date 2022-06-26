@@ -1,8 +1,8 @@
-import React from "react"
+import React, { FC, PropsWithChildren } from "react"
 import { HeadingData, renderHeadings } from "../utils/headings"
 import { ArticleHeading } from "./articleHeading"
 
-type Props = { headings: HeadingData[]; depth?: number }
+type Props = PropsWithChildren<{ headings: HeadingData[]; depth?: number }>
 
 const ArticleHeadings = ({ headings }: Props) => {
   return renderHeadings({
@@ -13,7 +13,7 @@ const ArticleHeadings = ({ headings }: Props) => {
   })
 }
 
-const RootHeadingGroup: React.FC = ({ children }) => {
+const RootHeadingGroup: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ul
       tabIndex={0}
@@ -25,7 +25,7 @@ const RootHeadingGroup: React.FC = ({ children }) => {
   )
 }
 
-const HeadingGroup: React.FC = ({ children }) => {
+const HeadingGroup: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ul tabIndex={-1} className="list-none mx-0 pl-3 pr-8 w-full quicksand">
       {children}
