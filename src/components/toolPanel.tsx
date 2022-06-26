@@ -39,7 +39,7 @@ const ToolPanel = ({
           >
             <div
               className="sticky top-0 pt-8 overflow-y-auto"
-              style={{ maxHeight: "80vh" }}
+              style={{ maxHeight: "100vh" }}
             >
               {children}
             </div>

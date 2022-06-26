@@ -51,7 +51,7 @@ const Layout = ({
   return (
     <div id="app-layout" className="flex justify-center">
       <div
-        className={`grid grid-cols-1 md:grid-desktop gap-5 m-2 flex-1 overflow-scroll`}
+        className={`grid grid-cols-1 md:grid-desktop gap-5 m-2 flex-1 overflow-y-scroll`}
       >
         <title>{title}</title>
         <Title
