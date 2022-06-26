@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { ArticleHeadings, Layout } from "../../components"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { stringValueOrUndefined } from "../../utils/string"
@@ -65,6 +65,17 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
             Thanks for reading! Please reach out if you have
             corrections/suggestions that could make this content better.
           </p>
+          <br />
+          <Link
+            to="/"
+            className={
+              "mt-2" +
+              " quicksand text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500" +
+              " border-dotted border-gray-600 border-b-2 pb-1"
+            }
+          >
+            Back to notes index
+          </Link>
         </div>
       </div>
     </Layout>
