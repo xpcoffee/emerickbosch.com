@@ -6,7 +6,6 @@ phases:
       nodejs: 14
   pre_build:
     commands:
-      - npm install -g gatsby
       - npm install
   build:
     commands:
