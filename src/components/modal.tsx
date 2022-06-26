@@ -52,7 +52,7 @@ const Modal = ({
   return (
     <>
       <div
-        className={`${classNames} z-20 bg-gray-100 absolute left-0 right-0 top-0 bottom-0 m-auto drop-shadow flex items-center rounded-md overflow-scroll w-max h-max p-8`}
+        className={`${classNames} z-20 bg-gray-100 absolute left-0 right-0 top-0 bottom-0 m-auto drop-shadow flex items-center rounded-md w-max h-max p-8`}
         ref={ref}
       >
         {children}

@@ -46,7 +46,7 @@ const BottomToolPanel = ({
           classNames +
           " z-20 absolute left-0 right-0 top-0 bottom-0 h-max p-4 mb-0 mt-auto" +
           " drop-shadow border-gray-300 border-t-1 bg-white" +
-          " flex items-center overflow-scroll"
+          " flex items-center"
         }
         ref={ref}
       >
