@@ -74,7 +74,7 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
               " border-dotted border-gray-600 border-b-2 pb-1"
             }
           >
-            Back to notes index
+            Back to landing page
           </Link>
         </div>
       </div>
