@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 a {
-  @apply text-indigo-800 hover:text-indigo-800 visited:text-purple-700 dark:text-indigo-200 visited:dark:text-indigo-400 hover:dark:text-indigo-200;
+  @apply text-indigo-800 hover:text-indigo-800 visited:text-purple-700 dark:text-indigo-300 visited:dark:text-indigo-400 hover:dark:text-orange-400;
 }
 
 p {
