@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const SocialInfo = ({ className }: { className?: string }) => {
   return (
     <div
-      className={`${className} flex flex-col gap-3 items-center md:items-start md:gap-1 md:text-sm text-gray-600 quicksand`}
+      className={`${className} flex flex-col gap-3 items-center md:items-start md:gap-1 md:text-sm text-gray-600 dark:text-gray-300 quicksand`}
     >
       <div>
         <FontAwesomeIcon className="mr-2" icon={faGithub} />

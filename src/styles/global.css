@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 a {
-  @apply text-indigo-800 hover:text-indigo-800 visited:text-purple-700;
+  @apply text-indigo-800 hover:text-indigo-800 visited:text-purple-700 dark:text-indigo-200 visited:dark:text-indigo-400 hover:dark:text-indigo-200;
 }
 
 p {
@@ -15,7 +15,7 @@ p {
 }
 
 h1 {
-  @apply text-3xl mt-8 mb-2 quicksand;
+  @apply text-3xl mt-8 mb-2 quicksand dark:text-gray-300;
 }
 
 .title {
@@ -23,15 +23,15 @@ h1 {
 }
 
 h2 {
-  @apply text-2xl mt-8 mb-2 text-gray-700;
+  @apply text-2xl mt-8 mb-2 text-gray-700 dark:text-gray-300;
 }
 
 h3 {
-  @apply text-xl text-gray-700 mt-4 mb-2;
+  @apply text-xl text-gray-700 dark:text-gray-300 mt-4 mb-2;
 }
 
 h4 {
-  @apply text-xl quicksand text-gray-700 mt-3 mb-3;
+  @apply text-xl quicksand text-gray-700 dark:text-gray-300 mt-3 mb-3;
 }
 
 pre {
@@ -46,7 +46,7 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
-  @apply text-gray-800;
+  @apply text-gray-800 dark:text-gray-400 dark:bg-slate-900;
   position: relative;
 }
 

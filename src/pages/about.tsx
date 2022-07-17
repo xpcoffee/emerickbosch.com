@@ -44,6 +44,7 @@ const AboutPage = () => {
             className={
               "mt-2" +
               " quicksand text-gray-600 visited:text-gray-600 hover:text-orange-500 visited:hover:text-orange-500" +
+              " dark:text-gray-300 dark:visited:text-gray-300 dark:hover:text-orange-400 dark:visited:hover:text-orange-400" +
               " border-dotted border-gray-600 border-b-2 pb-1"
             }
           >

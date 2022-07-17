@@ -50,9 +50,7 @@ const Layout = ({
 
   return (
     <div id="app-layout" className="flex justify-center">
-      <div
-        className={`grid grid-cols-1 md:grid-desktop gap-5 m-2 flex-1 overflow-y-scroll`}
-      >
+      <div className="grid grid-cols-1 md:grid-desktop gap-5 m-2 flex-1 overflow-y-scroll">
         <title>{title}</title>
         <Title
           className="order-1 md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 justify-self-center md:self-center md:col-span-2 md:justify-self-start"
@@ -67,7 +65,9 @@ const Layout = ({
           </ToolPanel>
         )}
         <div className="order-4 py-5 self-start md:row-start-3 md:row-end-3 md:col-start-2 md:col-end-5 md:flex md:justify-center">
-          <main className="read-width text-gray-800">{children}</main>
+          <main className="read-width text-gray-800 dark:text-gray-400">
+            {children}
+          </main>
         </div>
         <AboutLink className="order-5 justify-self-center md:row-start-1 md:row-end-1 md:col-start-4 md:col-end-4 md:self-center md:justify-self-end" />
         <SocialInfo className="order-6 md:row-start-4 md:row-end-4 md:col-start-4 md:col-end-4 md:justify-self-end md:my-3" />
