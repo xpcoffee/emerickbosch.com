@@ -26,7 +26,7 @@ const ToolPanel = ({
             className={
               className +
               " bottom-0 right-0 left-0 z-10 px-5 py-3 fixed" +
-              " cursor-pointer bg-gray-50 hover:text-orange-500 visited:hover:text-orange-500" +
+              " cursor-pointer bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400" +
               " text-center text-lg" +
               " md:hidden"
             }

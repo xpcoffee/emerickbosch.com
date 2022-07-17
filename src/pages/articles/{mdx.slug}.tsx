@@ -44,7 +44,9 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
 
   const date = data?.mdx?.frontmatter?.date
   const lastEditDate = date ? (
-    <p className="text-sm text-gray-600">Last edit: {date}</p>
+    <p className="text-sm text-gray-600 dark:text-gray-400">
+      Last edit: {date}
+    </p>
   ) : undefined
 
   const articleHeadings = headings?.length ? (
