@@ -28,9 +28,10 @@ const ArticleListItem = ({
       <Link
         tabIndex={0}
         className={
-          "my-2 pl-5 py-3 block bg-gray-50  " +
-          "text-indigo-800 visited:text-indigo-800 hover:text-orange-500 dark:text-slate-200 visited:text-slate-200 dark:hover:text-orange-400 visited:hover:text-orange-500" +
-          "md:my-2 md:bg-inherit md:border-0 md:pt-1 md:pb-0"
+          "my-2 pl-5 py-3 block bg-gray-50" +
+          " text-indigo-800 visited:text-indigo-800 hover:text-orange-500 visited:text-slate-200 dark:hover:text-orange-400 visited:hover:text-orange-500" +
+          " dark:text-slate-200 dark:bg-slate-700" +
+          " md:my-2 md:bg-inherit md:border-0 md:pt-1 md:pb-0"
         }
         to={`articles/${articlePath}`}
       >
