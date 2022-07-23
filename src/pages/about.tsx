@@ -4,7 +4,7 @@ import { Layout } from "../components"
 import { Link } from "gatsby"
 
 const AboutPage = () => {
-  const showSnek = useMemo(() => Math.random() > 0.5, [])
+  const showSnek = useMemo(() => Math.floor(Date.now() / 1000) % 5 > 2, [])
   const image = useMemo(() => {
     return showSnek ? (
       <StaticImage
@@ -33,9 +33,9 @@ const AboutPage = () => {
           <div className="flex justify-center">{image}</div>
           <p>I am Emerick; you can also call me Rick.</p>
           <p>
-            I build software systems. I strive to build them such that they have
-            a positive impact on those who use them, and to build them
-            sustainably alongside excellent people. I am currently based in het
+            I build software systems. I strive to build them to leave a positive
+            impact on those who use them, to build them sustainably, and to
+            build them alongside excellent people. I am currently based in het
             Netherlands 🇳🇱.
           </p>
           <br />
