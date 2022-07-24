@@ -13,15 +13,30 @@ const SocialInfo = ({ className }: { className?: string }) => {
     >
       <div>
         <FontAwesomeIcon className="mr-2" icon={faGithub} />
-        <a href="https://github.com/xpcoffee">xpcoffee</a>
+        <a
+          className="dark:text-indigo-300 dark:visited:text-indigo-300"
+          href="https://github.com/xpcoffee"
+        >
+          xpcoffee
+        </a>
       </div>
       <div>
         <FontAwesomeIcon className="mr-2" icon={faTwitter} />
-        <a href="https://twitter.com/explodedcoffee">explodedcoffee</a>
+        <a
+          className="dark:text-indigo-300 dark:visited:text-indigo-300"
+          href="https://twitter.com/explodedcoffee"
+        >
+          explodedcoffee
+        </a>
       </div>
       <div>
         <FontAwesomeIcon className="mr-2" icon={faLinkedin} />
-        <a href="https://www.linkedin.com/in/emerickbosch">emerickbosch</a>
+        <a
+          className="dark:text-indigo-300 dark:visited:text-indigo-300"
+          href="https://www.linkedin.com/in/emerickbosch"
+        >
+          emerickbosch
+        </a>
       </div>
     </div>
   )

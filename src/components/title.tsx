@@ -16,8 +16,13 @@ const Title = ({
     >
       <Link to="/">
         <div className="flex items-center">
-          <img alt="xpcoffee icon" style={{ height: "45px" }} src={iconUrl} />
-          <div className="ml-2 text-2xl quicksand text-gray-700 dark:text-gray-200">
+          <img
+            className="dark:border-slate-300 dark:border-2 dark:rounded-full"
+            alt="xpcoffee icon"
+            style={{ height: "45px" }}
+            src={iconUrl}
+          />
+          <div className="ml-2 dark:ml-3 text-2xl quicksand text-gray-700 dark:text-gray-200">
             {titleText}
           </div>
         </div>
