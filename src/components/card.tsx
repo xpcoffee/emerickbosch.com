@@ -13,8 +13,7 @@ const Card = ({ children, heading }: Props) => {
 
   return (
     <div className="border-blue-600 dark:border-orange-400 border-l-4 my-5 flex">
-      <div className="w-10"></div>
-      <div>
+      <div className="pl-8">
         {header}
         {children}
       </div>
