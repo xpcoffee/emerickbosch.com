@@ -12,7 +12,7 @@ export const PullQuote = ({
       >
         &ldquo;
       </div>
-      <div className="mb-4 mx-9">{children}</div>
+      <div className="mb-4 mx-9 dark:text-gray-300">{children}</div>
       <div
         className="text-6xl text-orange-400 absolute bottom-0 right-7 leading-none"
         aria-hidden="true"
