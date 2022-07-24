@@ -2,7 +2,7 @@
 title: Inexpensive mechanisms to support team processes
 description: A list of mechanisms that are cheap to implement, but that empower valuable processes.
 faIcon: faPaperclip
-date: 2022-01-22
+date: 2022-07-24
 tocDepth: 2
 ---
 
@@ -11,7 +11,7 @@ import { PullQuote } from "../components"
 <div className="py-5" />
 
 <span className="quicksand">
-  This is a (hopefully) growing of mechanisms that are cheap to practically
+  This is a (hopefully) growing list of mechanisms that are cheap to practically
   implement, but that empower processes that add value to the team and our
   customers.
 </span>
@@ -130,7 +130,7 @@ Sometimes the team can't agree whether something is worth doing due to a lack of
 
 ### Concept
 
-We plan in time to implement a _minimal_ version _one_ of the options so that we can gather data and make progress.
+We plan a _minimal/hacky_ implementation of an idea that enables us gather data and make progress.
 We build metrics into the implementation that allow us to know whether the decision was correct,
 and we plan an explicit deadline at which we evaluate the metrics and decide whether to plan the
 full implementation or to roll back.
@@ -213,6 +213,59 @@ whether to invest further.
 To be written after the experiment to summaries the outcomes. Link to more detailed
 artifacts here (designs, data, code, etc).
 ```
+
+## Decision log
+
+<p className="text-lg">A record of major decisions, with minimal context.</p>
+
+<PullQuote>
+  We can reference and share the important decisions we make.
+</PullQuote>
+
+### Problem
+
+We strive to make decisions quickly and often. In a fast-moving environment, members of the team or stakeholders can often lose track of when decisions are made, and the context around those decisions.
+This misalignment around decisions often leads to communication issues, causing unnecessary conflict and impacting the team's ability to deliver.
+
+### Concept
+
+Put down decisions in writing in a central location that can be tracked by both the team and stakeholders, along with some minimal context around the decision to help readers understand why the decision was taken.
+
+How to structure the log is up to the team: the log could be specific to a domain e.g. [Architecture Decision Records](https://adr.github.io/), or can store all important decisions made by a team regardless of domain.
+
+**Examples**
+
+```md
+Team: API team
+
+Decisions:
+
+Date | Decision | People | Context
+2022-07-10 | Deprecate SOAP | @foo @bar @baz @grault | Usage of SOAP is [less than 1%](link to data), but contributes [40% of effort to new features](link to data)
+2022-06-15 | Change sprints to period of 4 weeks | @foo @bar @baz | Upcoming work are large-ish unambiguous projects, low likelihood that we need to change direction quicker than 4 weeks
+2022-06-04 | Release /courses API without resource cost throttling | @baz @grault | Maximum expected load for new API can be handled by default throttling. See also [design review](link to review)
+2022-05-22 | Spend 1 week paying back tech debt | @bar @grault | Rest of the team is on holiday next week
+```
+
+### Considerations
+
+**Decisions are not rules**
+
+Decisions recorded here shouldn't be treated as rules that others need to obey. On the contrary, the primary goal is to keep people informed/on the same page.
+Team members can watch the record for changes and are encouraged to raise issues they have with any decisions they come across.
+
+**People section is not for blame/responsibility**
+
+Decisions are owned by a team. Recording those involved with a decision is to give readers a point of contact they can reach out to for more context or for help.
+
+**Link out**
+
+The log is meant to record the final decision, not the full debate. If deeper context is needed to understand the decision (investigation reports, data, designs), use links.
+
+**Long logs can become a bit confusing**
+
+When there are large logs, it can be hard to find out the "latest" decisions on specific domains, especially on logs that host multiple different domains.
+Adding metadata to records e.g. tags for different domains, or unique IDs that can be referenced in other records, can help with this.
 
 <div className="py-5" />
 
