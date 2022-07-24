@@ -2,10 +2,11 @@
 title: Patterns
 description: My reference index for patterns.
 faIcon: faShapes
-date: 2021-12-27
+date: 2022-07-24
 ---
 
 import { Link } from "gatsby"
+import { PatternArticleList } from "../components"
 
 This is my own reference-sheet for patterns. The aim is to make my own vocabulary explicit to align with others and to enhance my knowledge over-time.
 
@@ -20,20 +21,4 @@ Patterns are ways of organizing/architecting code or logical systems that have p
 
 # Patterns
 
-<ul>
-  <li key="factory">
-    <Link to="/articles/pattern-factory">Factory</Link>
-  </li>
-  <li key="builder">
-    <Link to="/articles/pattern-builder">Builder</Link>
-  </li>
-  <li key="interceptor">
-    <Link to="/articles/pattern-interceptor">Interceptor</Link>
-  </li>
-  <li key="strategy">
-    <Link to="/articles/pattern-strategy">Strategy</Link>
-  </li>
-  <li key="pubsub">
-    <Link to="/articles/pattern-pubsub">Publisher-Subscriber</Link>
-  </li>
-</ul>
+<PatternArticleList />

@@ -3,8 +3,8 @@ import * as React from "react"
 import { ArticleListItem, Layout, Seo } from "../components"
 
 const IndexPage = () => {
-  const articlesData = useStaticQuery<GatsbyTypes.ArticlesQuery>(graphql`
-    query Articles {
+  const articlesData = useStaticQuery<GatsbyTypes.AllArticlesQuery>(graphql`
+    query AllArticles {
       allMdx(sort: { fields: frontmatter___date, order: DESC }) {
         nodes {
           frontmatter {
