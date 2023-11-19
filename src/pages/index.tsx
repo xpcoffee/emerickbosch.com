@@ -13,7 +13,6 @@ const IndexPage = () => {
         faIcon
       }
       id
-      slug
     }
   }
 }`)
@@ -21,7 +20,7 @@ const IndexPage = () => {
   const articleListItems = articlesData.allMdx.nodes.map(node => (
     <ArticleListItem
       key={node.id}
-      articlePath={node.slug ?? "/404"}
+      articlePath={"/404"}
       title={node.frontmatter?.title}
       description={node.frontmatter?.description}
       faIconName={node?.frontmatter?.faIcon}

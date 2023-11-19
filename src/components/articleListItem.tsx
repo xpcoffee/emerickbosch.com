@@ -15,7 +15,7 @@ const ArticleListItem = ({
   description,
   faIconName,
 }: Props) => {
-  const icon = getIcon(faIconName)
+  const icon = getIcon(faIconName) ?? <></>
 
   const descriptionSubtext = description ? (
     <span className="text-gray-600 dark:text-gray-400 text-sm">

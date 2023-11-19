@@ -9,7 +9,6 @@ export const PatternArticleList: React.FC = () => {
   ) {
     edges {
       node {
-        slug
         frontmatter {
           title
         }
@@ -32,7 +31,7 @@ export const PatternArticleList: React.FC = () => {
               " text-indigo-800 visited:text-indigo-800 hover:text-orange-400 visited:hover:text-orange-400" +
               " dark:text-slate-200 dark:hover:text-orange-400 dark:visited:text-slate-200"
             }
-            to={`../${node.slug}`}
+            to={`../${node.frontmatter?.title ?? Date.now()}`}
           >
             {node.frontmatter?.title}
           </Link>

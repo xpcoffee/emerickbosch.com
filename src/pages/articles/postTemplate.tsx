@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import { ArticleHeadings, Layout } from "../../components"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import { MDXProvider } from "@mdx-js/react"
 import { stringValueOrUndefined } from "../../utils/string"
 import { getIcon } from "../../utils/fontAwesome"
 import { isNotUndefined } from "../../utils/array"
@@ -37,7 +37,7 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
     .filter(isNotUndefined)
 
   const body = data?.mdx?.body ? (
-    <MDXRenderer>{data.mdx.body}</MDXRenderer>
+    <MDXProvider>{data.mdx.body}</MDXProvider>
   ) : (
     <p>Empty article</p>
   )
