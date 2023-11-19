@@ -2,23 +2,21 @@ import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
 export const PatternArticleList: React.FC = () => {
-  const articlesData = useStaticQuery<GatsbyTypes.PatternArticlesQuery>(graphql`
-    query PatternArticles {
-      titles: allMdx(
-        filter: { fileAbsolutePath: { regex: "/.*pattern-.*/" } }
-        sort: { fields: frontmatter___title }
-      ) {
-        edges {
-          node {
-            slug
-            frontmatter {
-              title
-            }
-          }
+  const articlesData = useStaticQuery<GatsbyTypes.PatternArticlesQuery>(graphql`query PatternArticles {
+  titles: allMdx(
+    filter: {fileAbsolutePath: {regex: "/.*pattern-.*/"}}
+    sort: {frontmatter: {title: ASC}}
+  ) {
+    edges {
+      node {
+        slug
+        frontmatter {
+          title
         }
       }
     }
-  `)
+  }
+}`)
 
   if (!articlesData.titles.edges?.length) {
     return <></>

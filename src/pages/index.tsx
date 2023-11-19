@@ -3,22 +3,20 @@ import * as React from "react"
 import { ArticleListItem, Layout, Seo } from "../components"
 
 const IndexPage = () => {
-  const articlesData = useStaticQuery<GatsbyTypes.AllArticlesQuery>(graphql`
-    query AllArticles {
-      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-        nodes {
-          frontmatter {
-            date(formatString: "MMMM D, YYYY")
-            title
-            description
-            faIcon
-          }
-          id
-          slug
-        }
+  const articlesData = useStaticQuery<GatsbyTypes.AllArticlesQuery>(graphql`query AllArticles {
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    nodes {
+      frontmatter {
+        date(formatString: "MMMM D, YYYY")
+        title
+        description
+        faIcon
       }
+      id
+      slug
     }
-  `)
+  }
+}`)
 
   const articleListItems = articlesData.allMdx.nodes.map(node => (
     <ArticleListItem
