@@ -62,7 +62,7 @@ function renderHeadingTree({
   }
 
   const subGroup = childElements.length ? (
-    <HeadingGroup>{childElements}</HeadingGroup>
+    <HeadingGroup key={value}>{childElements}</HeadingGroup>
   ) : undefined
 
   return (

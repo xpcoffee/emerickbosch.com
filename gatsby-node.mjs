@@ -6,9 +6,56 @@
 
 import slugify from "@sindresorhus/slugify"
 import path from "path"
+import { compileMDXWithCustomOptions } from "gatsby-plugin-mdx"
+import remarkHeadingsPlugin from "./plugins/remark-headings-plugin.mjs"
 
-export const createSchemaCustomization = ({ actions }) => {
+export const createSchemaCustomization = ({ getNode, getNodesByType, pathPrefix, reporter, cache, actions, schema, store }) => {
   const { createTypes } = actions
+
+  const headingsResolver = schema.buildObjectType({
+    name: `Mdx`,
+    fields: {
+      headings: {
+        type: `[MdxHeading]`,
+        async resolve(mdxNode) {
+          const fileNode = getNode(mdxNode.parent)
+
+          if (!fileNode) {
+            return null
+          }
+
+          const result = await compileMDXWithCustomOptions(
+            {
+              source: mdxNode.body,
+              absolutePath: fileNode.absolutePath,
+            },
+            {
+              pluginOptions: {},
+              customOptions: {
+                mdxOptions: {
+                  remarkPlugins: [remarkHeadingsPlugin],
+                },
+              },
+              getNode,
+              getNodesByType,
+              pathPrefix,
+              reporter,
+              cache,
+              store,
+            }
+          )
+
+          if (!result) {
+            return null
+          }
+
+          return result.metadata.headings
+        }
+      }
+    }
+  })
+
+
   const typeDefs = `
       type MdxFrontmatter {
         date(formatString: String): Date
@@ -34,14 +81,13 @@ export const createSchemaCustomization = ({ actions }) => {
         fields: MdxFields
       }
     `
-  createTypes(typeDefs)
+  createTypes([typeDefs, headingsResolver])
 }
 
 
 export const onCreateNode = ({ node, actions }) => {
   if (node.internal.type === `Mdx`) {
 
-    console.log("creating node")
     const slug = slugify(node.frontmatter.title)
     actions.createNodeField({
       node,

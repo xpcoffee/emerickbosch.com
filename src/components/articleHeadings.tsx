@@ -25,9 +25,9 @@ const RootHeadingGroup: FC<PropsWithChildren> = ({ children }) => {
   )
 }
 
-const HeadingGroup: FC<PropsWithChildren> = ({ children }) => {
+const HeadingGroup: FC<PropsWithChildren<{key?: string}>> = ({ children, key }) => {
   return (
-    <ul tabIndex={-1} className="list-none mx-0 pl-3 pr-8 w-full quicksand">
+    <ul key={key} tabIndex={-1} className="list-none mx-0 pl-3 pr-8 w-full quicksand">
       {children}
     </ul>
   )

@@ -78,9 +78,6 @@ module.exports = {
         path: `${__dirname}/src/articles`,
       },
     },
-    `gatsby-remark-images`,
-    `gatsby-remark-prismjs`,
-    `gatsby-remark-autolink-headers`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -91,8 +88,8 @@ module.exports = {
               maxWidth: 600,
             },
           },
-          `gatsby-remark-prismjs`,
           `gatsby-remark-autolink-headers`,
+          `gatsby-remark-prismjs`,
         ],
       },
     },
