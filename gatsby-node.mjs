@@ -8,8 +8,8 @@ import slugify from "@sindresorhus/slugify"
 import path from "path"
 
 export const createSchemaCustomization = ({ actions }) => {
-    const { createTypes } = actions
-    const typeDefs = `
+  const { createTypes } = actions
+  const typeDefs = `
       type MdxFrontmatter {
         date(formatString: String): Date
         title: String
@@ -22,37 +22,42 @@ export const createSchemaCustomization = ({ actions }) => {
         depth: Int
       }
 
-      type Mdx implements Node {
+      type MdxFields {
         slug: String!
+      }
+
+      type Mdx implements Node {
         frontmatter: MdxFrontmatter!
         id: String
         headings: [MdxHeading]
         fileAbsolutePath: String
+        fields: MdxFields
       }
     `
-    createTypes(typeDefs)
+  createTypes(typeDefs)
 }
 
 
-// export const onCreateNode = ({ node, actions }) => {
-//     const { createNodeField } = actions
-//     if (node.internal.type === `Mdx`) {
+export const onCreateNode = ({ node, actions }) => {
+  if (node.internal.type === `Mdx`) {
 
-//         // createNodeField({
-//         //     node,
-//         //     name: 'slug',
-//         //     value: `${slug}`
-//         // })
-//     }
-// }
+    console.log("creating node")
+    const slug = slugify(node.frontmatter.title)
+    actions.createNodeField({
+      node,
+      name: `slug`,
+      value: slug
+    })
+  }
+}
 
 
 const postTemplate = path.resolve(`./src/pages/articles/postTemplate.tsx`)
 
 export const createPages = async ({ graphql, actions, reporter }) => {
-    const { createPage } = actions
+  const { createPage } = actions
 
-    const result = await graphql(`
+  const result = await graphql(`
     query {
       allMdx {
         nodes {
@@ -63,22 +68,24 @@ export const createPages = async ({ graphql, actions, reporter }) => {
           internal {
             contentFilePath
           }
+          fields {
+            slug
+          }
         }
       }
     }
   `)
 
-    if (result.errors) {
-        reporter.panicOnBuild('Error loading MDX result', result.errors)
-    }
+  if (result.errors) {
+    reporter.panicOnBuild('Error loading MDX result', result.errors)
+  }
 
-    const posts = result.data.allMdx.nodes
-    posts.forEach(node => {
-        const slug = slugify(node.frontmatter.title)
-        createPage({
-            path: slug,
-            component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-            context: { id: node.id },
-        })
+  const posts = result.data.allMdx.nodes
+  posts.forEach(node => {
+    createPage({
+      path: 'articles/' + node.fields.slug,
+      component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+      context: { id: node.id },
     })
+  })
 }

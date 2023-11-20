@@ -71,6 +71,7 @@ module.exports = {
     /**
      * Markdown (MDX) plugins
      */
+    `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -81,21 +82,20 @@ module.exports = {
     `gatsby-remark-images`,
     `gatsby-remark-prismjs`,
     `gatsby-remark-autolink-headers`,
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 600,
-            },
-          },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-autolink-headers`,
-        ],
-      },
-    },
+    // {
+    //   options: {
+    //     gatsbyRemarkPlugins: [
+    //       {
+    //         resolve: `gatsby-remark-images`,
+    //         options: {
+    //           maxWidth: 600,
+    //         },
+    //       },
+    //       `gatsby-remark-prismjs`,
+    //       `gatsby-remark-autolink-headers`,
+    //     ],
+    //   },
+    // },
     /**
      * CSS plugins
      */
