@@ -10,7 +10,7 @@ import { HeadingData } from "../../utils/headings"
 /**
  * Renders MDX files into pages.
  */
-const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
+const Article = ({ data, children }: { data: GatsbyTypes.ArticleQuery, children: React.ReactNode }) => {
   const title =
     stringValueOrUndefined(data?.mdx?.frontmatter?.title) ?? `untitled`
 
@@ -36,12 +36,6 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
     })
     .filter(isNotUndefined)
 
-  const body = data?.mdx?.body ? (
-    <MDXProvider>{data.mdx.body}</MDXProvider>
-  ) : (
-    <p>Empty article</p>
-  )
-
   const date = data?.mdx?.frontmatter?.date
   const lastEditDate = date ? (
     <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -61,7 +55,7 @@ const Article = ({ data }: { data: GatsbyTypes.ArticleQuery }) => {
           {title}
         </h1>
         <div className="mb-5">{lastEditDate}</div>
-        {body}
+        {children}
         <div className="text-center mt-8">
           <p className="quicksand">
             Thanks for reading! Please reach out if you have
