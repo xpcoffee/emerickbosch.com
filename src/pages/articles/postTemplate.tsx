@@ -14,7 +14,6 @@ const Article = ({ data, children }: { data: GatsbyTypes.ArticleQuery, children:
     stringValueOrUndefined(data?.mdx?.frontmatter?.title) ?? `untitled`
 
   const icon = getIcon(data?.mdx?.frontmatter?.faIcon)
-  console.log({markdowndata: data.markdown})
 
   const maxHeadingDepth = data?.mdx?.frontmatter?.tocDepth ?? 1
   const headingsIterator = data?.markdown?.edges?.[0]?.node?.headings?.values()
@@ -42,8 +41,6 @@ const Article = ({ data, children }: { data: GatsbyTypes.ArticleQuery, children:
       Last edit: {date}
     </p>
   ) : undefined
-
-  console.log({ headings })
 
   const articleHeadings = headings?.length ? (
     <ArticleHeadings headings={headings} />

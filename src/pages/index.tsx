@@ -21,7 +21,6 @@ const IndexPage = () => {
 }`)
 
   const articleListItems = articlesData.allMdx.nodes.map(node => {
-    console.log({ node })
     return <ArticleListItem
       key={node.id}
       articlePath={node.fields.slug ?? "404"}
