@@ -66,7 +66,7 @@ function renderHeadingTree({
   ) : undefined
 
   return (
-    <Heading heading={value} href={getHeadingLink(value)}>
+    <Heading heading={value} key={getHeadingLink(value)} href={getHeadingLink(value)}>
       {subGroup}
     </Heading>
   )
@@ -118,6 +118,6 @@ function getHeadingLink(heading: string) {
   return `#${snakeCaseHeading}`
 }
 
-const DefaultHeadingGroup: FC<PropsWithChildren> = ({ children }) => (
+const DefaultHeadingGroup: FC<PropsWithChildren<{key?: string}>> = ({ children }) => (
   <ul>{children}</ul>
 )
