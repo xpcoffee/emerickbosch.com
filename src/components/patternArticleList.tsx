@@ -2,23 +2,20 @@ import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
 export const PatternArticleList: React.FC = () => {
-  const articlesData = useStaticQuery<GatsbyTypes.PatternArticlesQuery>(graphql`
-    query PatternArticles {
-      titles: allMdx(
-        filter: { fileAbsolutePath: { regex: "/.*pattern-.*/" } }
-        sort: { fields: frontmatter___title }
-      ) {
-        edges {
-          node {
-            slug
-            frontmatter {
-              title
-            }
-          }
+  const articlesData = useStaticQuery<GatsbyTypes.PatternArticlesQuery>(graphql`query PatternArticles {
+  titles: allMdx(
+    filter: {fileAbsolutePath: {regex: "/.*pattern-.*/"}}
+    sort: {frontmatter: {title: ASC}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
         }
       }
     }
-  `)
+  }
+}`)
 
   if (!articlesData.titles.edges?.length) {
     return <></>
@@ -34,7 +31,7 @@ export const PatternArticleList: React.FC = () => {
               " text-indigo-800 visited:text-indigo-800 hover:text-orange-400 visited:hover:text-orange-400" +
               " dark:text-slate-200 dark:hover:text-orange-400 dark:visited:text-slate-200"
             }
-            to={`../${node.slug}`}
+            to={`../${node.frontmatter?.title ?? Date.now()}`}
           >
             {node.frontmatter?.title}
           </Link>

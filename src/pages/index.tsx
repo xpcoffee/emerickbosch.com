@@ -1,34 +1,34 @@
-import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import { ArticleListItem, Layout, Seo } from "../components"
 
 const IndexPage = () => {
-  const articlesData = useStaticQuery<GatsbyTypes.AllArticlesQuery>(graphql`
-    query AllArticles {
-      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-        nodes {
-          frontmatter {
-            date(formatString: "MMMM D, YYYY")
-            title
-            description
-            faIcon
-          }
-          id
-          slug
-        }
+  const articlesData = useStaticQuery<GatsbyTypes.AllArticlesQuery>(graphql`query{
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    nodes {
+      frontmatter {
+        date(formatString: "MMMM D, YYYY")
+        title
+        description
+        faIcon
+      }
+      id
+      fields {
+        slug
       }
     }
-  `)
+  }
+}`)
 
-  const articleListItems = articlesData.allMdx.nodes.map(node => (
-    <ArticleListItem
+  const articleListItems = articlesData.allMdx.nodes.map(node => {
+    return <ArticleListItem
       key={node.id}
-      articlePath={node.slug ?? "/404"}
+      articlePath={node.fields.slug ?? "404"}
       title={node.frontmatter?.title}
       description={node.frontmatter?.description}
       faIconName={node?.frontmatter?.faIcon}
     />
-  ))
+  })
 
   return (
     <Layout>
