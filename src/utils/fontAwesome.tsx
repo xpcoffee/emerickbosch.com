@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export type FAIcon = keyof typeof FontAwesome
 
-export function getIcon(faIcon?: string) {
+export function getIcon(faIcon: string | null | undefined) {
   if (!faIcon) {
     return undefined
   }

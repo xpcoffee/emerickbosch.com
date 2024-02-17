@@ -9,7 +9,13 @@ import { HeadingData } from "../../utils/headings"
 /**
  * Renders MDX files into pages.
  */
-const Article = ({ data, children }: { data: GatsbyTypes.ArticleQuery, children: React.ReactNode }) => {
+const Article = ({
+  data,
+  children,
+}: {
+  data: GatsbyTypes.ArticleQuery
+  children: React.ReactNode
+}) => {
   const title =
     stringValueOrUndefined(data?.mdx?.frontmatter?.title) ?? `untitled`
 
@@ -20,7 +26,7 @@ const Article = ({ data, children }: { data: GatsbyTypes.ArticleQuery, children:
   const headingsNodes = headingsIterator ? Array.from(headingsIterator) : []
   const headings = headingsNodes
     .map((node): HeadingData | undefined => {
-      if (node?.value === undefined) {
+      if (node?.value === undefined || node?.value === null) {
         return undefined
       }
 
