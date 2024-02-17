@@ -7,7 +7,7 @@ const Title = ({
   className,
 }: {
   titleText: string
-  iconUrl?: string
+  iconUrl?: string | null
   className?: string
 }) => {
   return (
@@ -20,7 +20,7 @@ const Title = ({
             className="dark:border-slate-300 dark:border-2 dark:rounded-full"
             alt="xpcoffee icon"
             style={{ height: "45px" }}
-            src={iconUrl}
+            src={iconUrl ?? undefined}
           />
           <div className="ml-2 dark:ml-3 text-2xl quicksand text-gray-700 dark:text-gray-200">
             {titleText}

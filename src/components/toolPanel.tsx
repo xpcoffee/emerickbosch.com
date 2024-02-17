@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { BottomToolPanel } from "./bottomToolPanel"
+import { getIcon } from "../utils/fontAwesome"
 
 const ToolPanel = ({
   children,
@@ -32,7 +33,7 @@ const ToolPanel = ({
             }
             onClick={() => setShowModal(true)}
           >
-            Contents
+            {getIcon("faBars")} Contents
           </div>
           <div
             className={`${className} panel-width hidden md:block md:min-w-40`}
