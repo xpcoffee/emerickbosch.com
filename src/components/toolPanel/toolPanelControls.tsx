@@ -34,7 +34,7 @@ const ToolPanelControls = ({
     <div
       className={
         " bottom-0 right-0 left-0 z-20 fixed flex flex-col h-full" +
-        "md:z-0 md:sticky"
+        " md:z-0 md:sticky"
       }
     >
       <div
