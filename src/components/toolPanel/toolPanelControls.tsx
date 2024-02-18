@@ -32,14 +32,21 @@ const ToolPanelControls = ({
 
   return (
     <>
-      {showPanel && (
-        <ToolPanelContents
-          onBlur={() => setShowPanel(false)}
-          onDismiss={() => setShowPanel(false)}
-        >
-          {children}
-        </ToolPanelContents>
-      )}
+      <div
+        className={
+          className +
+          " z-10 fixed w-full left-0 top-0" +
+          " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
+          " dark:bg-slate-800" +
+          " relative top-10 w-full py-5" +
+          " md:sticky md:top-0 md:pt-8 md:overflow-y-auto" +
+          !showPanel
+            ? " block md:hidden"
+            : ""
+        }
+      >
+        <div className="">{children}</div>
+      </div>
       <button
         className={
           className +
@@ -56,14 +63,6 @@ const ToolPanelControls = ({
           <> {getIcon("faBars")} Contents </>
         )}
       </button>
-      <div className={`${className} panel-width hidden md:block md:min-w-40`}>
-        <div
-          className="sticky top-0 pt-8 overflow-y-auto"
-          style={{ maxHeight: "100vh" }}
-        >
-          {children}
-        </div>
-      </div>
     </>
   )
 }
