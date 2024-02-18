@@ -44,7 +44,7 @@ const ToolPanelContents = ({
       <div
         className={
           classNames +
-          " z-10 fixed h-full w-full left-0 top-0" +
+          " z-10 fixed w-full left-0 top-0" +
           " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
           " dark:bg-slate-800"
         }
