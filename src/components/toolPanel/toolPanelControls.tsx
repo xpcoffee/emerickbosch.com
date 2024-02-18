@@ -31,14 +31,18 @@ const ToolPanelControls = ({
   }
 
   return (
-    <div className={" bottom-0 right-0 left-0 z-20 fixed flex flex-col"}>
+    <div
+      className={
+        " bottom-0 right-0 left-0 z-20 fixed flex flex-col " + "md:z-0"
+      }
+    >
       <div
         className={
           className +
           " fixed w-full left-0 top-0 h-full" +
           " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
           " dark:bg-slate-800" +
-          " md:sticky md:top-0 md:pt-8 md:overflow-y-auto" +
+          " " +
           `${!showPanel ? " hidden md:block" : ""}`
         }
       >
