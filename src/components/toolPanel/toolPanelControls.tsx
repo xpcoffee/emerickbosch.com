@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { ToolPanelContents } from "./toolPanelContents"
 import { getIcon } from "../../utils/fontAwesome"
 
 const ToolPanelControls = ({
@@ -15,7 +14,6 @@ const ToolPanelControls = ({
   }, [])
 
   const onclick = () => {
-    console.log("click!")
     setShowPanel(previousValue => {
       console.log({
         showPanel,
@@ -34,9 +32,9 @@ const ToolPanelControls = ({
     <div
       className={
         className +
-        " bottom-0 right-0 left-0 z-20 fixed flex flex-col justify-end h-full" +
-        " md:panel-width md:min-w-40" +
-        " md:sticky md:top-0 md:justify-start"
+        " bottom-0 z-20 fixed flex flex-col justify-end h-full w-full" +
+        " md:panel-width md:min-w-40 md:h-fit" +
+        " md:sticky md:block md:top-0 md:justify-start"
       }
     >
       <div
@@ -54,7 +52,7 @@ const ToolPanelControls = ({
         className={
           " cursor-pointer bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400" +
           " text-center text-lg" +
-          " rounded-t-xlg drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]" +
+          " rounded-t-xlg h-16 w-full" +
           " block md:hidden"
         }
         onClick={onclick}
