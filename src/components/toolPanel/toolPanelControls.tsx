@@ -34,7 +34,7 @@ const ToolPanelControls = ({
         onClick={() => {
           console.log("click!")
           setShowPanel(previousValue => {
-            console.log({ showPanel, previousValue })
+            console.log({ showPanel, previousValue, returnValue: !previousValue })
             return !previousValue
           })
         }}
