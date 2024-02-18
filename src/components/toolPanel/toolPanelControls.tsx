@@ -33,17 +33,18 @@ const ToolPanelControls = ({
   return (
     <div
       className={
-        " bottom-0 right-0 left-0 z-20 fixed flex flex-col h-full" +
-        " md:z-0 md:sticky"
+        className +
+        " bottom-0 right-0 left-0 z-20 fixed flex flex-col justify-end h-full" +
+        " md:panel-width md:min-w-40" +
+        " md:sticky md:top-0 md:justify-start"
       }
     >
       <div
         className={
-          className +
-          " h-full" +
-          " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
+          "grow" +
+          " bg-white" +
           " dark:bg-slate-800" +
-          " " +
+          " md:shrink" +
           `${!showPanel ? " hidden md:block" : ""}`
         }
       >
@@ -51,7 +52,6 @@ const ToolPanelControls = ({
       </div>
       <button
         className={
-          className +
           " cursor-pointer bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400" +
           " text-center text-lg" +
           " rounded-t-xlg drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]" +
