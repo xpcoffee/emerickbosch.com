@@ -20,34 +20,33 @@ function Seo({
   meta?: JSX.IntrinsicElements["meta"][]
   title: string
 }) {
-  const { site, allFile } = useStaticQuery<GatsbyTypes.MetadataQuery>(
-    graphql`
-      query Metadata {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-        allFile(
-          limit: 1
-          filter: {
-            name: { eq: "xpcoffee-icon" }
-            ext: { eq: ".svg" }
-            sourceInstanceName: { eq: "images" }
-            relativeDirectory: { eq: "" }
-          }
-        ) {
-          nodes {
-            publicURL
-          }
+  const { site, allFile } = useStaticQuery<GatsbyTypes.MetadataQuery>(graphql`
+    query Metadata {
+      site {
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `
-  )
+      allFile(
+        limit: 1
+        filter: {
+          name: { eq: "xpcoffee-icon" }
+          ext: { eq: ".svg" }
+          sourceInstanceName: { eq: "images" }
+          relativeDirectory: { eq: "" }
+        }
+      ) {
+        nodes {
+          publicURL
+        }
+      }
+    }
+  `)
 
-  const metaDescription = description || site?.siteMetadata?.description
+  const metaDescription =
+    description || site?.siteMetadata?.description || undefined
   const defaultTitle = site?.siteMetadata?.title
 
   return (
@@ -94,7 +93,7 @@ function Seo({
     >
       <link
         rel="icon"
-        href={allFile.nodes[0].publicURL}
+        href={allFile.nodes[0].publicURL || undefined}
         type="image/svg+xml"
         sizes="any"
       />
