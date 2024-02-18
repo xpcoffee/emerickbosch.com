@@ -49,7 +49,8 @@ const ToolPanelControls = ({
           className +
           " cursor-pointer bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400" +
           " text-center text-lg" +
-          " rounded-t-xlg drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]"
+          " rounded-t-xlg drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]" +
+          " block md:hidden"
         }
         onClick={onclick}
       >
