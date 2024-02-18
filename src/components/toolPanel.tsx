@@ -7,7 +7,6 @@ export const ToolPanel = ({
   className,
 }: React.PropsWithChildren<{ className?: string }>) => {
   const [showPanel, setShowPanel] = useState(false)
-  console.log({ showPanel })
 
   useEffect(() => {
     console.log("mount")
@@ -58,13 +57,6 @@ export const ToolPanel = ({
           " block md:hidden"
         }
       >
-        <button
-          className={"w-full max-w-[30%] h-full"}
-          onClick={onclick}
-          aria-label={showPanel ? "Close contents" : "Contents"}
-        >
-          {showPanel ? getIcon("faTimes") : getIcon("faBars")}
-        </button>
         <Link
           to="/"
           className={
@@ -74,6 +66,13 @@ export const ToolPanel = ({
         >
           {getIcon("faHome")}
         </Link>
+        <button
+          className={"w-full max-w-[30%] h-full visited:text-gray-300"}
+          onClick={onclick}
+          aria-label={showPanel ? "Close contents" : "Contents"}
+        >
+          {showPanel ? getIcon("faTimes") : getIcon("faBars")}
+        </button>
       </div>
     </div>
   )
