@@ -39,7 +39,7 @@ const ToolPanelControls = ({
           " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
           " dark:bg-slate-800" +
           " md:sticky md:top-0 md:pt-8 md:overflow-y-auto" +
-          `${!showPanel ? " block md:hidden" : ""}`
+          `${!showPanel ? " hidden md:block" : ""}`
         }
       >
         {children}
