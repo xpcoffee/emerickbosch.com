@@ -8,11 +8,6 @@ export const ToolPanel = ({
 }: React.PropsWithChildren<{ className?: string }>) => {
   const [showPanel, setShowPanel] = useState(false)
 
-  useEffect(() => {
-    console.log("mount")
-    return () => console.log("unmount")
-  }, [])
-
   const onclick = () => {
     setShowPanel(previousValue => {
       console.log({
@@ -39,7 +34,7 @@ export const ToolPanel = ({
     >
       <div
         className={
-          "grow overflow-y-scroll pt-5" +
+          "grow overflow-y-auto pt-5" +
           " bg-white" +
           " dark:bg-slate-800 md:dark:bg-inherit" +
           " md:grow-0" +
