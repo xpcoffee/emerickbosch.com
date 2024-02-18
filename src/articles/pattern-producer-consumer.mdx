@@ -3,6 +3,7 @@ title: Producer-Consumer
 description: A reference for the producer-consumer pattern.
 faIcon: faShapes
 date: 2022-01-17
+lastEdit: 2022-01-17
 ---
 
 import { Link } from "gatsby"
@@ -152,11 +153,11 @@ class Consumer {
     switch (message.type) {
       case "cheap":
         return new Promise(resolve => setTimeout(resolve, 200)).then(() =>
-          console.log("cheap work done")
+          console.log("cheap work done"),
         )
       case "expensive":
         return new Promise(resolve => setTimeout(resolve, 1500)).then(() =>
-          console.log("expensive work done")
+          console.log("expensive work done"),
         )
     }
   }

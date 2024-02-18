@@ -7,6 +7,7 @@ interface Props {
   title?: string
   description?: string
   faIconName?: string
+  lastEdit?: string
 }
 
 const ArticleListItem = ({
@@ -14,12 +15,19 @@ const ArticleListItem = ({
   title,
   description,
   faIconName,
+  lastEdit,
 }: Props) => {
   const icon = getIcon(faIconName) ?? <></>
 
   const descriptionSubtext = description ? (
     <span className="text-gray-600 dark:text-gray-400 text-sm">
       {description}
+    </span>
+  ) : undefined
+
+  const lastEditSubtext = lastEdit ? (
+    <span className="text-gray-600 dark:text-gray-400 text-sm">
+      Last edit: {lastEdit}
     </span>
   ) : undefined
 
@@ -41,6 +49,7 @@ const ArticleListItem = ({
             {title ?? "untitled"}
           </div>
           {descriptionSubtext}
+          {lastEditSubtext}
         </div>
       </Link>
     </li>

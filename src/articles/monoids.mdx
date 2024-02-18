@@ -2,7 +2,8 @@
 title: Monoids
 description: An intuitive look at a mathematical tool to guarantee composability.
 faIcon: faCubes
-date: 2022-01-09
+date: 2021-08-31
+lastEdit: 2022-01-09
 ---
 
 In this document we'll briefly go through how we can use the mathematical concept of a monoid to help us design and build systems that enable composition.
@@ -184,16 +185,16 @@ const assert = require("assert")
   // test (A x B) x C is the same as A x (B x C)
   const resultA = combineWishlists(
     wishlistA,
-    combineWishlists(wishlistB, wishlistC)
+    combineWishlists(wishlistB, wishlistC),
   )
   const resultB = combineWishlists(
     combineWishlists(wishlistA, wishlistB),
-    wishlistC
+    wishlistC,
   )
   assert.deepStrictEqual(
     resultA,
     resultB,
-    "The monoidal product is not associative."
+    "The monoidal product is not associative.",
   )
 
   // sanity check for the actual values (should likely be tested in its own tests)
@@ -203,7 +204,7 @@ const assert = require("assert")
       totalCost: 225,
       items: ["foo", "bar", "baz", "qux", "bar"],
     },
-    resultA
+    resultA,
   )
 })()
 ;(function testIdentity() {
@@ -213,21 +214,21 @@ const assert = require("assert")
   assert.deepStrictEqual(
     oneWay,
     wishlistA,
-    "The monoidal product with the identity in the second argument does not return the first argument"
+    "The monoidal product with the identity in the second argument does not return the first argument",
   )
 
   const otherWay = combineWishlists(getIdentity(), wishlistA)
   assert.deepStrictEqual(
     otherWay,
     wishlistA,
-    "The monoidal product with the identity in the first argument does not return the second argument"
+    "The monoidal product with the identity in the first argument does not return the second argument",
   )
 
   const identities = combineWishlists(getIdentity(), getIdentity())
   assert.deepStrictEqual(
     identities,
     getIdentity(),
-    "The monoidal product on identities does not result in an identity"
+    "The monoidal product on identities does not result in an identity",
   )
 })()
 ```
@@ -261,7 +262,7 @@ function getFamilyWishlist() {
   const initialValueForOurComposition = getIdentity()
   const familyWishlist = [wishlistDad, wishlistBro].reduce(
     combineWishlists,
-    initialValueForOurComposition
+    initialValueForOurComposition,
   )
 
   console.log(familyWishlist)
@@ -304,7 +305,7 @@ function getFriendsWishlist() {
 
 const wishlistFinal = combineWishlists(
   getFamilyWishlist(),
-  getFriendsWishlist()
+  getFriendsWishlist(),
 )
 
 console.log(wishlistFinal)

@@ -3,6 +3,7 @@ title: Factory
 description: A reference for factory patterns.
 faIcon: faShapes
 date: 2021-12-24
+lastEdit: 2021-12-24
 ---
 
 import { Link } from "gatsby"
@@ -83,7 +84,7 @@ class BoardGame {
         return new TwoPlayerBoard()
       default:
         throw new Error(
-          `Cannot create a new board for ${numberOfPlayers} players`
+          `Cannot create a new board for ${numberOfPlayers} players`,
         )
     }
   }
