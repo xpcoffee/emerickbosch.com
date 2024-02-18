@@ -40,7 +40,7 @@ const ToolPanelControls = ({
           {children}
         </ToolPanelContents>
       )}
-      <div
+      <button
         className={
           className +
           " bottom-0 right-0 left-0 z-20 px-5 py-3 fixed" +
@@ -55,7 +55,7 @@ const ToolPanelControls = ({
         ) : (
           <> {getIcon("faBars")} Contents </>
         )}
-      </div>
+      </button>
       <div className={`${className} panel-width hidden md:block md:min-w-40`}>
         <div
           className="sticky top-0 pt-8 overflow-y-auto"
