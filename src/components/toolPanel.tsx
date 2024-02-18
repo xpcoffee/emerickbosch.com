@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { getIcon } from "../utils/fontAwesome"
+import { Link } from "gatsby"
 
 export const ToolPanel = ({
   children,
@@ -41,28 +42,39 @@ export const ToolPanel = ({
         className={
           "grow overflow-y-scroll pt-5" +
           " bg-white" +
-          " dark:bg-slate-800" +
+          " dark:bg-slate-800 md:dark:bg-inherit" +
           " md:grow-0" +
           `${!showPanel ? " hidden md:block" : ""}`
         }
       >
         {children}
       </div>
-      <button
+      <div
         className={
-          " cursor-pointer bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400" +
+          "flex justify-center items-center" +
+          " bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400 visited:text-gray-300" +
           " text-center text-lg" +
-          " rounded-t-xlg h-16 w-full" +
+          " rounded-t-xlg h-16" +
           " block md:hidden"
         }
-        onClick={onclick}
       >
-        {showPanel ? (
-          <>{getIcon("faTimes")} Close contents </>
-        ) : (
-          <> {getIcon("faBars")} Contents </>
-        )}
-      </button>
+        <button
+          className={"w-full max-w-[30%] h-full"}
+          onClick={onclick}
+          aria-label={showPanel ? "Close contents" : "Contents"}
+        >
+          {showPanel ? getIcon("faTimes") : getIcon("faBars")}
+        </button>
+        <Link
+          to="/"
+          className={
+            "w-full max-w-[30%] h-full flex items-center justify-center visited:text-gray-300"
+          }
+          aria-label="Home"
+        >
+          {getIcon("faHome")}
+        </Link>
+      </div>
     </div>
   )
 }
