@@ -32,14 +32,14 @@ const ToolPanelControls = ({
     <div
       className={
         className +
-        " bottom-0 z-20 fixed flex flex-col justify-end h-full w-full" +
-        " md:panel-width md:min-w-40 md:h-fit" +
+        " bottom-0 z-20 fixed flex flex-col justify-end max-h-full w-full drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]" +
+        " md:panel-width md:min-w-40 md:h-fit md:drop-shadow-none" +
         " md:sticky md:block md:top-0 md:justify-start"
       }
     >
       <div
         className={
-          "grow" +
+          "grow overflow-y-scroll" +
           " bg-white" +
           " dark:bg-slate-800" +
           " md:shrink" +
