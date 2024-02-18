@@ -35,7 +35,7 @@ const ToolPanelControls = ({
       <div
         className={
           className +
-          " z-10 fixed w-full left-0 top-0" +
+          " fixed w-full left-0 top-0" +
           " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
           " dark:bg-slate-800" +
           " md:sticky md:top-0 md:pt-8 md:overflow-y-auto" +
