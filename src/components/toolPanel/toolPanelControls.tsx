@@ -9,6 +9,11 @@ const ToolPanelControls = ({
   const [showPanel, setShowPanel] = useState(false)
   console.log({ showPanel })
 
+  useEffect(() => {
+    console.log("mount")
+    return () => console.log("unmount")
+  }, [])
+
   if (!children) {
     return <></>
   }
@@ -34,7 +39,11 @@ const ToolPanelControls = ({
         onClick={() => {
           console.log("click!")
           setShowPanel(previousValue => {
-            console.log({ showPanel, previousValue, returnValue: !previousValue })
+            console.log({
+              showPanel,
+              previousValue,
+              returnValue: !previousValue,
+            })
             return !previousValue
           })
         }}
