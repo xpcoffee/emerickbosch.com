@@ -31,13 +31,13 @@ const ToolPanelControls = ({
   }
 
   return (
-    <>
+    <div className={" bottom-0 right-0 left-0 z-20 px-5 py-3 fixed"}>
       <div
         className={
           className +
           " z-10 fixed w-full left-0 top-0" +
           " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
-          " dark:bg-slate-800" +
+          " bg-slate-500 dark:bg-slate-800" +
           " relative top-10 w-full py-5" +
           " md:sticky md:top-0 md:pt-8 md:overflow-y-auto" +
           !showPanel
@@ -50,7 +50,6 @@ const ToolPanelControls = ({
       <button
         className={
           className +
-          " bottom-0 right-0 left-0 z-20 px-5 py-3 fixed" +
           " cursor-pointer bg-gray-50 dark:text-gray-300 dark:bg-gray-700 hover:text-orange-400 visited:hover:text-orange-400" +
           " text-center text-lg" +
           " rounded-t-xlg drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]"
@@ -63,7 +62,7 @@ const ToolPanelControls = ({
           <> {getIcon("faBars")} Contents </>
         )}
       </button>
-    </>
+    </div>
   )
 }
 
