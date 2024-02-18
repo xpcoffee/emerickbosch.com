@@ -22,8 +22,8 @@ const Layout = ({
   children,
   toolPanelContents,
 }: React.PropsWithChildren<{ toolPanelContents?: React.ReactNode }>) => {
-  const { site, allFile } =
-    useStaticQuery<GatsbyTypes.LayoutQueryQuery>(graphql`
+  const { site, allFile } = useStaticQuery<GatsbyTypes.LayoutQueryQuery>(
+    graphql`
       query LayoutQuery {
         site {
           siteMetadata {
@@ -44,7 +44,8 @@ const Layout = ({
           }
         }
       }
-    `)
+    `,
+  )
 
   const title = site?.siteMetadata?.title ?? `xpcoffee`
 

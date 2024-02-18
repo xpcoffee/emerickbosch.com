@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react"
-import { FAIcon, getIcon } from "../utils/fontAwesome"
+import { FAIcon, getIcon } from "../../utils/fontAwesome"
 
-const BottomToolPanel = ({
+const ToolPanelContents = ({
   children,
   onBlur,
   onDismiss,
@@ -44,22 +44,16 @@ const BottomToolPanel = ({
       <div
         className={
           classNames +
-          " z-20 fixed h-full w-full left-0 top-0" +
+          " z-10 fixed h-full w-full left-0 top-0" +
           " drop-shadow border-gray-300 border-t-1 bg-white overflow-y-auto" +
           " dark:bg-slate-800"
         }
         ref={ref}
       >
-        <button
-          className="fixed text-xl right-10 top-5"
-          onClick={() => onDismiss?.()}
-        >
-          {getIcon("faTimes" as FAIcon)}
-        </button>
         <div className="relative top-10 w-full py-5">{children}</div>
       </div>
     </>
   )
 }
 
-export { BottomToolPanel }
+export { ToolPanelContents }
