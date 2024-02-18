@@ -1,4 +1,4 @@
-import React from "react"
+import React, { StrictMode } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { ToolPanel } from "./toolPanel"
 import { SocialInfo } from "./socialInfo"
@@ -61,9 +61,11 @@ const Layout = ({
         <ThisIsMySite className="order-2 md:row-start-4 md:row-end-4 md:col-start-3 md:col-end-3 md:self-center" />
         <hr className="hidden md:block md:row-start-2 md:row-end-2 md:col-start-2 md:col-end-5"></hr>
         {toolPanelContents && (
-          <ToolPanel className="order-3 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-4">
-            {toolPanelContents}
-          </ToolPanel>
+          <StrictMode>
+            <ToolPanel className="order-3 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-4">
+              {toolPanelContents}
+            </ToolPanel>
+          </StrictMode>
         )}
         <div className="order-4 py-5 self-start md:row-start-3 md:row-end-3 md:col-start-2 md:col-end-5 md:flex md:justify-center">
           <main className="read-width text-gray-800 dark:text-gray-400">
