@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { getIcon } from "../../utils/fontAwesome"
+import { getIcon } from "../utils/fontAwesome"
 
-const ToolPanelControls = ({
+export const ToolPanel = ({
   children,
   className,
 }: React.PropsWithChildren<{ className?: string }>) => {
@@ -39,10 +39,10 @@ const ToolPanelControls = ({
     >
       <div
         className={
-          "grow overflow-y-scroll" +
+          "grow overflow-y-scroll pt-5" +
           " bg-white" +
           " dark:bg-slate-800" +
-          " md:shrink" +
+          " md:grow-0" +
           `${!showPanel ? " hidden md:block" : ""}`
         }
       >
@@ -66,5 +66,3 @@ const ToolPanelControls = ({
     </div>
   )
 }
-
-export { ToolPanelControls }

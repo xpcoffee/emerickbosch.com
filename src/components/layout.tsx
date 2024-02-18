@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { ToolPanel } from "./toolPanel"
 import { SocialInfo } from "./socialInfo"
@@ -12,11 +12,11 @@ import { Title } from "./title"
  *
  * After the md breakpoint, the grid layout is as follows:
  *
- *         Col1       Col2   Col3  Col4        Col5
- * Row 1 |         | title |     | about me |            |
- * Row 2 |         |     horizontal line    |  future    |
- * Row 2 | toolbar |         content        |  extension |
- * Row 4 |         | emoji | tag |  social  |            |
+ *         Col1       Col2     Col3     Col4        Col5
+ * Row 1 |           | title |       | about me |            |
+ * Row 2 |           |     horizontal line      |  margin    |
+ * Row 2 | toolpanel |         content          |  (unused)  |
+ * Row 4 |           | emoji |  tag  |  social  |            |
  */
 const Layout = ({
   children,
@@ -51,7 +51,7 @@ const Layout = ({
 
   return (
     <div id="app-layout" className="flex justify-center">
-      <div className="grid grid-cols-1 md:grid-desktop gap-5 m-2 flex-1 overflow-y-scroll">
+      <div className="grid grid-cols-1 md:grid-desktop gap-5 flex-1 overflow-y-scroll my-5">
         <title>{title}</title>
         <Title
           className="order-1 md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 justify-self-center md:self-center md:col-span-2 md:justify-self-start"
@@ -61,14 +61,12 @@ const Layout = ({
         <ThisIsMySite className="order-2 md:row-start-4 md:row-end-4 md:col-start-3 md:col-end-3 md:self-center" />
         <hr className="hidden md:block md:row-start-2 md:row-end-2 md:col-start-2 md:col-end-5"></hr>
         {toolPanelContents && (
-          <StrictMode>
-            <ToolPanel className="order-3 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-4">
-              {toolPanelContents}
-            </ToolPanel>
-          </StrictMode>
+          <ToolPanel className="order-3 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-4">
+            {toolPanelContents}
+          </ToolPanel>
         )}
         <div className="order-4 py-5 self-start md:row-start-3 md:row-end-3 md:col-start-2 md:col-end-5 md:flex md:justify-center">
-          <main className="read-width text-gray-800 dark:text-gray-400">
+          <main className="read-width text-gray-800 dark:text-gray-400 m-5">
             {children}
           </main>
         </div>
