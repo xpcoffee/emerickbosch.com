@@ -14,6 +14,18 @@ const ToolPanelControls = ({
     return () => console.log("unmount")
   }, [])
 
+  const onclick = () => {
+    console.log("click!")
+    setShowPanel(previousValue => {
+      console.log({
+        showPanel,
+        previousValue,
+        returnValue: !previousValue,
+      })
+      return !previousValue
+    })
+  }
+
   if (!children) {
     return <></>
   }
@@ -36,17 +48,7 @@ const ToolPanelControls = ({
           " text-center text-lg" +
           " rounded-t-xlg drop-shadow-[0_0_5px_rgba(0,0,0,0.1)]"
         }
-        onClick={() => {
-          console.log("click!")
-          setShowPanel(previousValue => {
-            console.log({
-              showPanel,
-              previousValue,
-              returnValue: !previousValue,
-            })
-            return !previousValue
-          })
-        }}
+        onClick={onclick}
       >
         {showPanel ? (
           <>{getIcon("faTimes")} Close contents </>
