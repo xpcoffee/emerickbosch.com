@@ -9,7 +9,16 @@ import path from "path"
 import { compileMDXWithCustomOptions } from "gatsby-plugin-mdx"
 import remarkHeadingsPlugin from "./plugins/remark-headings-plugin.mjs"
 
-export const createSchemaCustomization = ({ getNode, getNodesByType, pathPrefix, reporter, cache, actions, schema, store }) => {
+export const createSchemaCustomization = ({
+  getNode,
+  getNodesByType,
+  pathPrefix,
+  reporter,
+  cache,
+  actions,
+  schema,
+  store,
+}) => {
   const { createTypes } = actions
 
   const headingsResolver = schema.buildObjectType({
@@ -42,7 +51,7 @@ export const createSchemaCustomization = ({ getNode, getNodesByType, pathPrefix,
               reporter,
               cache,
               store,
-            }
+            },
           )
 
           if (!result) {
@@ -50,11 +59,10 @@ export const createSchemaCustomization = ({ getNode, getNodesByType, pathPrefix,
           }
 
           return result.metadata.headings
-        }
-      }
-    }
+        },
+      },
+    },
   })
-
 
   const typeDefs = `
       type MdxFrontmatter {
@@ -84,21 +92,21 @@ export const createSchemaCustomization = ({ getNode, getNodesByType, pathPrefix,
   createTypes([typeDefs, headingsResolver])
 }
 
-
 export const onCreateNode = ({ node, actions }) => {
   if (node.internal.type === `Mdx`) {
-
     const slug = slugify(node.frontmatter.title)
     actions.createNodeField({
       node,
       name: `slug`,
-      value: slug
+      value: slug,
     })
   }
 }
 
-
 const postTemplate = path.resolve(`./src/pages/articles/postTemplate.tsx`)
+const permalinkTemplate = path.resolve(
+  `./src/pages/articles/permalinkTemplate.tsx`,
+)
 
 export const createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -109,7 +117,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
         nodes {
           id
           frontmatter {
-            title
+            guid
           }
           internal {
             contentFilePath
@@ -123,15 +131,24 @@ export const createPages = async ({ graphql, actions, reporter }) => {
   `)
 
   if (result.errors) {
-    reporter.panicOnBuild('Error loading MDX result', result.errors)
+    reporter.panicOnBuild("Error loading MDX result", result.errors)
   }
 
   const posts = result.data.allMdx.nodes
   posts.forEach(node => {
+    const path = "articles/" + node.fields.slug
     createPage({
-      path: 'articles/' + node.fields.slug,
+      path,
       component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
       context: { id: node.id },
+    })
+
+    const guid = node.frontmatter.guid
+    const permalinkPath = "articles/" + guid
+    createPage({
+      path: permalinkPath,
+      component: `${permalinkTemplate}`,
+      context: { id: guid, redirectPath: path },
     })
   })
 }
