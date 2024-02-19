@@ -41,7 +41,7 @@ const Article = ({
     })
     .filter(isNotUndefined)
 
-  const date = data?.mdx?.frontmatter?.date
+  const date = data?.mdx?.frontmatter?.lastEdit
   const lastEditDate = date ? (
     <p className="text-sm text-gray-600 dark:text-gray-400">
       Last edit: {date}
@@ -88,7 +88,7 @@ export const query = graphql`
   query Article($id: String) {
     mdx: mdx(id: { eq: $id }) {
       frontmatter {
-        date(formatString: "YYYY-MM-DD")
+        lastEdit(formatString: "YYYY-MM-D")
         title
         faIcon
         tocDepth
