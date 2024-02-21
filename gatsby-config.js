@@ -2,34 +2,34 @@ const isDev = process.env["NODE_ENV"] === "development"
 
 const devTooling = isDev
   ? [
-      {
-        /**
-         * Extract/generate types from source code (e.g. creates types for graphQL queries)
-         */
-        resolve: `gatsby-plugin-typegen`,
-        options: {
-          emitSchema: {
-            "src/__generated__/gatsby-introspection.json": true,
-            "src/__generated__/gatsby-schema.graphql": true,
-          },
-          emitPluginDocuments: {
-            "src/__generated__/gatsby-plugin-documents.graphql": true,
-          },
+    {
+      /**
+       * Extract/generate types from source code (e.g. creates types for graphQL queries)
+       */
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        emitSchema: {
+          "src/__generated__/gatsby-introspection.json": true,
+          "src/__generated__/gatsby-schema.graphql": true,
+        },
+        emitPluginDocuments: {
+          "src/__generated__/gatsby-plugin-documents.graphql": true,
         },
       },
-    ]
+    },
+  ]
   : []
 
 const deployment = isDev
   ? []
   : [
-      {
-        resolve: `gatsby-plugin-s3`,
-        options: {
-          bucketName: "emerickbosch.com",
-        },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "emerickbosch.com",
       },
-    ]
+    },
+  ]
 
 const imageProcessing = [
   `gatsby-plugin-image`,
@@ -86,7 +86,7 @@ const rssFeed = {
   options: {
     feeds: [
       {
-        title: "emerickbosch.com RSS Feed",
+        title: "Emerick Bosch ☕ ⌨️ ⚙️",
         serialize: ({ query: { site, allMdx } }) => {
           return allMdx.edges.map(edge => {
             return {
