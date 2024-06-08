@@ -8,6 +8,7 @@ import slugify from "@sindresorhus/slugify"
 import path from "path"
 import { compileMDXWithCustomOptions } from "gatsby-plugin-mdx"
 import remarkHeadingsPlugin from "./plugins/remark-headings-plugin.mjs"
+import remarkGfm from "remark-gfm"
 
 export const createSchemaCustomization = ({
   getNode,

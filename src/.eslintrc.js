@@ -1,23 +1,7 @@
-const path = require("path")
-
 module.exports = {
-  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
-  plugins: ["graphql", "prettier"],
-  rules: {
-    "graphql/template-strings": [
-      "error",
-      {
-        env: "relay",
-        tagName: "graphql",
-        schemaJsonFilepath: path.resolve(
-          __dirname,
-          "src/__generated__gatsby-introspection.json"
-        ),
+    globals: {
+        __PATH_PREFIX__: true,
       },
-    ],
-  },
-  parserOptions: {
-    ecmaVersion: 6,
-    sourceType: "module",
-  },
+  extends: ["react-app", "plugin:mdx/recommended"],
+  plugins: ["prettier"],
 }
