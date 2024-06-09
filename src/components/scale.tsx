@@ -136,7 +136,7 @@ function getChordNames(roots: string[], thirds: string[], fifths: string[]) {
         const root = toNote(roots[i])
         const third = toNote(thirds[i])
         const fifth = toNote(fifths[i])
-        console.log({0: root.interval, 3: third.interval, 5: fifth.interval})
+        console.log({ 0: root.interval, 3: third.interval, 5: fifth.interval })
 
         const thirdInterval = third.interval - root.interval + (third.interval > root.interval ? 0 : 12)
         const thirdIntervalName = INTERVALS[thirdInterval]
@@ -204,18 +204,20 @@ const ModalScale = () => {
                 </div>
             </div>
 
-            <table className="table-fixed mt-8">
-                <caption>{MODES[scaleDegree].name} in the key of {toNoteString(key)}</caption>
-                <thead>
-                    <tr><td></td>{["I", "II", "III", "IV", "V", "VI", "VII"].map(val => <td>{val}</td>)}</tr>
-                </thead>
-                <tbody>
-                    <tr><td>root</td>{modalScale.map(val => <td>{val}</td>)}</tr>
-                    <tr><td>triad third</td>{modalScaleThird.map(val => <td>{val}</td>)}</tr>
-                    <tr><td>triad fifth</td>{modalScaleFifth.map(val => <td>{val}</td>)}</tr>
-                    <tr><td>diatonic chord</td>{chordNames.map(val => <td>{val}</td>)}</tr>
-                </tbody>
-            </table>
+            <div className="overflow-x-auto">
+                <table className="table-fixed mt-8">
+                    <caption>{MODES[scaleDegree].name} in the key of {toNoteString(key)}</caption>
+                    <thead>
+                        <tr><td></td>{["I", "II", "III", "IV", "V", "VI", "VII"].map(val => <td>{val}</td>)}</tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>root</td>{modalScale.map(val => <td>{val}</td>)}</tr>
+                        <tr><td>triad third</td>{modalScaleThird.map(val => <td>{val}</td>)}</tr>
+                        <tr><td>triad fifth</td>{modalScaleFifth.map(val => <td>{val}</td>)}</tr>
+                        <tr><td>diatonic chord</td>{chordNames.map(val => <td>{val}</td>)}</tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

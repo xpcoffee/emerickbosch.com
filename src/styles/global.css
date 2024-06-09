@@ -63,12 +63,12 @@ ul {
 }
 
 table {
-  @apply mb-3;
+  @apply mb-3 dark:bg-slate-700;
 }
 
 td,
 th {
-  @apply border border-gray-300 p-2 text-gray-700;
+  @apply border border-gray-300 p-2 text-gray-700 dark:text-gray-300;
 }
 
 details summary > * {
