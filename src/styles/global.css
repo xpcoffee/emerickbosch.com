@@ -71,6 +71,18 @@ th {
   @apply border border-gray-300 p-2 text-gray-700 dark:text-gray-300;
 }
 
+img {
+    @apply rounded-lg;
+}
+
+figure {
+    @apply my-8;
+}
+
+figcaption {
+    @apply text-center text-sm my-4 italic;
+}
+
 details summary > * {
   display: inline;
 }
