@@ -23,15 +23,15 @@ h1 {
 }
 
 h2 {
-  @apply text-2xl mt-8 mb-4 quicksand text-gray-700 dark:text-gray-300;
+  @apply text-2xl mt-8 pb-1 mb-2 quicksand text-gray-700 dark:text-gray-300 border border-b-black border-dashed w-full;
 }
 
 h3 {
-  @apply text-xl quicksand text-gray-700 dark:text-gray-300 mt-4 mb-2;
+  @apply font-bold text-xl quicksand text-gray-700 dark:text-gray-300 mt-8 mb-4;
 }
 
 h4 {
-  @apply text-xl quicksand text-gray-700 dark:text-gray-300 mt-3 mb-3;
+  @apply text-xl text-gray-700 dark:text-gray-300 mt-6 mb-2;
 }
 
 pre {

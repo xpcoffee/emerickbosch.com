@@ -12,14 +12,14 @@ import { Link } from "gatsby"
 import { Card } from "../components"
 import { IconParagraph } from "../components"
 
-# Problem
+## Problem
 
 We need to build capabilities that enable us to sustainably maintain the health of our systems as our business, customer expectations, and architecture evolves.
 However, it can be difficult to determine where to invest and to prioritize this work against feature work.
 
 It would be useful to have a methodic approach to thinking about operational investments, specifically: where we can invest and what we expect those investments to return.
 
-# Glossary
+## Glossary
 
 - **operations** - the work needed to keep a system healthy while doing what _it is currently doing_ at _its current scale_.
 - **scaling** - the work needed to enable the system to perform what _it is currently doing_ at _a larger scale_. For this we think big; 2x,5x,10x, or 100x the current load.
@@ -40,7 +40,7 @@ I recommend that you skim through that article before continuing.
 
 </Card>
 
-# Axes of operational investment
+## Axes of operational investment
 
 Operating systems is the act of keeping it "healthy". At its core, this means doing 3 things:
 
@@ -54,7 +54,7 @@ Practically, we also try to detect issues _before_ we ship changes to customers.
 1. **Pre-production environment** - Investing in this reduces the likelihood of releasing issues to customers. All investments you make to detect, diagnose, and mitigate issues in your production system apply here too and reduce the cost to find and fix issues at this stage.
 1. **Testing infrastructure** - Investing in this reduces time-to-detection for issues that are unfeasible/too expensive to monitor as part of your system.
 
-## Practical operational investment
+### Practical operational investment
 
 The axes above are continuous. Conceptually, we could keep investing into "detecting problems" to an extreme where we are alerted of a problem the instant in reaches production.
 Practically, we don't have the time or the budget to invest to the extremes. We need to be able to break up investment into discrete steps, and we need to be able to know when to stop investing.
@@ -74,14 +74,14 @@ We will need to spend engineering resources both up-front and over time to maint
 - _"There's no way to easily build a way to test whether a feature is broken within the system, because it depends on a complex customer flow."_ <br/> Add capabilities to testing infrastructure.
 - _"We're spending too much time resolving issues in pre-production."_ <br/> Either improve builder tooling to reduce issues merged, or reduce time-to-mitigation in pre-production .
 
-# Detecting problems in the system
+## Detecting problems in the system
 
 <Card>
   These are individual capabilities that we can invest in to reduce time to
   detection. By no means an exhaustive list.
 </Card>
 
-## Health check-up process
+### Health check-up process
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can periodically perform checks of the system in production to
@@ -108,7 +108,7 @@ We will need to spend engineering resources both up-front and over time to maint
   health as features/architecture change.
 </IconParagraph>
 
-## Health signals + health dashboard
+### Health signals + health dashboard
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can evaluate a dashboard with health signals to determine system
@@ -148,7 +148,7 @@ We will need to spend engineering resources both up-front and over time to maint
   <br />
 </IconParagraph>
 
-## Automated alerts on health signals
+### Automated alerts on health signals
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team is alerted to unhealthy signals automatically.
@@ -176,14 +176,14 @@ We will need to spend engineering resources both up-front and over time to maint
   monitoring system.
 </IconParagraph>
 
-# Diagnosing problems in the system
+## Diagnosing problems in the system
 
 <Card>
   These are individual capabilities that we can invest in to reduce time to
   diagnosis. By no means an exhaustive list.
 </Card>
 
-## Documentation of expected system behaviour
+### Documentation of expected system behaviour
 
 <IconParagraph icon="faUserCog" header="Capability">
   When an issue is reported, the team can compare actual system behaviour to
@@ -213,7 +213,7 @@ We will need to spend engineering resources both up-front and over time to maint
   existing feature is changed. Maintenance of the documentation system.
 </IconParagraph>
 
-## Error and diagnostic logs
+### Error and diagnostic logs
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can filter recent logs for critical errors or key events. The log
@@ -243,7 +243,7 @@ We will need to spend engineering resources both up-front and over time to maint
   storage and log searching systems.
 </IconParagraph>
 
-## Diagnostic metrics + diagnostic dashboard
+### Diagnostic metrics + diagnostic dashboard
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can analyse metrics using graphs and statistics on a dashboard to
@@ -291,7 +291,7 @@ We will need to spend engineering resources both up-front and over time to maint
   <a href="https://prometheus.io/">Prometheus</a>
 </IconParagraph>
 
-## Operational event tracking
+### Operational event tracking
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team is able to track recent major operational events: deployments,
@@ -324,7 +324,7 @@ We will need to spend engineering resources both up-front and over time to maint
   evolve. Maintenance of the central communications channel.
 </IconParagraph>
 
-## Distributed tracing
+### Distributed tracing
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team is able to track the events for a single request across the
@@ -370,7 +370,7 @@ We will need to spend engineering resources both up-front and over time to maint
   </a>
 </IconParagraph>
 
-## User journey tracking
+### User journey tracking
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team is able to track multiple actions made by a user. This provides
@@ -414,14 +414,14 @@ We will need to spend engineering resources both up-front and over time to maint
   </a>
 </IconParagraph>
 
-# Mitigating issues in the system
+## Mitigating issues in the system
 
 <Card>
   These are individual capabilities that we can invest in to reduce time to
   mitigation. By no means an exhaustive list.
 </Card>
 
-## Source versioning
+### Source versioning
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can revert the code in production to a previous version. This
@@ -454,7 +454,7 @@ We will need to spend engineering resources both up-front and over time to maint
   store and switch versions.
 </IconParagraph>
 
-## Periodic backups of state + state restoration
+### Periodic backups of state + state restoration
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can reset the state of the system e.g. a database to a previous
@@ -484,7 +484,7 @@ We will need to spend engineering resources both up-front and over time to maint
   backup-and-restore mechanisms.
 </IconParagraph>
 
-## Feature flags
+### Feature flags
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can turn off the availability of individual features.
@@ -515,7 +515,7 @@ We will need to spend engineering resources both up-front and over time to maint
   system. Maintenance of feature flag mechanism and tooling.
 </IconParagraph>
 
-## Programmatic rollback
+### Programmatic rollback
 
 <IconParagraph icon="faUserCog" header="Capability">
   The team can trigger rollbacks in the system based on programmatic conditions.
@@ -545,7 +545,7 @@ We will need to spend engineering resources both up-front and over time to maint
   rollback API and rollback triggers.
 </IconParagraph>
 
-# Conclusion
+## Conclusion
 
 There are 3 major axes we can invest in to make our systems easier to operate.
 The decision of whether or not to invest should be a cost-benefit analyses that takes our current context and pain-points into account.

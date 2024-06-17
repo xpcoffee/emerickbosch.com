@@ -15,7 +15,7 @@ In practice, I've seen some patterns which make it expensive, or even dangerous,
 
 In this page I'm keeping track of these patterns, and alternatives which reduce/mitigate their negative side-effects.
 
-# High-level
+## High-level
 
 These high-level points are the basis for the rest of my current thoughts around this.
 
@@ -23,9 +23,9 @@ These high-level points are the basis for the rest of my current thoughts around
  - High-level product capabilities and domains have different lifecycles to teams. In general capabilities outlive individual teams.
  - Team structure and system structure only matters for engineers/technical roles; the rest of your company cares about capabilities more than org structure.
 
-# Patterns & anti-patterns
+## Patterns & anti-patterns
 
-## Organize around capabilities
+### Organize around capabilities
 
 Since stakeholders mainly care about capabilities, and that capabilities outlast team names, make them the anchor point for communications.
 
@@ -51,7 +51,7 @@ Anchoring communications on capability improves on most of these painpoints and 
  - Moving capabilties between teams does not affect the rest of the system. That makes changes cheaper.
  - Focus on capabilities reduces the risk of having orphan capabilities, and gives a mechanism to describe the system's full feature set.
 
-## Keep organization structure out of code
+### Keep organization structure out of code
 
 Your system code should describe domains/features/capabilities. You should avoid describing organization structure wherever possible.
 

@@ -12,26 +12,26 @@ import { Card } from "../components"
 
 Some loosely organised notes for Java concepts and context which may prove useful to refer to later.
 
-# Specifications and implementations
+## Specifications and implementations
 
 The Java ecosystem has many widely-used dependencies that define specifications (specs) without defining an implementation.
 The idea is that you code using the specification. The implementation of the specification is defined in dependencies and loaded at runtime.
 
-## Logging
+### Logging
 
 [Slf4j](https://www.slf4j.org/) (Simple Logging Facade for Java) is a spec for logging.
 
 - [logback](https://logback.qos.ch/) is the default implementation of sl4fj.
 - [Apache Log4j 2](https://logging.apache.org/log4j/2.x/) is logging library that implements Sl4j and provides additional functionality beyond the spec.
 
-## Message protocols
+### Message protocols
 
 [JAX-RS](https://en.wikipedia.org/wiki/Jakarta_RESTful_Web_Services) is a spec for writing a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer)-ful webservice.
 
 - [Jersey](https://projects.eclipse.org/projects/ee4j.jersey/) is an implementation of the JAX-RS standard.
 - [Apache CXF](https://cxf.apache.org/) is a framework that (amongst other things) has an implementation of the JAX-RS standard.
 
-# Servlets and servlet containers
+## Servlets and servlet containers
 
 A core concept in Java webservices is the "Servlet". Conceptually, servlets are objects that extend the functionality of a server.
 e.g. By default, a server doesn't do any logic. We can write a servlet that extends the server so that it runs some business logic for specific requests.
@@ -48,7 +48,7 @@ _Jetty allows you to build a server that can handle web requests; its logic is w
 
 </Card>
 
-# Ecosystem and glossary
+## Ecosystem and glossary
 
 Understanding of the Java ecosystem and key terms is important to be able to navigate and search for important topics when developing in Java.
 The terms here are ones that initially confused me, and which I may want to refresh my memory on in the future.

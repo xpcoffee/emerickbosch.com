@@ -12,11 +12,11 @@ import SequenceDiagram from "./images/pubsub-sequence.svg"
 
 **TLDR** "Publisher" and "subscriber" form a <Link to="/articles/patterns">pattern</Link> which enables objects to communicate asynchronously.
 
-# Problem/context
+## Problem/context
 
 If we have a single concern that needs to trigger multiple other concerns, how can we have a setup that allows us to change or scale the concerns that need to be notified?
 
-# Concept
+## Concept
 
 There are two roles:
 
@@ -30,7 +30,7 @@ There are two roles:
 - One-way communication from publisher to subscriber; the publisher shouldn't care about what the subscribers do; this is not a request-response interaction.
 - Subscribers can register or deregister with/from the publisher whenever they want.
 
-# Examples
+## Examples
 
 A "general" channel in a chat-app that sends messages to all active members.
 

@@ -16,7 +16,7 @@ import ProducerConsumerSequenceDiagram from "./images/producer-consumer-sequence
   generation of work from processing of work.
 </div>
 
-# Problem/context
+## Problem/context
 
 When our system needs to perform some work, but the parts of the system that perform the work need to behave very differently to the parts of the system that generate the requests for that work.
 
@@ -29,7 +29,7 @@ Examples of senarios where processing and requests behave differently:
 - You need to scale the capacity to do work differently from the capacity that generates work
   e.g. you need to be able to add or modify processing units to handle larger requests, even if the number of requests is the same
 
-# Concept
+## Concept
 
 Split the system into two roles:
 
@@ -58,7 +58,7 @@ the same message bus and respect a common definition for messages.
 - The message bus is a single point of failure; closely monitor its performance and limits.
 - Both consumers and producers can be scaled horizontally.
 
-# Examples
+## Examples
 
 A toy producer-consumer system.
 

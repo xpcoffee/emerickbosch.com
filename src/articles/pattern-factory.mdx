@@ -11,13 +11,13 @@ import { Link } from "gatsby"
 
 **TLDR** A "factory" is a <Link to="/articles/patterns">pattern</Link> which encapsulates logic for creating new instances of classes.
 
-# Problem/context
+## Problem/context
 
 Logic which determines which objects need to be created can be complex. That complexity can leak into other concerns in your code, making it harder to understand and harder to maintain.
 
 This problem is found often in object-oriented codebases that make heavy use of polymorphism. In these codebases you often need to determine which implementation of an interface needs to be created, depending on configuration, user input and/or app state.
 
-# Concept
+## Concept
 
 The core idea is to encapsulate the logic that determines when an object needs to be created.
 
@@ -29,7 +29,7 @@ The core idea is to encapsulate the logic that determines when an object needs t
 - [My own definition] Factories always return _new objects_ i.e. calling a factory twice should give you two objects. The results from the factory can be cached, but the factory itself should not cache.
 - Factories get given all the information to construct the object up-front: either in the their constructor (if they're a class), as parameters to the factory function, or a combination of both. This is a key difference between patterns like Builders which configure new objects progressively.
 
-# Examples
+## Examples
 
 A **factory class** that creates a new hero object according to player choices.
 

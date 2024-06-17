@@ -12,13 +12,13 @@ import SequenceDiagram from "./images/strategy-sequence.svg"
 
 **TLDR** A "strategy" is a <Link to="/articles/patterns">pattern</Link> which provides a way to define and exchange multiple implementations for processes.
 
-# Problem/context
+## Problem/context
 
 Systems often need to change the way they perform their core processes as the context of the app changes e.g.
 reducing resource usage when battery is low, or changing how elements are rendered depending on whether the application
 is currently focussed.
 
-# Concept
+## Concept
 
 We define an interface for the functionality that needs to be interchanged.
 We then create a new class for each implementation we need.
@@ -37,7 +37,7 @@ During runtime, based on application context, we can then determine which implem
 - This pattern is one way to compose functionality into classes and can be used as a way to <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">favour composition over inheritence</a>.
 - A side-effect of this pattern is that the extracted functionality can then be re-used elsewhere.
 
-# Example
+## Example
 
 Plant watering functionality has been extracted into several **strategies** that are used an automated sprinkler system.
 

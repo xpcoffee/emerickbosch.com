@@ -12,7 +12,7 @@ import { PullQuote } from "../components"
 
 This page is intended to be a living document of the different ways you should think about instrumenting your system to be able to operate it effectively and gather data to inform future features.
 
-# Checklist
+## Checklist
 
 Ideally you should be able to answer any of the following for your system within short notice.
 
@@ -25,7 +25,7 @@ Ideally you should be able to answer any of the following for your system within
 - [ ] [How did this customer use my system?](#customer-traces)
 - [ ] [What are the different customer personas using my system?](#customer-analytics)
 
-# Glossary
+## Glossary
 
 - **metric** a _stream_ of events sent from your systems. These are usually **numeric** e.g. latencies of calls against your service or **boolean** e.g. whether a worflow was successful. Metrics can be processed (e.g. counting number of successful wokflows in a minute) and/or combined (e.g. successes/total-workflows to get a success-ratio metric).
 - **signal** an event that is triggered automatically. It is intended to communicate a _change of state_ e.g. from healthy to unhealthy. Often this requires both a metric and a condition (e.g. a threshhold) that will trigger based on the metric.
@@ -33,9 +33,9 @@ Ideally you should be able to answer any of the following for your system within
 - **signal-to-noise ratio** the ratio of useful/reliable events to the noisy/unreliable events. An alarm that only triggers when there's a real problem has a high signal-to-noise ratio. An alarm that triggers lots of false alarm has a low ratio. See also [the wikipedia entry](https://en.wikipedia.org/wiki/Signal-to-noise_ratio).
 - **canary service** a.k.a. [synthetic monitoring](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html) is a system which calls your system and pushes metric streams for its success rate. Used to provide early detection of failure.
 
-# Detecting and mitigating impact
+## Detecting and mitigating impact
 
-## Health signals
+### Health signals
 
 <PullQuote>Is my system currently healthy?</PullQuote>
 
@@ -57,7 +57,7 @@ Examples:
 - Unexpected service restarts
 - Limits reached for a resource
 
-## Diagnostic metrics
+### Diagnostic metrics
 
 <PullQuote>Has the behaviour of my system deviated recently?</PullQuote>
 
@@ -75,7 +75,7 @@ Examples:
 - API requests dropped by the loadbalancer
 - system resource usage has hit a hard limit
 
-## Scaling signals
+### Scaling signals
 
 <PullQuote>
   Do I need to plan maintenance or scaling work on my system?
@@ -94,9 +94,9 @@ Examples:
 - threshholds on expected system load/throughput like expect a minimum of 500 active users per 30mins at any time during the day. Note that this is not the same as SLAs where you have an agreement to provide certain performance; these are to try to catch when a system behaviour is atypical.
 - threshholds on difference in processing rate between a producer and consumer
 
-# Investigations
+## Investigations
 
-## Distributed traces
+### Distributed traces
 
 <PullQuote>How was this request fullfilled by my systems?</PullQuote>
 
@@ -105,7 +105,7 @@ These help to track a request through multiple systems to determine where an iss
 
 ![distributed trace in context of a system](./images/distributed-trace.png)
 
-## Event logs
+### Event logs
 
 <PullQuote>
   What are the important events that were performed by my system recently?
@@ -123,7 +123,7 @@ Retention of these logs needs to be long enough to help you diagnose events in t
   </i>
 </div>
 
-## Audit logs
+### Audit logs
 
 <PullQuote>
   What are the events that customers/security/legal need to know about
@@ -132,9 +132,9 @@ Retention of these logs needs to be long enough to help you diagnose events in t
 These logs help you audit the work done by your system and can often be requested by customers or legal entities outside the company.
 Retention of these logs should be long enough to cover legal responsibilities e.g. on the scale of one or more years.
 
-# Understanding your customer experience
+## Understanding your customer experience
 
-## Customer traces
+### Customer traces
 
 <PullQuote>How did this customer use my system?</PullQuote>
 
@@ -148,7 +148,7 @@ Example questions that traces can help answer:
 - how many times did a customer open the help section while creating a resource?
 - did a customer start using a resource immediately after creating it?
 
-## Customer analytics
+### Customer analytics
 
 <PullQuote>What are the different customer personas using my system?</PullQuote>
 
@@ -164,7 +164,7 @@ Examples results for analytical workflows:
 - probablity that customers who have more than a certain number of resources will sign up for an enterprise account
 - percentage of customers that fail to reach the 3rd step of a wizard
 
-# Resources
+## Resources
 
 I found these personally very helpful:
 

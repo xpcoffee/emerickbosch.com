@@ -20,9 +20,9 @@ import { PullQuote } from "../components"
 
 <div className="py-5" />
 
-# Team alignment
+## Team alignment
 
-## Tenets
+### Tenets
 
 <span className="text-lg">
   A prioritized set of team defaults for how to resolve tension between
@@ -31,14 +31,14 @@ import { PullQuote } from "../components"
 
 <PullQuote>Prioritize the things we care the most about.</PullQuote>
 
-### Problem
+#### Problem
 
 We want to make correct decisions quickly and consistently, especially during times of high
 stress.
 This is really difficult to do if the team hasn't previously aligned on how to make
 these difficult decisions.
 
-### Concept
+#### Concept
 
 Pre-align the team around a set of default decisions/positions and use those as a starting point
 when discussing tough decisions. Document these decisions/positions in a living document.
@@ -84,7 +84,7 @@ Tenets:
     critical failures early enough that we can react to them.
 ```
 
-### Considerations
+#### Considerations
 
 **Tenets should help resolve _contenious_ senarios.**
 
@@ -120,24 +120,24 @@ The point is to extract positions that can help make decisions quicker later.
 Settling on answers that don't actually take a position isn't useful in this exercise.
 Try to frame the senarios like "what do we choose if the decision is not clear from the context?"
 
-## Tech experiment
+### Tech experiment
 
 A short-lived task aimed at gaining the information needed to make a decision.
 
 <PullQuote>It is better to try, fail and learn than to stagnate.</PullQuote>
 
-### Problem
+#### Problem
 
 Sometimes the team can't agree whether something is worth doing due to a lack of datapoints.
 
-### Concept
+#### Concept
 
 We plan a _minimal/hacky_ implementation of an idea that enables us gather data and make progress.
 We build metrics into the implementation that allow us to know whether the decision was correct,
 and we plan an explicit deadline at which we evaluate the metrics and decide whether to plan the
 full implementation or to roll back.
 
-### Considerations
+#### Considerations
 
 **Definitions of success, based on metrics**
 
@@ -165,58 +165,58 @@ some implementation details.
 In contrast an experiment is about trying something "for real" and measuring the results to
 enable us to make a decision.
 
-### Experiment proposal
+#### Experiment proposal
 
 This is a template for an experiment proposal/overview. This is used to make the initial decision around
 whether or not to plan the experiment.
 
 ```md
-# Experiment: Foobar
+## Experiment: Foobar
 
-## Context
+### Context
 
 How do things work now?
 
-## Ambiguity/problem
+### Ambiguity/problem
 
 What knowledge are we aiming to gain/what problem are we looking to solve with this
 experiment?
 
-## Approach
+### Approach
 
 Short description of the approach. This is not a design; that will come later.
 
-## Out of scope
+### Out of scope
 
 What will not be considered as part of this experiment.
 
-## Success criteria/Metrics
+### Success criteria/Metrics
 
 How do we know whether this was successful or not?
 
-## Owners
+### Owners
 
 @someone
 @anyone
 
-## Start date
+### Start date
 
 YYYY-MM-DD
 
-## End date
+### End date
 
 YYYY-MM-DD
 
 This is a hard cutoff. On this date we make a decision around failure/success and
 whether to invest further.
 
-## Conclusions/learnings
+### Conclusions/learnings
 
 To be written after the experiment to summaries the outcomes. Link to more detailed
 artifacts here (designs, data, code, etc).
 ```
 
-## Decision log
+### Decision log
 
 <p className="text-lg">A record of major decisions, with minimal context.</p>
 
@@ -224,12 +224,12 @@ artifacts here (designs, data, code, etc).
   We can reference and share the important decisions we make.
 </PullQuote>
 
-### Problem
+#### Problem
 
 We strive to make decisions quickly and often. In a fast-moving environment, members of the team or stakeholders can often lose track of when decisions are made, and the context around those decisions.
 This misalignment around decisions often leads to communication issues, causing unnecessary conflict and impacting the team's ability to deliver.
 
-### Concept
+#### Concept
 
 Put down decisions in writing in a central location that can be tracked by both the team and stakeholders, along with some minimal context around the decision to help readers understand why the decision was taken.
 
@@ -249,7 +249,7 @@ Date | Decision | People | Context
 2022-05-22 | Spend 1 week paying back tech debt | @bar @grault | Rest of the team is on holiday next week
 ```
 
-### Considerations
+#### Considerations
 
 **Decisions are not rules**
 
@@ -271,16 +271,16 @@ Adding metadata to records e.g. tags for different domains, or unique IDs that c
 
 <div className="py-5" />
 
-# Operations
+## Operations
 
-## Operational event log
+### Operational event log
 
 Team-specific log of start/end of significant operational events. Most recent entries
 at the top.
 
 <PullQuote>A reference of the most important events in our systems.</PullQuote>
 
-### Problem
+#### Problem
 
 It is time-consuming and often difficult to find and correlate events that happened
 in systems that we're dependent on or in systems that are dependent on us, especially
@@ -289,7 +289,7 @@ if these events weren't widely-spread or shared.
 This difficulty means that you usually need to manually reach out to people involved in
 incidents in order to find out what happened.
 
-### Concept
+#### Concept
 
 Teams keep a minimal log of the most important events that happen to their systems.
 This log can be accessed by other teams that want to correlate events they see in their own
@@ -301,7 +301,7 @@ to understand impact and recovery across multiple systems.
 In more advanced cases these logs should be able to be injested by tooling to display
 events across the company on dashboards or to run analytics on the data.
 
-### Ops event log format
+#### Ops event log format
 
 This format tracks major state changes (when an event starts, major evolutions and when an event ends).
 There can be one log per team or multiple teams can contribute to a shared log.
@@ -313,7 +313,7 @@ timestamp | short event description | status (start/state-change/end) | _ticket 
 Example:
 
 ```md
-# Operational events
+## Operational events
 
 2021-08-30T10:14Z | home page latency increase | end | HOME-8557 | full recovery
 2021-08-30T10:13Z | home page latency increase | state-change | HOME-8557 | partial recovery
@@ -322,19 +322,19 @@ Example:
 2021-08-29T09:31Z | failover data migration | start | DATA-8552 | workflow started
 ```
 
-## Operational review journal
+### Operational review journal
 
 Team-specific journal of a periodic operational review.
 
 <PullQuote>How did our systems perform for our customers last week?</PullQuote>
 
-### Problem
+#### Problem
 
 The team needs a place to track the operational health of its systems over time,
 both for future reference and as a place where team members and stakeholders can understand
 the operational posture of their system.
 
-### Concept
+#### Concept
 
 Periodically write and publish a journal of the operational health of our systems.
 The journal should contain all the most important metrics that need actively monitoring
@@ -344,20 +344,20 @@ team faces. Finally it should list ongoing operational action items the team tak
 Use the journal to drive our operational reviews so that you ensure you answer the most
 important questions during the session. Make entries this accessible to stakeholders.
 
-### Template journal format
+#### Template journal format
 
 I've found the following format to be useful:
 
 ```md
-# YYYY-MM-DD Ops review
+## YYYY-MM-DD Ops review
 
-## What experiences do we own/maintain?
+### What experiences do we own/maintain?
 
 _This section shouldn't change often and is more to allow sharing._
 
-## Operational wins
+### Operational wins
 
-## What was last week like for customers?
+### What was last week like for customers?
 
 Customer impacting events (both good and bad):
 
@@ -365,7 +365,7 @@ Customer feedback:
 
 Metrics callouts:
 
-## What was last week like for on-call?
+### What was last week like for on-call?
 
 Major events:
 
@@ -375,9 +375,9 @@ Lessons learned:
 
 Most wanted improvement:
 
-## What is currently the biggest operational risk?
+### What is currently the biggest operational risk?
 
-## Action items
+### Action items
 
 1. Action item - @owner
 ```
