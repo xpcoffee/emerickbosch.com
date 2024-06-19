@@ -23,7 +23,7 @@ h1 {
 }
 
 h2 {
-  @apply text-2xl mt-8 pb-1 mb-2 quicksand text-gray-700 dark:text-gray-300 border border-b-black border-dashed w-full;
+  @apply text-2xl mt-8 pb-1 mb-2 quicksand text-gray-700 dark:text-gray-300 border border-transparent border-b-gray-700 border-dashed w-full dark:border-b-gray-300;
 }
 
 h3 {
@@ -72,15 +72,15 @@ th {
 }
 
 img {
-    @apply rounded-lg;
+  @apply rounded-lg;
 }
 
 figure {
-    @apply my-8;
+  @apply my-8;
 }
 
 figcaption {
-    @apply text-center text-sm my-4 italic;
+  @apply text-center text-sm my-4 italic;
 }
 
 details summary > * {
