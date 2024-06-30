@@ -4,29 +4,25 @@ Emerick Bosch's personal site.
 
 ## Getting started
 
-1\. Install the [Gatsby CLI](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli).
-
-2\. Install dependencies
+1\. Install dependencies
 
 ```bash
 npm install
 ```
 
-3\. Start the development server
+2\. Start the development server
 
 ```bash
-npm start
+npm run dev
 ```
 
-4\. Start coding!
+3\. Start coding!
 
 ## Development
 
-See also [src/articles/gatsby-notes.mdx](./src/articles/gatsby-notes.mdx).
-
 ### Adding new articles
 
-Articles are [MDX](https://mdxjs.com/) files added to [src/articles](./src/articles). Adding a new file will automatically add a new page.
+Articles are [MDX](https://mdxjs.com/) files added to [/articles](./articles). Adding a new file will automatically add a new page.
 
 #### Frontmatter
 
@@ -55,18 +51,10 @@ faIcon: faRobot
 
 #### Images
 
-Add images to [src/articles/images/](./src/articles/images/), then reference them relatively in the MDX file:
+Add images to [/public/images/](./public/images/), then reference them in the MDX file. Also works for SVGs.
 
 ```md
-![alt text](./images/my-image.png)
-```
-
-**For SVGs:** add them [src/articles/images/](./src/articles/images/) as with normal images, but then _import them as React components_ in the MDX file.
-
-```md
-import MySvg from "./images/my-svg.svg";
-
-<MySvg />
+![alt text](/images/my-image.png)
 ```
 
 ### Styling content

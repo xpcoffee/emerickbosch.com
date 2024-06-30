@@ -1,5 +1,9 @@
 # Instructions for AWS Codebuild
 version: 0.2
+env:
+  variables:
+    S3_BUCKET_NAME: "emerickbosch.com"
+
 phases:
   install:
     runtime-versions:
