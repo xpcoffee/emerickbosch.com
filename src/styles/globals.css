@@ -34,8 +34,10 @@ h4 {
   @apply mb-2 mt-6 text-xl text-gray-700 dark:text-gray-300;
 }
 
-pre {
-  @apply rounded-xl;
+pre code {
+  display: inline-block;
+  width: 80vw;
+  overflow-x: auto;
 }
 
 html {
