@@ -18,7 +18,6 @@ export default async function Home() {
 
   return (
     <Layout>
-      {/* <Seo title="Home" /> */}
       <p id="article-list-label">
         {"A collection of "}
         <a href="https://en.wikipedia.org/wiki/Living_document" target="blank">

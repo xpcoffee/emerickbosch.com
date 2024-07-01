@@ -1,5 +1,3 @@
-import "~/styles/prism.css";
-
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
@@ -20,6 +18,7 @@ import { ModalScale } from "~/app/components/Scale";
 import Image from "next/image";
 import IconCheckCircle from "~/app/components/IconCheckCircle";
 import ArticleRedirect from "~/app/components/ArticleRedirect";
+import "~/styles/prism.css";
 
 type Props = {
   // there has to be a more sane way of typechecking static params.....
@@ -78,6 +77,35 @@ export const generateStaticParams = async () => {
     slugs.push({ slug: metadata.id }); // permalinks for each article; allows titles to change
   }
   return slugs;
+};
+
+export const generateMetadata = ({ params }: Props) => {
+  const permalinkedArticle = getMarkdownMetadata().find(
+    ({ id }) => params.slug === id,
+  );
+
+  const article = getMarkdownContentForSlug(
+    permalinkedArticle?.slug ?? params.slug,
+  );
+  return {
+    title: article.frontMatter.title,
+    description: article.frontMatter.description,
+    openGraph: {
+      siteName: "emerickbosch.com",
+      type: "website",
+      locale: "en_GB",
+      title: article.frontMatter.title,
+      description: article.frontMatter.description,
+      url: `https://emerickbosch.com/articles/${params.slug}`,
+      images: [
+        {
+          url: "https://emerickbosch.com/xpcoffee-logo.svg", // Must be an absolute URL
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+  };
 };
 
 const components = {

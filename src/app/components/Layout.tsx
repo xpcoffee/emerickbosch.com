@@ -31,22 +31,13 @@ const Layout = ({
   children,
   toolPanelContents,
 }: React.PropsWithChildren<{ toolPanelContents?: React.ReactNode }>) => {
-  const site = {
-    siteMetadata: {
-      title: "emerickbosch.com",
-    },
-  };
-
-  const title = site?.siteMetadata?.title ?? `xpcoffee`;
-
   return (
     <body>
       <div id="app-layout" className="flex justify-center">
         <div className="grid-device md:grid-desktop my-5 grid flex-1 gap-5 overflow-y-scroll">
-          <title>{title}</title>
           <Title
-            className="order-1 justify-self-center md:col-span-2 md:col-start-2 md:col-end-2 md:row-start-1 md:row-end-1 md:self-center md:justify-self-start"
-            titleText={title}
+            className="order-1 justify-self-center font-serif md:col-span-2 md:col-start-2 md:col-end-2 md:row-start-1 md:row-end-1 md:self-center md:justify-self-start"
+            titleText="emerickbosch.com"
           />
           <Link
             className="order-2 justify-self-center md:col-start-3 md:col-end-3 md:row-start-1 md:row-end-1 dark:rounded-full dark:border-2 dark:border-slate-300"
