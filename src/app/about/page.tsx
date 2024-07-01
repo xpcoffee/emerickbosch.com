@@ -16,6 +16,7 @@ const AboutPage = () => {
         width={150}
         src=""
         overrideSrc="/images/angry-snek.jpg"
+        priority
       />
     ) : (
       <Image
@@ -25,6 +26,7 @@ const AboutPage = () => {
         width={150}
         src=""
         overrideSrc="/images/emerick-bosch.jpg"
+        priority
       />
     );
   }, [showSnek]);

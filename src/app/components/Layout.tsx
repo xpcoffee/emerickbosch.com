@@ -48,6 +48,7 @@ const Layout = ({
               height="45"
               width="45"
               src="/xpcoffee-icon.svg"
+              priority
             />
           </Link>
           <ThisIsMySite className="order-3 md:col-start-3 md:col-end-3 md:row-start-4 md:row-end-4 md:self-center" />
