@@ -27,7 +27,7 @@ const ArticleListItem = ({
 
   const lastEditSubtext = lastEdit ? (
     <span className="text-sm text-gray-600 dark:text-gray-400">
-      {`Last edit: ${lastEdit.getFullYear()}-${lastEdit.getMonth()}-${lastEdit.getDate()} `}
+      {`Last edit: ${getFormattedDate(lastEdit)}`}
     </span>
   ) : undefined;
 
@@ -55,5 +55,13 @@ const ArticleListItem = ({
     </li>
   );
 };
+
+function getFormattedDate(date: Date) {
+  return `${date.getFullYear()}-${getPaddedNumber(date.getMonth() + 1)}-${getPaddedNumber(date.getDate())}`;
+}
+
+function getPaddedNumber(num: number) {
+  return `${num < 10 ? "0" : ""}${num}`;
+}
 
 export { ArticleListItem };
