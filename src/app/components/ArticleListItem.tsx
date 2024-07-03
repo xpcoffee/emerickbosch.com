@@ -38,8 +38,8 @@ const ArticleListItem = ({
         className={
           "my-2 block py-3 pl-5" +
           " md:my-2 md:border-0 md:bg-inherit md:pb-0 md:pt-1" +
-          " bg-gray-50 text-indigo-800 visited:text-indigo-800 hover:text-orange-400 visited:hover:text-orange-400" +
-          " dark:bg-slate-700 dark:text-slate-200 dark:visited:text-slate-200 dark:hover:text-orange-400"
+          " rounded-lg bg-gray-50 text-indigo-800 visited:text-indigo-800 hover:text-orange-400 visited:hover:text-orange-400" +
+          " dark:bg-transparent dark:text-slate-200 dark:visited:text-slate-200 dark:hover:text-orange-400"
         }
         href={`/articles/${articlePath}`}
       >
