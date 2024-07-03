@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import rehypePrismPlus from "rehype-prism-plus";
+import rehypeCodeTitles from "rehype-code-titles";
 import {
   getMarkdownContentForSlug,
   getMarkdownMetadata,
@@ -42,8 +42,12 @@ const Article = ({ params }: Props) => {
   const icon = getIcon(article.frontMatter?.faIcon);
   const mdxOptions = {
     mdxOptions: {
+      rehypePlugins: [
+        //order matters!
+        rehypeCodeTitles,
+        rehypePrismPlus,
+      ],
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeMdxCodeProps, rehypePrismPlus],
       tsx: true,
     },
   };
@@ -57,8 +61,8 @@ const Article = ({ params }: Props) => {
         </h1>
         <MDXRemote
           source={article.content}
-          components={components}
           options={mdxOptions}
+          components={components}
         />
       </article>
     </Layout>
