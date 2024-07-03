@@ -3,7 +3,7 @@ title: Monoids
 description: An intuitive look at a mathematical tool to guarantee composability.
 faIcon: faCubes
 date: 2021-08-31
-lastEdit: 2022-01-09
+lastEdit: 2024-07-04
 guid: 8e530e57-d03f-4381-9579-07b75fc15817
 ---
 
@@ -94,7 +94,6 @@ The first of these is that we want to be able to perform compositions in any ord
 Why is this a useful property to have in our system? It allows us to break up work. For example: if you have multiple people helping you build `(A ⊗ B) ⊗ (C ⊗ D)`, you can have person 1 do `(A ⊗ B)`, person 2 can do `(C ⊗ D)` and person 3 can take the results from person 1 and person 2 and compose them together into the final result. This is the key principle behind assembly lines in factories and parallel processing in software systems. This property of not caring for which operation is performed first is called **associativity**.
 
 An important note here that the "position" of the items still makes a difference: `A ⊗ B` is not the same as `B ⊗ A`. The above is about the order in which you perform the monoidal product.
-
 <figure className="flex flex-col items-center">
 <img src="/images/ab-not-ba.png" />
 <figcaption>Second condition for a monoid: the monoidal product must be **associative**.</figcaption>
@@ -132,22 +131,18 @@ So what do monoids look like in practice? Ironically, our LEGO blocks example is
 
 Let's design a monoid that allows us to combine wishlists of stuff that our loved ones want.
 
-```javascript
+```typescript:wishlistMonoid.ts
 /**
  * We define a set of items with similar attributes that we want to compose:
- *
- * @typedef { { type: "normal" | "identity"; totalCost: number; items: string[]; } } Wishlist
- *
  * Note that we've given us a way to determine the identity as part of this set.
  */
+type Wishlist = { type: "normal" | "identity"; totalCost: number; items: string[]; }
 
 /**
  * We define our identity in a convenience function that allows us to create
  * a new identity object.
-
- * @returns {Wishlist} the identity
  */
-function getIdentity() {
+function getIdentity(): Wishlist {
   return { type: "identity", totalCost: 0, items: [] }
 }
 
@@ -155,12 +150,13 @@ function getIdentity() {
  * Our monoidal product
  *
  * It takes in two wishlists and returns a combined wishlist.
- *
- * @param {Wishlist} wishlistA
- * @param {Wishlist} wishlistB
- * @returns {Wishlist} the combined wishlist
+ * It is associative:
+ *   ( wishlistA * wishlistB ) * wishlistC = wishlistA * ( wishlistB * wishlistC )
  */
-function combineWishlists(wishlistA, wishlistB) {
+function combineWishlists(
+    wishlistA: Wishlist, 
+    wishlistB: Wishlist
+): Wishlist {
   // We force our identity to have no effect
   if (wishlistA.type === "identity") {
     return { ...wishlistB }
@@ -176,147 +172,58 @@ function combineWishlists(wishlistA, wishlistB) {
     items: [...wishlistA.items, ...wishlistB.items],
   }
 }
-
-/**
- * Tests to assert the rules needed for a Monoid
- */
-
-const assert = require("assert")
-
-;(function testAssociativity() {
-  const wishlistA = { type: "normal", totalCost: 10, items: ["foo", "bar"] }
-  const wishlistB = { type: "normal", totalCost: 200, items: ["baz"] }
-  const wishlistC = { type: "normal", totalCost: 15, items: ["qux", "bar"] }
-
-  // test (A x B) x C is the same as A x (B x C)
-  const resultA = combineWishlists(
-    wishlistA,
-    combineWishlists(wishlistB, wishlistC),
-  )
-  const resultB = combineWishlists(
-    combineWishlists(wishlistA, wishlistB),
-    wishlistC,
-  )
-  assert.deepStrictEqual(
-    resultA,
-    resultB,
-    "The monoidal product is not associative.",
-  )
-
-  // sanity check for the actual values (should likely be tested in its own tests)
-  assert.deepStrictEqual(
-    {
-      type: "normal",
-      totalCost: 225,
-      items: ["foo", "bar", "baz", "qux", "bar"],
-    },
-    resultA,
-  )
-})()
-;(function testIdentity() {
-  const wishlistA = { type: "normal", totalCost: 10, items: ["foo", "bar"] }
-
-  const oneWay = combineWishlists(wishlistA, getIdentity())
-  assert.deepStrictEqual(
-    oneWay,
-    wishlistA,
-    "The monoidal product with the identity in the second argument does not return the first argument",
-  )
-
-  const otherWay = combineWishlists(getIdentity(), wishlistA)
-  assert.deepStrictEqual(
-    otherWay,
-    wishlistA,
-    "The monoidal product with the identity in the first argument does not return the second argument",
-  )
-
-  const identities = combineWishlists(getIdentity(), getIdentity())
-  assert.deepStrictEqual(
-    identities,
-    getIdentity(),
-    "The monoidal product on identities does not result in an identity",
-  )
-})()
 ```
 
 Now that we've defined our monoid, let's use it.
+Let's gather our family's wishlists.
 
-```javascript
-/**
- * Composes wishlists of family members together
- */
-function getFamilyWishlist() {
-  const wishlistDad = {
-    type: "normal",
-    totalCost: 100,
-    items: ["Running shoes"],
-  }
-
-  const wishlistBro = {
-    type: "normal",
-    totalCost: 300,
-    items: ["Concert tickets", "Video game subscription"],
-  }
-
-  /**
-   * Compose all the wishlists together using reduce.
-   *
-   * What will happen in the reduce:
-   * step1: compose identity and wishlistDad
-   * step2: compose result of step1 and wishlistBro
-   */
-  const initialValueForOurComposition = getIdentity()
-  const familyWishlist = [wishlistDad, wishlistBro].reduce(
-    combineWishlists,
-    initialValueForOurComposition,
-  )
-
-  console.log(familyWishlist)
-  // Output:
-  // {
-  //   type: 'normal',
-  //   totalCost: 400,
-  //   items: [ 'Running shoes', 'Concert tickets', 'Video game subscription' ]
-  // }
-
-  return familyWishlist
+```javascript:myShoppingList.js {11}
+const wishlistDad = {
+  type: "normal",
+  totalCost: 100,
+  items: ["Running shoes"],
 }
-
-/**
- * Composes wishlists of friends
- */
-function getFriendsWishlist() {
-  const wishlistBob = {
-    type: "normal",
-    totalCost: 50,
-    items: ["Chef knife"],
-  }
-
-  const wishlistJen = {
-    type: "normal",
-    totalCost: 25,
-    items: ["Sci-fi novel"],
-  }
-
-  // Terser version of the functionality in the getFamilyWishlist function
-  return [wishlistBob, wishlistJen].reduce(combineWishlists, getIdentity())
+const wishlistBro = {
+  type: "normal",
+  totalCost: 300,
+  items: ["Concert tickets", "Video game subscription"],
 }
+const getFamilyWishlist = () => [wishlistDad, wishlistBro].reduce(combineWishlists, getIdentity());
+// () => ({
+//   type: 'normal',
+//   totalCost: 400,
+//   items: [ 'Running shoes', 'Concert tickets', 'Video game subscription' ]
+// })
+```
 
-/**
- * Compose family and friend wishlists together
- *
- * Note: because of associativity, you could run getFamilyWishlist()
- * and getFriendsWishlist() in parallel threads and compose them together later
- */
+Elsewhere, we can gather our friend's wishlists. 
 
-const wishlistFinal = combineWishlists(
+```javascript:myShoppingList.js 
+const wishlistBob = {
+  type: "normal",
+  totalCost: 50,
+  items: ["Chef knife"],
+}
+const wishlistJen = {
+  type: "normal",
+  totalCost: 25,
+  items: ["Sci-fi novel"],
+}
+const getFriendWishlists = () => [wishlistBob, wishlistJen].reduce(combineWishlists, getIdentity());
+// () => ({
+//   type: 'normal',
+//   totalCost: 75,
+//   items: [ 'Chef knife', 'Sci-fi novel' ]
+// })
+```
+
+When we're ready, we can bring all lists together.
+
+```javascript:myShoppingList.js 
+const myShoppingList = combineWishlists(
   getFamilyWishlist(),
   getFriendsWishlist(),
 )
-
-console.log(wishlistFinal)
-
-// Output:
 // {
 //   type: 'normal',
 //   totalCost: 475,
@@ -329,6 +236,17 @@ console.log(wishlistFinal)
 //   ]
 // }
 ```
+
+And that needn't be the end of it. If we find more people who we want to add to our shopping list our monoid will guarantee that we can always combine these wishlists as much as we want.
+
+### So we can combine stuff. What else?
+
+Guaranteed composability gives us some great properties:
+
+ - You don't have to do all the work at the same time; some of the work can be delayed and grouped together later. Useful for workflows or wizards where lots of similar information is gathered bit-by-bit and compiled together at unpredictable times e.g. census data, student grades, measurements data from scattered devices.
+ - You can do work in parallel/in different places and the results are guaranteed to compose together without any issues e.g. parallel threads, cloud functions.
+
+We could also continue to enhance our monoid with different monoidal products to make it more versatile. Could you add a "splitWishlists" product to our example?
 
 ## Recap/TLDR
 
