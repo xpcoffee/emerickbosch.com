@@ -25,7 +25,7 @@ export const metadata = {
     url: `https://emerickbosch.com`,
     images: [
       {
-        url: "https://emerickbosch.com/xpcoffee-logo.svg",
+        url: "https://emerickbosch.com/xpcoffee-icon.svg",
         width: 800,
         height: 600,
       },

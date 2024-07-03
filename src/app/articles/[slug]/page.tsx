@@ -103,7 +103,7 @@ export const generateMetadata = ({ params }: Props) => {
       url: `https://emerickbosch.com/articles/${params.slug}`,
       images: [
         {
-          url: "https://emerickbosch.com/xpcoffee-logo.svg", // Must be an absolute URL
+          url: "https://emerickbosch.com/xpcoffee-icon.svg", // Must be an absolute URL
           width: 800,
           height: 600,
         },
