@@ -36,8 +36,7 @@ h4 {
 
 pre code {
   display: inline-block;
-  width: 80vw;
-  overflow-x: auto;
+  width: 100%;
 }
 
 html {
