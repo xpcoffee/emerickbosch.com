@@ -1,0 +1,88 @@
+---
+title: Routing help requests
+description: Getting requests for help to the right people in your company
+date: 2025-08-24
+lastEdit: 2025-08-24
+faIcon: faHeadset
+tocDepth: 2
+guid: 
+---
+
+
+At smaller companies, it is often possible to know enough about your colleagues and their teams to find the right person to help with a problem. Employees may also know enough about the company to resolve issues outside their role.
+
+As a company grows, this is no longer true. The organization, systems, and domains eventually become too large for individuals to know where to get help. At the same time, the number of support requests increases, making it infeasible for people in unrelated roles to absorb the support load.
+
+Left unaddressed, the cost of routing help requests is delays and duplicated work. This impacts both the ability of the business to serve its customers and the productivity of employees.
+
+This is not a new problem, and many companies have established patterns, systems, and processes to manage it. The approach below is the one I find most effective.
+
+
+## Breaking down the problem
+
+The challenges can be summarized as:
+
+1. Employees do not know where to send a request for help. This creates delays and, in some cases, leads to problems being abandoned.
+1. It is unclear who is responsible for resolving an issue. This creates confusion, duplicated work, and sometimes tension between colleagues. In some cases, problems are ignored.
+
+From these problems we can establish some requirements:
+
+1. ALL domains in the company MUST have an individual or group which own solving problems for that domain.
+1. ANY empoloyee at the company MUST be able to find options of where to ask for help WITHOUT needing to know specifics about a domain.
+1. We SHOULD be able to correct mistakes in assignment quickly. Requesting help is done by a human; humans make mistakes; we should be tolerant to mistakes.
+1. We SHOULD be able to easily make changes as the company grows/evolves
+
+
+## A solution: Mapping domains and experiences
+
+The solution has two parts.
+
+### Assigning domain owners
+
+Responsibility for each domain should be explicitly defined. This requires:
+
+ - Defining what can own a domain (ideally teams, rather than people).
+ - Defining the domains.
+ - Mapping ownership.
+
+![](/images/domain-team-mapping.svg)
+
+This produces a source of truth for domain responsibility. The mapping is lightweight enough to update as domains and teams change. For some companies, this alone may be sufficient.
+
+For organizations with overlapping or co-owned domains, an additional layer is useful.
+
+### Experiences
+
+Take the example of an e-commerce site. Delivering a good customer experience depends on marketing, product, software development, inventory management, and billing teams.
+
+If a customer reports a website issue, we need more context to direct the request correctly. To address this, we introduce “experiences” — labels for issues that do not require knowledge of the organizational structure.
+
+- Bad label: “Go-to-market data displays”
+
+- Good label: “Website – ‘What’s new?’”
+
+![](/images/domain-experience-team-mapping.svg)
+
+Notes:
+
+ - More granular labels can be created where needed.
+ - Fallback labels should exist to capture issues that do not fit well into an existing one.
+ - Domain mappings remain useful internally when questions do not map to a specific experience.
+
+### Tooling
+
+To implement this in practice, tooling must support:
+
+ - a place to define or can access teams
+ - a place to define the labels that represent your domains and experiences
+ - a place that maps labels to teams
+ - a way to request help (a ticket, an issue, etc) for a specific label
+ - some process that can look up the team for the label and assign them to the help request
+ - the ability to change the label of a help request, which allows a request to be routed to the correct team in case of mistakes
+
+![](/images/domain-team-mapping-tooling.svg)
+
+
+## Closing
+
+Start simple: list your domains and assign owners. Add experience-based labels so employees don’t need insider knowledge to ask for help. Support it with tooling that makes requests easy to file, route, and reassign. This maintains your ability to handle support requests as the company grows.
